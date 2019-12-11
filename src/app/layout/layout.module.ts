@@ -13,10 +13,12 @@ import { UserPageViewComponent } from './user-page-view/user-page-view.component
 import { DaySessionsViewComponent } from './day-sessions-view/day-sessions-view.component';
 import { HeaderComponent } from './shared-components/components/header/header.component';
 import { HistoryComponent } from './history-view/history.component';
+import { RegisterModalComponent } from './shared-components/components/header/register-modal/register-modal.component';
+import { UserProgressComponent } from './shared-components-components/header/user-progress/user-progress.component';
 
 
 @NgModule({
-  declarations: [LayoutComponent, DaySessionsViewComponent, HeaderComponent, HistoryComponent, QuestionsViewComponent, UserToolsViewComponent, AdminCreateSessionViewComponent, AdminManageSessionsViewComponent, UserPageViewComponent, DaySessionsViewComponent],
+  declarations: [LayoutComponent, DaySessionsViewComponent, HeaderComponent, HistoryComponent, QuestionsViewComponent, UserToolsViewComponent, AdminCreateSessionViewComponent, AdminManageSessionsViewComponent, UserPageViewComponent, DaySessionsViewComponent, RegisterModalComponent, UserProgressComponent],
   imports: [
     CommonModule,
     LayoutRoutingModule,
