@@ -30,34 +30,7 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'not-found'
   },
-  {
-    path: 'admin-create-session-view',
-    component: AdminCreateSessionViewComponent
-  },
-  {
-    path: 'admin-manage-sessions-view',
-    component: AdminManageSessionsViewComponent
-  },
-  {
-    path: 'day-sessions-view',
-    component: DaySessionsViewComponent
-  },
-  {
-    path:'history-view',
-    component: HistoryComponent
-  },
-  {
-    path:'questions-view',
-    component: QuestionsViewComponent
-  },
-  {
-    path: 'user-page-view',
-    component: UserPageViewComponent
-  },
-  {
-    path: 'user-tools-view',
-    component: UserToolsViewComponent
-  }
+  
 ];
 
 @NgModule({
