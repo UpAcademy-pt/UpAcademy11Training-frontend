@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.username).subscribe((data) => {
       console.log(data);
       this.userService.setCurrentUser(data[0]);
-      this.router.navigate(['/']);
+      this.router.navigate(['/day-sessions-view']);
     });
   }
 
