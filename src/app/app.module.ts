@@ -7,19 +7,30 @@ import { LoginComponent } from './login-view/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './shared-components/components/header/header.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { HeaderModule } from './shared-components/components/header/header.module';
+import { RegisterModalComponent } from './shared-components/components/header/register-modal/register-modal.component';
+import { UserProgressComponent } from './shared-components/components/header/user-progress/user-progress.component';
+import { DropDownComponent } from './shared-components/components/header/drop-down/drop-down.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NotFoundComponent,
-    HeaderComponent
+    HeaderComponent,
+    RegisterModalComponent, 
+    UserProgressComponent,
+    DropDownComponent
   ],
   imports: [
+    NgbModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
