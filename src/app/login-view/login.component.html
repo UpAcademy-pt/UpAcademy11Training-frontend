@@ -1,3 +1,121 @@
-<p>login works!</p>
-<input type="text" [(ngModel)]= "username" >
-<button (click)="login()">Login</button>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="theme-color" content="#33b5e5">
+    <link rel="manifest" href="/manifest.json">
+
+    <title>Angular Forms - Bootstrap 4 &amp; Material Design. Examples &amp; tutorial - Material Design for Bootstrap
+    </title>
+
+    <link rel='stylesheet' id='compiled.css-css'
+        href='https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled-4.10.0.min.css?ver=4.10.0'
+        type='text/css' media='all' />
+
+</head>
+<!-- Navbar-->
+<nav class="navbar fixed-top navbar-expand-md navbar-light white double-nav scrolling-navbar">
+    <!-- SideNav slide-out button -->
+    <div class="float-left">
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="fas fa-bars"></i><span class="sr-only"
+                aria-hidden="true">Toggle side navigation</span></a>
+    </div>
+    <!-- Navbar links-->
+    <div class="mr-auto pl-2">
+        <span class="d-none d-md-inline-block">
+
+            <!-- Dynamic content wrapper -->
+
+            <img src="https://www.criticaltechworks.com/static/images/logo_vectorial_stage2.svg" height=50px alt="">
+            <!--Angular Mobile-->
+
+            <span id="dynamicContentWrapper-mainNavbar3" class="dynamic-content"></span>
+
+            <!--React Mobile-->
+        </span>
+    </div>
+
+    <!--Navigation icons-->
+    <ul class="nav navbar-nav nav-flex-icons ml-auto">
+
+        <ng-template #content let-c="close" let-d="dismiss">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Sign Up</h4>
+<!--                 <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button> -->
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label>Name: </label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="pt-3">
+                    <label>E-mail: </label>
+                    <input type="text" id="mailRegister" class="form-control">
+                </div>
+                <div class="pt-3">
+                    <label>Password: </label>
+                    <input type="text" id="pwRegister" class="form-control">
+                </div>
+                <div class="pt-3">
+                    <label>Confirm password: </label>
+                    <input type="text" id="cpwRegister" class="form-control">
+                </div>
+            </div>
+<!--             <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Register</button>
+            </div> -->
+        </ng-template>
+
+        <button class="btn btn-info btn-rounded btn-sm waves-effect waves-light auth-modal-toggle"
+            (click)="open(content)">Register</button>
+    </ul>
+</nav>
+<!-- /.Navbar-->
+
+<!-- <p>login works!</p>
+<input type="text" [(ngModel)]="username">
+<button (click)="login()">Log In</button> -->
+<!--Section: Live preview-->
+<section class="container col-md-6">
+
+    <p class="p-3"></p>
+
+    <!-- Default form login -->
+    <form class="text-center border border-light p-5">
+
+        <p class="h4 mb-4">Sign in</p>
+
+        <!-- Email -->
+        <input type="email" [(ngModel)]="email" class="form-control mb-4" placeholder="E-mail">
+        <!-- Password -->
+        <input type="password" [(ngModel)]="userpw" class="form-control mb-4" placeholder="Password">
+
+        <div class="d-flex justify-content-around">
+            <div>
+                <!-- Remember me -->
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+                    <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+                </div>
+            </div>
+            <div>
+                <!-- Forgot password -->
+                <a href="">Forgot password?</a>
+            </div>
+        </div>
+
+        <!-- Sign in button -->
+        <button class="btn btn-info btn-block my-4" type="submit" (click)="login()">Sign in</button>
+
+    </form>
+    <!-- Default form login -->
+
+</section>
+<!--Section: Live preview-->

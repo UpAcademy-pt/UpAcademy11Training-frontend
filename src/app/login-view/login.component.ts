@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserServiceService } from '../core/services/user-service/user-service.service';
 import { Router } from '@angular/router';
+import { UserServiceService } from '../core/services/user-service/user-service.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-login',
@@ -8,22 +10,34 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  public email = '';
+  public userpw = '';
 
-  public username = '';
   constructor(
-    private router: Router, 
-    private userService: UserServiceService
-  ) { }
+    private router: Router,
+    private userService: UserServiceService,
+    private modalService: NgbModal,
+   ) { }
 
-  ngOnInit() {
+ngOnInit() {
   }
 
-  public login(){
-    this.userService.login(this.username).subscribe((data) => {
+  public login() {
+    this.userService.login(this.email, this.userpw).subscribe((data) => {
       console.log(data);
       this.userService.setCurrentUser(data[0]);
       this.router.navigate(['/']);
     });
   }
 
+
+  returnKeys(obj) {
+    return Object.keys(obj);
+  }
+
+  open(content) {
+    this.modalService.open(content);
+  }
+
 }
+

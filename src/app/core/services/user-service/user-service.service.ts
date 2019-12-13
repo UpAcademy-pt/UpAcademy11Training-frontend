@@ -7,30 +7,40 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserServiceService {
 
-  private apiUrl = 'https://upacademytinder.herokuapp.com/api/users';
+
+  private apiUrl = 'localhost:8080/Projeto-CTW/api/user/';
   private currentUser: any = {};
 
   constructor(
     private http: HttpClient
   ) { }
 
-  /**
-   * isAuthenticated
-   */
   public isAuthenticated(): boolean {
-    console.log("User Service IsAuth");
+    console.log('User Service isAuth');
     if (this.currentUser.id) {
       return true;
-    }else{
+    } else {
       return false;
     }
   }
 
-  public login(username) {
-    return this.http.get(this.apiUrl + '?filter={"where":{"username":"' + username + '"}}');
-  }
-
-  public setCurrentUser(user){
+  public setCurrentUser(user) {
     this.currentUser = user;
   }
+
+  public login(email, userpw) {
+    let user = {'email': email, 'password': userpw};
+    return this.http.post(this.apiUrl + 'auth', user);
+  }
+
+  registerUser(name: string, email: string, userpw: string) {
+    let user = {'name': name, 'email': email, 'password': userpw};
+    return this.http.post(this.apiUrl, user);
+
+
+  }
 }
+
+
+
+
