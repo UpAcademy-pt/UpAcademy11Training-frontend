@@ -37,11 +37,10 @@ export class UserServiceService {
     return this.http.post(this.apiUrl + 'auth', user, {responseType: 'text'});
   }
 
-  registerUser(name: string, email: string, userpw: string) {
-    let user = {'name': name, 'email': email, 'password': userpw};
-    return this.http.post(this.apiUrl, user, {responseType: 'text'});
-
-
+  public registerUser(name: string, email: string, userpw: string) {
+    let user = {'nome': name, 'email': email, 'password': userpw};
+   return this.http.post(this.apiUrl, user, {responseType: 'text'});
+    
   }
 }
 

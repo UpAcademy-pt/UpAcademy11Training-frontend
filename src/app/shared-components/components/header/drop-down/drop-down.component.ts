@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UserServiceService } from 'src/app/core/services/user-service/user-service.service';
 
 
 @Component({
@@ -11,6 +12,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class DropDownComponent implements OnInit {
 
+  private name = '';
+  private email = '';
+  private userpw = '';
   private activeRoute;
   private progressBar = false;
   private dropDownButton = false;
@@ -22,6 +26,7 @@ export class DropDownComponent implements OnInit {
         <button mat-icon-button>
         <mat-icon *ngIf="this.dropDownButton" (click)="sidenav.toggle()">menu</mat-icon> */
   constructor(
+    private userService: UserServiceService,
     private modalService: NgbModal,
     private router: Router
   ) {
@@ -34,6 +39,9 @@ export class DropDownComponent implements OnInit {
         this.dropDownButton = true;
         this.userFace = true;
       }
+      if (this.activeRoute != "/login"){
+
+      }
     })
   }
 
@@ -41,5 +49,12 @@ export class DropDownComponent implements OnInit {
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+  }
+  
+  register() {
+    this.userService.registerUser(this.name, this.email, this.userpw).subscribe( data => {
+      console.log(data);
+      
+    });
   }
 }
