@@ -11,29 +11,27 @@ import { AdminCreateSessionViewComponent } from './admin-create-session-view/adm
 import { AdminManageSessionsViewComponent } from './admin-manage-sessions-view/admin-manage-sessions-view.component';
 import { UserPageViewComponent } from './user-page-view/user-page-view.component';
 import { DaySessionsViewComponent } from './day-sessions-view/day-sessions-view.component';
-import { HeaderComponent } from './shared-components/components/header/header.component';
+
 import { HistoryComponent } from './history-view/history.component';
-import { RegisterModalComponent } from './shared-components/components/header/register-modal/register-modal.component';
-import { UserProgressComponent } from './shared-components/components/header/user-progress/user-progress.component';
-import { DropDownComponent } from './shared-components/components/header/drop-down/drop-down.component';
+import { RegisterModalComponent } from '../shared-components/components/header/register-modal/register-modal.component';
+import { UserProgressComponent } from '../shared-components/components/header/user-progress/user-progress.component';
+import { DropDownComponent } from '../shared-components/components/header/drop-down/drop-down.component';
+
 
 
 
 @NgModule({
   declarations: [
-    LayoutComponent, 
+    LayoutComponent,
     DaySessionsViewComponent,
-    HeaderComponent, 
+/*     HeaderComponent, */
     HistoryComponent,
-    QuestionsViewComponent, 
-    UserToolsViewComponent, 
-  /*   AdminCreateSessionViewComponent , */
-    AdminManageSessionsViewComponent, 
-    UserPageViewComponent, 
-    DaySessionsViewComponent, 
-    RegisterModalComponent, 
-    UserProgressComponent, 
-    DropDownComponent
+    QuestionsViewComponent,
+    UserToolsViewComponent,
+    AdminCreateSessionViewComponent ,
+    AdminManageSessionsViewComponent,
+    UserPageViewComponent,
+    DaySessionsViewComponent
   ],
   imports: [
     CommonModule,
