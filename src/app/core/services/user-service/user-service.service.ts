@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class UserServiceService {
 
 
-  private apiUrl = 'localhost:8080/Projeto-CTW/api/user/';
+  private apiUrl = 'http://localhost:8080/Projeto-CTW/api/user/';
   private currentUser: any = {};
 
   constructor(
@@ -28,14 +28,16 @@ export class UserServiceService {
     this.currentUser = user;
   }
 
-  public login(email, userpw) {
-    let user = {'email': email, 'password': userpw};
-    return this.http.post(this.apiUrl + 'auth', user);
+  public login(emailUser, userpw) {
+    console.log(emailUser, userpw);
+    
+    let user = {email: emailUser, password: userpw};
+    return this.http.post(this.apiUrl + 'auth', user, {responseType: 'text'});
   }
 
   registerUser(name: string, email: string, userpw: string) {
     let user = {'name': name, 'email': email, 'password': userpw};
-    return this.http.post(this.apiUrl, user);
+    return this.http.post(this.apiUrl, user, {responseType: 'text'});
 
 
   }

@@ -18,7 +18,6 @@ import { RegisterComponent } from './login-view/register/register.component';
     AppComponent,
     LoginComponent,
     NotFoundComponent,
-    RegisterComponent,
     RegisterComponent
   ],
   imports: [

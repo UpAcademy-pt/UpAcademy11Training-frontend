@@ -20,7 +20,21 @@ import { DropDownComponent } from './shared-components/components/header/drop-do
 
 
 @NgModule({
-  declarations: [LayoutComponent, DaySessionsViewComponent, HeaderComponent, HistoryComponent, QuestionsViewComponent, UserToolsViewComponent, AdminCreateSessionViewComponent, AdminManageSessionsViewComponent, UserPageViewComponent, DaySessionsViewComponent, RegisterModalComponent, UserProgressComponent, DropDownComponent],
+  declarations: [
+    LayoutComponent, 
+    DaySessionsViewComponent,
+    HeaderComponent, 
+    HistoryComponent,
+    QuestionsViewComponent, 
+    UserToolsViewComponent, 
+  /*   AdminCreateSessionViewComponent , */
+    AdminManageSessionsViewComponent, 
+    UserPageViewComponent, 
+    DaySessionsViewComponent, 
+    RegisterModalComponent, 
+    UserProgressComponent, 
+    DropDownComponent
+  ],
   imports: [
     CommonModule,
     LayoutRoutingModule,

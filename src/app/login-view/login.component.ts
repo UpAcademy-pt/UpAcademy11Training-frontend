@@ -20,12 +20,15 @@ export class LoginComponent implements OnInit {
    ) { }
 
 ngOnInit() {
+  console.log('cheguei');
+  
   }
 
   public login() {
+    console.log(this.email, this.userpw);
     this.userService.login(this.email, this.userpw).subscribe((data) => {
       console.log(data);
-      this.userService.setCurrentUser(data[0]);
+      this.userService.setCurrentUser(data);
       this.router.navigate(['/']);
     });
   }

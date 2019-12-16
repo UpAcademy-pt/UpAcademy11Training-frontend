@@ -23,7 +23,7 @@ constructor(
   ngOnInit() {
   }
 
-public registerUser () {
+public registerUser() {
   this.userService.registerUser(this.name, this.email, this.userpw).subscribe((data) => {
     console.log(data);
     this.userService.setCurrentUser(data[0]);
