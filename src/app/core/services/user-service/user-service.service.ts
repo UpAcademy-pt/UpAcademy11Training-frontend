@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { log } from 'util';
 import { HttpClient } from '@angular/common/http';
+import { User } from '../../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -9,15 +10,16 @@ export class UserServiceService {
 
 
   private apiUrl = 'http://localhost:8080/Projeto-CTW/api/user/';
-  private currentUser: any = {};
+  private currentUser: User = new User();
 
   constructor(
     private http: HttpClient
   ) { }
 
-  public isAuthenticated(): boolean {
-    console.log('User Service isAuth');
-    if (this.currentUser.id) {
+  public isAuthenticated(): boolean {  
+    if (this.currentUser) {
+      console.log("LOGGED IN");
+      
       return true;
     } else {
       return false;

@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
         this.view = data.url.substr(1);
       }
     });
+
   }
 
 }

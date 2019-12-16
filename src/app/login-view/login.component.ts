@@ -28,10 +28,9 @@ ngOnInit() {
     this.userService.login(this.email, this.userpw).subscribe((data) => {
       console.log(data);
       this.userService.setCurrentUser(data);
-      this.router.navigate(['/']);
-      DropDownComponent.progressbar = true;
-      DropDownComponent.userFace = true;
-      DropDownComponent.dropDownButton = true;
+
+      this.router.navigate(['/day-sessions-view']);
+      
       
 /*       <img src="https://www.criticaltechworks.com/img/_6AaJMV5c-logo_banner.svg" width="10%">
       <mat-icon *ngIf="this.userFace" class="icon">account_circle</mat-icon>
