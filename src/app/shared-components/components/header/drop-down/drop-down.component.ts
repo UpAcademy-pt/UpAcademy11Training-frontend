@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -21,13 +22,13 @@ export class DropDownComponent implements OnInit {
         <button mat-icon-button>
         <mat-icon *ngIf="this.dropDownButton" (click)="sidenav.toggle()">menu</mat-icon> */
   constructor(
+    private modalService: NgbModal,
     private router: Router
   ) {
     this.router.events.pipe(
     filter((event) => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd)=> {
       this.activeRoute = event.urlAfterRedirects;
-      console.log("Atum : " + this.activeRoute);
       if (this.activeRoute != "/login") {
         this.progressBar = true;
         this.dropDownButton = true;
@@ -38,4 +39,7 @@ export class DropDownComponent implements OnInit {
 
   ngOnInit() {}
 
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+  }
 }

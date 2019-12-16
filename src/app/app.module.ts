@@ -7,12 +7,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './shared-components/components/header/header.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { RegisterModalComponent } from './shared-components/components/header/register-modal/register-modal.component';
+import { NgbModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserProgressComponent } from './shared-components/components/header/user-progress/user-progress.component';
 import { DropDownComponent } from './shared-components/components/header/drop-down/drop-down.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import {MatButtonModule, MatIconModule, MatListModule, MatProgressBarModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
+import { MatButtonModule, MatIconModule, MatListModule, MatProgressBarModule, MatSidenavModule, MatToolbarModule } from '@angular/material';
 
 
 @NgModule({
@@ -21,7 +20,6 @@ import {MatButtonModule, MatIconModule, MatListModule, MatProgressBarModule, Mat
     LoginComponent,
     NotFoundComponent,
     HeaderComponent,
-    RegisterModalComponent,
     UserProgressComponent,
     DropDownComponent
   ],
@@ -38,13 +36,8 @@ import {MatButtonModule, MatIconModule, MatListModule, MatProgressBarModule, Mat
     MatIconModule,
     NgbModule,
     MatProgressBarModule
-
-
-/*     NgbModalModule */
     ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-
