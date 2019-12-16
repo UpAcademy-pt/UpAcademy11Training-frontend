@@ -1,0 +1,35 @@
+.mat-toolbar {
+    color: #16dfdf;
+    background-color: #0b0255;
+}
+
+.mat-sidenav {
+    background-color: #b2f6f8;
+  
+  }
+  
+  .example-fill-remaining-space {
+    /* This fills the remaining space, by using flexbox.
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+  }
+  
+  .bar {
+  
+    position: relative;
+    left: 20px;
+    width: 100px;
+  
+  }
+  
+  .icon {
+  
+    position: relative;
+    left: 20px;
+    width: 40px;
+    font-size: 36px;
+  
+  }
+  
+  
+  

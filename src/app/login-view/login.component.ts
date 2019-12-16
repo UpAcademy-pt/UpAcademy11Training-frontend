@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserServiceService } from '../core/services/user-service/user-service.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { DropDownComponent } from '../shared-components/components/header/drop-down/drop-down.component';
 
 @Component({
   selector: 'app-login',
@@ -29,6 +29,18 @@ ngOnInit() {
       console.log(data);
       this.userService.setCurrentUser(data);
       this.router.navigate(['/']);
+      DropDownComponent.progressbar = true;
+      DropDownComponent.userFace = true;
+      DropDownComponent.dropDownButton = true;
+      
+/*       <img src="https://www.criticaltechworks.com/img/_6AaJMV5c-logo_banner.svg" width="10%">
+      <mat-icon *ngIf="this.userFace" class="icon">account_circle</mat-icon>
+      <mat-progress-bar *ngIf="this.progressBar" class="bar" mode="determinate" value="40">
+      </mat-progress-bar>
+      <span class="example-fill-remaining-space"></span>
+        <button mat-icon-button>
+        <mat-icon *ngIf="this.dropDownButton" (click)="sidenav.toggle()">menu</mat-icon> */
+
     });
   }
 
