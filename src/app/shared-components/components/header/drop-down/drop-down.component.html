@@ -44,10 +44,10 @@
 
   <ul class="nav navbar-nav nav-flex-icons ml-auto">
 
-    <ng-template #content let-c="close" let-d="dismiss">
+    <ng-template #content let-modal let-c="close" let-d="dismiss">
         <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">Sign Up</h4>
-            <button type="button" class="close" aria-label="Close" (click)="('Cross click')">
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -62,12 +62,15 @@
             </div>
             <div class="pt-3">
                 <label>Password: </label>
-                <input type="text" [(ngModel)]='userpw' class="form-control">
+                <input type="password" [(ngModel)]='userpw' class="form-control">
             </div>
             <div class="pt-3">
-                <label>Confirm password: </label>
-                <input type="text" id="cpwRegister" class="form-control">
-            </div>
+                <label>Confirm password: </label>                
+                <input type="password" [(ngModel)]='userpwc' compare-to='userpw' required class="form-control"/>
+             </div>
+          <div class="error" *ngIf="errorMsg">
+            <p >Password does not match</p>
+          </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-dark" (click)="register()">Register</button>

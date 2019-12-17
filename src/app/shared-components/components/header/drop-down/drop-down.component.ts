@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { UserServiceService } from 'src/app/core/services/user-service/user-service.service';
+
 
 
 @Component({
@@ -15,16 +16,13 @@ export class DropDownComponent implements OnInit {
   private name = '';
   private email = '';
   private userpw = '';
+  private userpwc = '';
+  private errorMsg = false;
+
   private activeRoute;
   private progressBar = false;
   private dropDownButton = false;
   private userFace = false;
-/*   *ngIf="this.userFace" class="icon">account_circle</mat-icon>
-      <mat-progress-bar *ngIf="this.progressBar" class="bar" mode="determinate" value="40">
-      </mat-progress-bar>
-      <span class="example-fill-remaining-space"></span>
-        <button mat-icon-button>
-        <mat-icon *ngIf="this.dropDownButton" (click)="sidenav.toggle()">menu</mat-icon> */
   constructor(
     private userService: UserServiceService,
     private modalService: NgbModal,
@@ -49,12 +47,22 @@ export class DropDownComponent implements OnInit {
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+    this.errorMsg = false;
+    
   }
-  
+
   register() {
-    this.userService.registerUser(this.name, this.email, this.userpw).subscribe( data => {
-      console.log(data);
-      
-    });
+      if (this.userpw == this.userpwc ) {
+        this.userService.registerUser(this.name, this.email, this.userpw).subscribe( data => {
+          console.log(data);
+          this.modalService.dismissAll();
+          this.name = '';
+          this.email = '';
+          this.userpw = '';
+          this.userpwc = '';
+        });
+      } else {
+        this.errorMsg = true;
+      }
   }
 }
