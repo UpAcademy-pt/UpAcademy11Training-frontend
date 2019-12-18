@@ -12,6 +12,7 @@ import { UserPageViewComponent } from './user-page-view/user-page-view.component
 import { DaySessionsViewComponent } from './day-sessions-view/day-sessions-view.component';
 import { HistoryComponent } from './history-view/history.component';
 import { SharedModule } from '../shared-components/shared.module';
+import { AdminManageUsersViewComponent } from './admin-manage-users-view/admin-manage-users-view.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SharedModule } from '../shared-components/shared.module';
     AdminCreateSessionViewComponent ,
     AdminManageSessionsViewComponent,
     UserPageViewComponent,
+    AdminManageUsersViewComponent,
   ],
   imports: [
     CommonModule,

@@ -8,6 +8,7 @@ import { HistoryComponent } from './history-view/history.component';
 import { QuestionsViewComponent } from './questions-view/questions-view.component';
 import { UserPageViewComponent } from './user-page-view/user-page-view.component';
 import { UserToolsViewComponent } from './user-tools-view/user-tools-view.component';
+import { AdminManageUsersViewComponent } from './admin-manage-users-view/admin-manage-users-view.component';
 
 
 const routes: Routes = [
@@ -42,6 +43,10 @@ const routes: Routes = [
       {
         path: 'user-tools-view',
         component: UserToolsViewComponent
+      },
+      {
+        path: 'admin-manage-users-view',
+        component: AdminManageUsersViewComponent
       }
     ]
   }
