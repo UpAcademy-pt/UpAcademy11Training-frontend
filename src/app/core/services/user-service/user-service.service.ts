@@ -16,12 +16,12 @@ export class UserServiceService {
     private http: HttpClient
   ) { }
 
-  public isAuthenticated(): boolean {  
+  public isAuthenticated(): boolean {
     console.log(this.currentUser.id);
-    
+
     if (this.currentUser.id) {
       console.log("LOGGED IN");
-      
+
       return true;
     } else {
       return false;
@@ -38,15 +38,13 @@ export class UserServiceService {
     /* let user = new User();
     user.password = userpw;
     user.email=emailUser; */
-    let user = {email: emailUser, password: userpw};
-    return this.http.post(this.apiUrl + 'auth', user, {responseType: 'text'});
+    let user = { email: emailUser, password: userpw };
+    return this.http.post(this.apiUrl + 'auth', user, { responseType: 'text' });
   }
 
   public registerUser(name: string, email: string, userpw: string) {
-    
-    let user = {'nome': name, 'email': email, 'password': userpw};
-   return this.http.post(this.apiUrl, user, {responseType: 'text'});
-    
+    let user = { 'nome': name, 'email': email, 'password': userpw };
+    return this.http.post(this.apiUrl, user, { responseType: 'text' });
   }
 }
 

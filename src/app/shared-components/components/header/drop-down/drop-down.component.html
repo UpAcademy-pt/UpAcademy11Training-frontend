@@ -1,79 +1,79 @@
-<mat-toolbar >
-    <mat-toolbar-row>
-      <span class="menu-spacer"></span>
-      <img src="https://www.criticaltechworks.com/img/_6AaJMV5c-logo_banner.svg" width="10%">
-      <mat-icon *ngIf="this.userFace" class="icon">account_circle</mat-icon>
-      <mat-progress-bar *ngIf="this.progressBar" class="bar" mode="determinate" value="40">
-      </mat-progress-bar>
-      <span class="example-fill-remaining-space"></span>
-        
-      <button *ngIf="this.dropDownButton"  mat-icon-button>
-        <mat-icon  (click)="sidenav.toggle()">menu</mat-icon>
-      </button>
-      
-      <button class="btn btn-info btn-rounded btn-sm waves-effect waves-light auth-modal-toggle"
-            (click)="open(content)">Register</button>
-  
-    </mat-toolbar-row>
-  </mat-toolbar>
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span class="menu-spacer"></span>
+    <img src="https://www.criticaltechworks.com/img/_6AaJMV5c-logo_banner.svg" width="10%">
+    <mat-icon *ngIf="this.userFace" class="icon">account_circle</mat-icon>
+    <mat-progress-bar *ngIf="this.progressBar" class="bar" mode="determinate" value="40">
+    </mat-progress-bar>
+    <span class="example-fill-remaining-space"></span>
+
+    <button *ngIf="this.dropDownButton" mat-icon-button>
+      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+    </button>
+
+    <button class="btn btn-info btn-rounded btn-sm waves-effect waves-light auth-modal-toggle"
+      (click)="open(content)">Register</button>
+
+  </mat-toolbar-row>
+</mat-toolbar>
 <mat-sidenav-container>
-    <mat-sidenav position="end" #sidenav>
-      <mat-nav-list>
-  
-        <a mat-list-item [routerLink]="'layout/day-sessions-view'"> Sessoes do dia </a>
-        <a mat-list-item [routerLink]="'layout/history-sessions-view'"> Todas as sessoes </a>
-        <!-- <a mat-list-item [routerLink]="'/Sessıes Marcadas'"> Sessıes Marcadas </a> -->
-        <a mat-list-item [routerLink]="'layout/history-view'"> Historico </a>
-        <a mat-list-item [routerLink]="'layout/questions-view'"> questionarios </a>
-        <a mat-list-item [routerLink]="'layout/user-tools-view'"> Editar </a>
-        <a mat-list-item [routerLink]="'layout/admin-manage-sessions-view'"> Gerir Sessao </a>
-        <!-- <a mat-list-item [routerLink]="'/Gerir Utilizadores'"> Gerir Utilizadores </a> -->
-        <a mat-list-item [routerLink]="'layout/Log Out'"> Sair </a>
-        <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item></a>
-  
-      </mat-nav-list>
-  
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <div style="height: 88vh;">
-  
-        <router-outlet></router-outlet>
+  <mat-sidenav position="end" #sidenav>
+    <mat-nav-list>
+
+      <a mat-list-item [routerLink]="'layout/day-sessions-view'"> Sessoes do dia </a>
+      <a mat-list-item [routerLink]="'layout/history-sessions-view'"> Todas as sessoes </a>
+      <!-- <a mat-list-item [routerLink]="'/Sessıes Marcadas'"> Sessıes Marcadas </a> -->
+      <a mat-list-item [routerLink]="'layout/history-view'"> Historico </a>
+      <a mat-list-item [routerLink]="'layout/questions-view'"> questionarios </a>
+      <a mat-list-item [routerLink]="'layout/user-tools-view'"> Editar </a>
+      <a mat-list-item [routerLink]="'layout/admin-manage-sessions-view'"> Gerir Sessoes </a>
+      <!-- <a mat-list-item [routerLink]="'/Gerir Utilizadores'"> Gerir Utilizadores </a> -->
+      <a mat-list-item [routerLink]="'layout/Log Out'"> Sair </a>
+      <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item></a>
+
+    </mat-nav-list>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: 88vh;">
+
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<ul class="nav navbar-nav nav-flex-icons ml-auto">
+
+  <ng-template #content let-modal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Sign Up</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div>
+        <label>Name: </label>
+        <input type="text" [(ngModel)]='name' class="form-control">
       </div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-
-  <ul class="nav navbar-nav nav-flex-icons ml-auto">
-
-    <ng-template #content let-modal let-c="close" let-d="dismiss">
-        <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">Sign Up</h4>
-            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div>
-                <label>Name: </label>
-                <input type="text" [(ngModel)]='name' class="form-control">
-            </div>
-            <div class="pt-3">
-                <label>E-mail: </label>
-                <input type="text" [(ngModel)]='email' class="form-control">
-            </div>
-            <div class="pt-3">
-                <label>Password: </label>
-                <input type="password" [(ngModel)]='userpw' class="form-control">
-            </div>
-            <div class="pt-3">
-                <label>Confirm password: </label>                
-                <input type="password" [(ngModel)]='userpwc' compare-to='userpw' required class="form-control"/>
-             </div>
-          <div class="error" *ngIf="errorMsg">
-            <p >Password does not match</p>
-          </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="register()">Register</button>
-        </div>
-    </ng-template>
+      <div class="pt-3">
+        <label>E-mail: </label>
+        <input type="text" [(ngModel)]='email' class="form-control">
+      </div>
+      <div class="pt-3">
+        <label>Password: </label>
+        <input type="password" [(ngModel)]='userpw' class="form-control">
+      </div>
+      <div class="pt-3">
+        <label>Confirm password: </label>
+        <input type="password" [(ngModel)]='userpwc' compare-to='userpw' required class="form-control" />
+      </div>
+      <div class="error" *ngIf="errorMsg">
+        <p>Password does not match</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="register()">Register</button>
+    </div>
+  </ng-template>
 </ul>

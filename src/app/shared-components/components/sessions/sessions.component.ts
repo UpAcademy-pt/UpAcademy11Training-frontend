@@ -1,4 +1,7 @@
 import { Component, OnInit, NgModule } from '@angular/core';
+import { SessionServiceService } from 'src/app/core/services/user-service/session-service.service';
+import { Session } from 'src/app/core/models/session';
+
 
 
 @Component({
@@ -9,10 +12,17 @@ import { Component, OnInit, NgModule } from '@angular/core';
 
 
 export class SessionsComponent implements OnInit {
-
-  constructor() { }
-
+  
+  constructor(private sessionService: SessionServiceService) { }
+  sessions: Session[] = [];
   step = 0;
+
+  ngOnInit() {
+    this.sessionService.getTodaySessions().subscribe((data: Session[] ) => {
+      console.log(data);
+      this.sessions = data;
+    });
+  }
 
   setStep(index: number) {
     this.step = index;
@@ -24,9 +34,6 @@ export class SessionsComponent implements OnInit {
 
   prevStep() {
     this.step--;
-  }
-  
-  ngOnInit() {
   }
 
 }
