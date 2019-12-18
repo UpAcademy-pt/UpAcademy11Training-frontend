@@ -1,2 +1,19 @@
 <p>day-sessions-view works!</p>
+<mat-card class="card">
+
+    <div [(NgModel)] = 'userFace'  class="image"></div>
+    <p>
+
+    </p>
+    <mat-card-content>
+  
+      <mat-card-title [(NgModel)] = 'userName'   class="user">User Name</mat-card-title>
+      <mat-card-subtitle [(NgModel)] = 'role'  class="role">Role</mat-card-subtitle>
+      <section>
+        <mat-progress-bar [(NgModel)] = 'progressBar'  class="progress-bar">
+        </mat-progress-bar>
+     </section>
+</mat-card-content>
+</mat-card>
+
 <app-sessions></app-sessions>

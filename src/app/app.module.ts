@@ -6,8 +6,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { MatButtonModule, MatIconModule, MatListModule, MatProgressBarModule, MatSidenavModule, MatToolbarModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// tslint:disable-next-line: max-line-length
+import { MatButtonModule, MatIconModule, MatListModule, MatProgressBarModule, MatSidenavModule, MatToolbarModule, MatCardModule } from '@angular/material';
 import { SharedModule } from './shared-components/shared.module';
 import { HeaderModule } from './shared-components/components/header/header.module';
 import { CommonModule } from '@angular/common';
@@ -33,9 +34,11 @@ import { CommonModule } from '@angular/common';
     MatButtonModule,
     MatIconModule,
     NgbModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatCardModule,
     ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule {}
