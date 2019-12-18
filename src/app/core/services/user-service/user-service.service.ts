@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { log } from 'util';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/user';
+import { EmailValidator } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,8 @@ export class UserServiceService {
 
   private apiUrl = 'http://localhost:8080/Projeto-CTW/api/user/';
   private currentUser: User = new User();
+
+
 
   constructor(
     private http: HttpClient
@@ -46,7 +50,19 @@ export class UserServiceService {
     let user = { 'nome': name, 'email': email, 'password': userpw };
     return this.http.post(this.apiUrl, user, { responseType: 'text' });
   }
+
+  public getAllUsers(): Observable<any>{
+
+    return this.http.get(this.apiUrl);
+  }
+
+  public setSessionInUser(): Observable<any>{
+
+    return this.http.get(this.apiUrl);
+  }
+
 }
+
 
 
 
