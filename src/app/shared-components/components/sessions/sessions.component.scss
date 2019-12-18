@@ -8,6 +8,16 @@
   align-items: center;
 }
 
-mat-form-field {
+.mat-form-field {
   margin-right: 12px;
 }
+
+  
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+
+

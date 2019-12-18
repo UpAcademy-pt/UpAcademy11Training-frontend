@@ -17,7 +17,9 @@ export class UserServiceService {
   ) { }
 
   public isAuthenticated(): boolean {  
-    if (this.currentUser) {
+    console.log(this.currentUser.id);
+    
+    if (this.currentUser.id) {
       console.log("LOGGED IN");
       
       return true;
@@ -27,17 +29,21 @@ export class UserServiceService {
   }
 
   public setCurrentUser(user) {
+    user = JSON.parse(user);
     this.currentUser = user;
+    console.log('USER' + user);
   }
 
   public login(emailUser, userpw) {
-    console.log(emailUser, userpw);
-    
+    /* let user = new User();
+    user.password = userpw;
+    user.email=emailUser; */
     let user = {email: emailUser, password: userpw};
     return this.http.post(this.apiUrl + 'auth', user, {responseType: 'text'});
   }
 
   public registerUser(name: string, email: string, userpw: string) {
+    
     let user = {'nome': name, 'email': email, 'password': userpw};
    return this.http.post(this.apiUrl, user, {responseType: 'text'});
     

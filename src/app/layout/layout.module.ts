@@ -10,11 +10,8 @@ import { AdminCreateSessionViewComponent } from './admin-create-session-view/adm
 import { AdminManageSessionsViewComponent } from './admin-manage-sessions-view/admin-manage-sessions-view.component';
 import { UserPageViewComponent } from './user-page-view/user-page-view.component';
 import { DaySessionsViewComponent } from './day-sessions-view/day-sessions-view.component';
-
 import { HistoryComponent } from './history-view/history.component';
-
-
-
+import { SharedModule } from '../shared-components/shared.module';
 
 @NgModule({
   declarations: [
@@ -26,10 +23,10 @@ import { HistoryComponent } from './history-view/history.component';
     AdminCreateSessionViewComponent ,
     AdminManageSessionsViewComponent,
     UserPageViewComponent,
-    DaySessionsViewComponent
   ],
   imports: [
     CommonModule,
+    SharedModule,
     LayoutRoutingModule,
     FormsModule
   ]

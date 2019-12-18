@@ -23,7 +23,6 @@ const routes: Routes = [
         path: 'admin-create-session-view',
         component: AdminCreateSessionViewComponent
       },
-      
       {
         path: 'day-sessions-view',
         component: DaySessionsViewComponent

@@ -20,15 +20,15 @@
     <mat-sidenav position="end" #sidenav>
       <mat-nav-list>
   
-        <a mat-list-item [routerLink]="'/day-sessions-view'"> Sessoes do dia </a>
-        <a mat-list-item [routerLink]="'/history-sessions-view'"> Todas as sessoes </a>
+        <a mat-list-item [routerLink]="'layout/day-sessions-view'"> Sessoes do dia </a>
+        <a mat-list-item [routerLink]="'layout/history-sessions-view'"> Todas as sessoes </a>
         <!-- <a mat-list-item [routerLink]="'/Sessıes Marcadas'"> Sessıes Marcadas </a> -->
-        <a mat-list-item [routerLink]="'/history-view'"> Historico </a>
-        <a mat-list-item [routerLink]="'/questions-view'"> questionarios </a>
-        <a mat-list-item [routerLink]="'/user-tools-view'"> Editar </a>
-        <a mat-list-item [routerLink]="'/admin-manage-sessions-view'"> Gerir Sessao </a>
+        <a mat-list-item [routerLink]="'layout/history-view'"> Historico </a>
+        <a mat-list-item [routerLink]="'layout/questions-view'"> questionarios </a>
+        <a mat-list-item [routerLink]="'layout/user-tools-view'"> Editar </a>
+        <a mat-list-item [routerLink]="'layout/admin-manage-sessions-view'"> Gerir Sessao </a>
         <!-- <a mat-list-item [routerLink]="'/Gerir Utilizadores'"> Gerir Utilizadores </a> -->
-        <a mat-list-item [routerLink]="'/Log Out'"> Sair </a>
+        <a mat-list-item [routerLink]="'layout/Log Out'"> Sair </a>
         <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item></a>
   
       </mat-nav-list>
