@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SessionsComponent } from './components/sessions/sessions.component';
-import { MatProgressBarModule, MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule, MatIconModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatListModule, MatProgressBarModule, MatSidenavModule, MatToolbarModule, MatCardModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,16 +12,27 @@ import { MatExpansionModule } from '@angular/material/expansion';
     ],
     imports: [
       CommonModule,
+      FormsModule,
       MatProgressBarModule,
       MatToolbarModule,
       MatSidenavModule,
       MatListModule,
       MatButtonModule,
       MatExpansionModule,
-      MatIconModule
+      MatIconModule,
+      MatCardModule
     ],
     exports: [
       SessionsComponent,
+      FormsModule,
+      MatProgressBarModule,
+      MatToolbarModule,
+      MatSidenavModule,
+      MatListModule,
+      MatButtonModule,
+      MatExpansionModule,
+      MatIconModule,
+      MatCardModule
     ]
   })
 

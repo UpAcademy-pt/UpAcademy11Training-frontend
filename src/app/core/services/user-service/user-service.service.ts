@@ -38,6 +38,10 @@ export class UserServiceService {
     console.log('USER' + user);
   }
 
+  public getCurrentUser() {
+    return this.currentUser;
+  }
+
   public login(emailUser, userpw) {
     /* let user = new User();
     user.password = userpw;
