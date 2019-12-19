@@ -1,22 +1,22 @@
 <mat-accordion class="example-headers-align">
-  <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle *ngFor="let session of sessions; let i = index">
+  <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle *ngFor="let session of sessions; let i = index;">
     <mat-expansion-panel-header [collapsedHeight]="'80px'" [expandedHeight]="'80px'">
-
+      
       <div>
         <mat-panel-title>
           <h5><b>{{session.title}}</b></h5>
         </mat-panel-title>
         <mat-panel-description>
-          Instructor
+          {{session.instructor}}
         </mat-panel-description>
       </div>
       <span class="example-fill-remaining-space"></span>
       <div>
         <mat-panel-description>
-          Time
+          {{session.sessionDate}}
         </mat-panel-description>
         <mat-panel-description>
-          Capacity
+          0/{{session.capacity}}
         </mat-panel-description>
       </div>
 
@@ -36,10 +36,10 @@
       <span class="example-fill-remaining-space"></span>
       <div class="right-aligned">
         <div>
-          Place
+          {{session.location}}
         </div>
         <div>
-          Requirements
+          {{session.requirements}}
         </div>
       </div>
     </mat-action-row>
@@ -52,9 +52,12 @@
         <span class="example-fill-remaining-space"></span>
       </mat-action-row>
     <mat-action-row>
+      <button mat-button color="warn" (click)="sub(session.id)">Subscribe</button>
+      <button mat-button color="warn" (click)="prevStep()">Previous</button>
       <button mat-button color="primary" (click)="nextStep()">Next</button>
     </mat-action-row>
   </mat-expansion-panel>
 
 
 </mat-accordion>
+

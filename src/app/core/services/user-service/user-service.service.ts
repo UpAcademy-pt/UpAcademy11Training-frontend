@@ -10,12 +10,8 @@ import { Observable } from 'rxjs';
 })
 export class UserServiceService {
 
-
   private apiUrl = 'http://localhost:8080/Projeto-CTW/api/user/';
   private currentUser: User = new User();
-
-
-
   constructor(
     private http: HttpClient
   ) { }
@@ -63,6 +59,10 @@ export class UserServiceService {
   public setSessionInUser(): Observable<any>{
 
     return this.http.get(this.apiUrl);
+  }
+
+  public getUserId() {
+    return this.currentUser.id;
   }
 
 }
