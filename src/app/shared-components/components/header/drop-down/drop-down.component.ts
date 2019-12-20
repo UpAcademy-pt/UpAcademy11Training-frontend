@@ -1,8 +1,9 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit, NgModule, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { UserServiceService } from 'src/app/core/services/user-service/user-service.service';
+import { $ } from 'protractor';
 
 
 
@@ -13,12 +14,11 @@ import { UserServiceService } from 'src/app/core/services/user-service/user-serv
 })
 export class DropDownComponent implements OnInit {
 
-  private name = '';
+  private nome = '';
   private email = '';
   private userpw = '';
   private userpwc = '';
   private errorMsg = false;
-
   private activeRoute;
   private progressBar = false;
   private dropDownButton = false;
@@ -53,16 +53,25 @@ export class DropDownComponent implements OnInit {
 
   register() {
       if (this.userpw == this.userpwc ) {
-        this.userService.registerUser(this.name, this.email, this.userpw).subscribe( data => {
+        this.userService.registerUser(this.nome, this.email, this.userpw).subscribe( data => {
           console.log(data);
           this.modalService.dismissAll();
-          this.name = '';
+          this.nome = '';
           this.email = '';
           this.userpw = '';
           this.userpwc = '';
+          
         });
       } else {
         this.errorMsg = true;
       }
+  }
+
+  logOut(side){
+    console.log();
+    
+    
+    //$('#sidenav').toggle();
+    this.userService.logOut();
   }
 }
