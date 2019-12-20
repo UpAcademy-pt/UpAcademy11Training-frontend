@@ -13,6 +13,7 @@ export class AdminManageSessionsViewComponent implements OnInit {
     config.backdrop = 'static';
     config.keyboard = false;
   }
+
   open(content) {
     this.modalService.open(content);
   }

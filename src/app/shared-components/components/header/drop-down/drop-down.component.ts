@@ -23,6 +23,7 @@ export class DropDownComponent implements OnInit {
   private progressBar = false;
   private dropDownButton = false;
   private userFace = false;
+
   constructor(
     private userService: UserServiceService,
     private modalService: NgbModal,
@@ -30,17 +31,16 @@ export class DropDownComponent implements OnInit {
   ) {
     this.router.events.pipe(
     filter((event) => event instanceof NavigationEnd)
-    ).subscribe((event: NavigationEnd)=> {
+    ).subscribe((event: NavigationEnd) => {
       this.activeRoute = event.urlAfterRedirects;
-      if (this.activeRoute != "/login") {
+      if (this.activeRoute != '/login') {
         this.progressBar = true;
         this.dropDownButton = true;
         this.userFace = true;
       }
-      if (this.activeRoute != "/login"){
-
+      if (this.activeRoute != '/login') {
       }
-    })
+    });
   }
 
   ngOnInit() {}
@@ -48,7 +48,6 @@ export class DropDownComponent implements OnInit {
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
     this.errorMsg = false;
-    
   }
 
   register() {
