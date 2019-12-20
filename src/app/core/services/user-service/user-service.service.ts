@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/user';
 import { EmailValidator } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class UserServiceService {
   private apiUrl = 'http://localhost:8080/Projeto-CTW/api/user/';
   private currentUser: User = new User();
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   public isAuthenticated(): boolean {
@@ -63,6 +65,11 @@ export class UserServiceService {
 
   public getUserId() {
     return this.currentUser.id;
+  }
+
+  public logOut() {
+    this.currentUser = new User();
+    this.router.navigate(['/login'])
   }
 
 }

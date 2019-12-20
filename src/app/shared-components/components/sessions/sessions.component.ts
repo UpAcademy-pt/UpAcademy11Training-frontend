@@ -17,6 +17,7 @@ export class SessionsComponent implements OnInit {
   subId = [];
   subButton = true;
   subbed = false;
+  
 
   constructor(
     private sessionService: SessionServiceService,

@@ -7,6 +7,7 @@ export class Session {
     'requirements': string;
     'duration': string;
     'instructor': number;
+    'subscribed': boolean;
 
     constructor(data?: any) {
         Object.assign(this, data);
