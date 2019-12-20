@@ -1,0 +1,38 @@
+.card {
+    position: relative;
+    background-color: rgb(224, 248, 255);
+    max-width: 300px;
+    left: 15px;
+    top: 50px;
+  
+  }
+  
+  .user {
+    text-align: justify;
+  
+  }
+  
+  .image {
+    width: 250px;
+    height: 250px;
+    background-image: url("https://material.angular.io/assets/img/examples/shiba2.jpg");
+    background-size: cover;
+    display: block;
+    border-radius: 125px;
+    -webkit-border-radius: 125px;
+    -moz-border-radius: 125px;
+  
+  }
+  
+  .progress-bar {
+    height: 20px;
+  
+  }
+  
+  
+  
+  
+  
+  
+  
+  

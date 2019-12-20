@@ -6,6 +6,7 @@ export class Session {
     'capacity': number;
     'requirements': string;
     'duration': string;
+    'instructor': number;
 
     constructor(data?: any) {
         Object.assign(this, data);

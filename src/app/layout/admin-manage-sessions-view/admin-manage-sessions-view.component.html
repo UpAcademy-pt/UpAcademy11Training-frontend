@@ -1,18 +1,50 @@
 <p>admin-manage-sessions-view works!</p>
 
-<ng-template #content let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
-      <button type="button" class="close" aria-label="Close" (click)="('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <p>Session details</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="('Save click')">Create</button>
-    </div>
-  </ng-template>
-  
-  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Create session</button>
+<button class="button" (click)="open(content)">Criar Sessão</button>
+
+
+<ul>
+      <ng-template #content let-modal let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Criar Sessão</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <label>Titulo: </label>
+            <input type="text" [(ngModel)]='title' class="form-control">
+          </div>
+          <div class="pt-3">
+            <label>Formador: </label>
+            <input type="text" [(ngModel)]='instructor'  class="form-control">
+          </div>
+          <div class="pt-3">
+            <label>Local: </label>
+            <input type="text" [(ngModel)]='location' class="local">
+          </div>
+          <div class="pt-3">
+            <label>Data: </label>
+            <input type="datetime-local" [(ngModel)]='sessionDate' class="data"><!--yyyy-MM-dd HH:mm-->
+          </div>
+          <div class="pt-3">
+            <label>Capacidade: </label>
+            <input type="number" [(ngModel)]='capacity' class="capacidade">
+          </div>
+          <div class="pt-3">
+            <label>Duração: </label>
+            <input type="time" [(ngModel)]='duration' class="form-control">
+          </div>
+          <div class="pt-3">
+            <label>Requerimentos: </label>
+            <input type="text" [(ngModel)]='requirements' class="form-control">
+          </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)="create()" class="button-2">Criar Sessão</button>
+        </div>
+      </ng-template>
+    </ul>

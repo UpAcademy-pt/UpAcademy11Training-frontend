@@ -16,8 +16,12 @@ export class SessionServiceService {
         private http: HttpClient
     ) { }
 
-    public createSession(title: string, local: string, sessionDate: string, capacity: number, reqs: string, duration: string) {
-        let session = { 'title': title, 'localization': local, 'sessionDate': sessionDate, 'capacity': capacity, 'requirements': reqs, 'duration': duration };
+    public createSession(title: string, local: string, sessionDate: string, capacity: number,
+                         reqs: string, duration: string, instructor: number) {
+
+        let session = { title : title, location: local, sessionDate : sessionDate,
+         capacity : capacity, requirements : reqs, duration : duration, instructor : instructor};
+
         return this.http.post(this.apiUrl, session, { responseType: 'text' });
     }
 
