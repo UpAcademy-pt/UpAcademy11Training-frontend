@@ -17,28 +17,40 @@ export class SessionServiceService {
         private http: HttpClient
     ) { }
 
-    public createSession(title: string, local: string, sessionDate: string, capacity: number, reqs: string, duration: string, instructor: number) {
-        let session = { 'title': title, 'location': local, 'sessionDate': sessionDate, 'capacity': capacity, 'requirements': reqs, 'duration': duration, 'instructor': instructor };
+    public createSession(
+        title: string, local: string, sessionDate: string, capacity: number, reqs: string, duration: string, instructor: number) {
+        let session = {
+            'title': title,
+            'location': local,
+            'sessionDate': sessionDate,
+            'capacity': capacity,
+            'requirements': reqs,
+            'duration': duration,
+            'instructor': instructor
+        };
         return this.http.post(this.apiUrl, session, { responseType: 'text' });
     }
 
     public getTodaySessions(): Observable<any> {
-       return this.http.get(this.apiUrl + "/today");//no componente que chama o metodo.subscribe((data : Session[]) => this.sessions = data)
+        return this.http.get(this.apiUrl + '/today');
+        // no componente que chama o metodo.subscribe((data : Session[]) => this.sessions = data)
     }
 
     public getIntervalSessions(data1) {
-       return this.http.post(this.apiUrl + '/interval', data1).subscribe((data : Session[]) => this.sessions = data);
+        return this.http.post(this.apiUrl + '/interval', data1).subscribe((data: Session[]) => this.sessions = data);
     }
 
     public getSessionId() {
         return this.sessions;
     }
-    
+
     /* public setCurrentSession(session) {
       session = JSON.parse(session);
       this.currentSession = session;
       console.log('SESSION' + session);
     } */
+
+
 }
 
 
