@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/user';
 import { EmailValidator } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class UserServiceService {
 
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router : Router,
   ) { }
 
   public isAuthenticated(): boolean {
@@ -51,8 +53,11 @@ export class UserServiceService {
   }
 
   public registerUser(name: string, email: string, userpw: string) {
-    let user = { 'nome': name, 'email': email, 'password': userpw };
+
+    let user = { nome : name, email: email, password : userpw };
+
     return this.http.post(this.apiUrl, user, { responseType: 'text' });
+    
   }
 
   public getAllUsers(): Observable<any>{
@@ -63,6 +68,17 @@ export class UserServiceService {
   public setSessionInUser(): Observable<any>{
 
     return this.http.get(this.apiUrl);
+  }
+
+  public getName(): Observable<any>{
+    
+    return this.http.get(this.apiUrl)
+  }
+
+  public logOut() {
+    this.currentUser = new User();
+      this.router.navigate(['/login']);
+   
   }
 
 }

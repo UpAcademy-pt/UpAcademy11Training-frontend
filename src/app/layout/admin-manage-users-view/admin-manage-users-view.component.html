@@ -1,44 +1,38 @@
 <table class="table table-striped">
-        <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">User</th>
-          <th scope="col">Email</th>
-          <th scope="col"> Role</th>        
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let user of users; index as i" >
-          <th scope="row">{{ i + 1 }}</th> 
-          <td> {{ user.name }} </td>
-          <td>{{ user.email }}</td>
-          <td> {{user.role }}</td>
-          <td><button class="btn btn-sm btn-outline-primary" (click)="open(content)">view sessions</button></td>
-        </tr>
-        </tbody>
-      </table>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">User</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td> {{ user.nome }} </td>
+      <td> {{ user.email }} </td>
+      <td><button class="btn btn-sm btn-outline-primary" (click)="open(content)">view sessions</button></td>
+    </tr>
+  </tbody>
+</table>
 
-      <!-- <ng-template #content let-modal>
-            <div class="modal-header">
-              <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label for="dateOfBirth">Date of birth</label>
-                  <div class="input-group">
-                    <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-            </div>
-          </ng-template> -->
+
+<!--   Modal to display sessions which user has/had   -->
+<ng-template #content let-modal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Sessions in user</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <tr *ngFor="let s of sessions; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td> {{ user.name }} </td>
+      <td> {{ <!-- TODO criar endpoint para sessions in user e fazer display aqui -->}}</td>
+    </tr>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="register()">Register</button>
+    </div>
+    </div>
+</ng-template>
