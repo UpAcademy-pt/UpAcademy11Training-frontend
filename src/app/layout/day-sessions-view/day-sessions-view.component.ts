@@ -8,15 +8,18 @@ import { User } from 'src/app/core/models/user';
   styleUrls: ['./day-sessions-view.component.scss']
 })
 export class DaySessionsViewComponent implements OnInit {
- public user:User;
+ 
+  public user: User;
 
   constructor(
     private userService: UserServiceService
-  ) { 
+  ) {
     this.user = userService.getCurrentUser();
   }
 
   ngOnInit() {
   }
+
+  
 
 }
