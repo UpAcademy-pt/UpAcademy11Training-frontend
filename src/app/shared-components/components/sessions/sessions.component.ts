@@ -17,9 +17,8 @@ export class SessionsComponent implements OnInit {
   subId = [];
   subButton = true;
   subbed = false;
-  
 
-  constructor(
+constructor(
     private sessionService: SessionServiceService,
     private subscriptionService: SubscriptionServiceService,
     private userService: UserServiceService,
@@ -31,6 +30,7 @@ export class SessionsComponent implements OnInit {
       console.log(data);
       this.sessions = data;
       this.sessions.map(session => { session.subscribed = false; });
+      
     });
   }
 
@@ -62,4 +62,5 @@ export class SessionsComponent implements OnInit {
       this.sessions[index].subscribed = false;
     });
   }
+
 }

@@ -1,7 +1,7 @@
 export class Session {
     'id'?: number;
     'title': string;
-    'localization': string;
+    'location': string;
     'sessionDate': string;
     'capacity': number;
     'requirements': string;
