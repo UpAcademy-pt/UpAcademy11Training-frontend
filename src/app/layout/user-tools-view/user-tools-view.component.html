@@ -1,10 +1,24 @@
 <div class="container">
     <h1> Editar perfil de utilizador</h1>
-    <form>
-        <input type="text" placeholder="Novo nome">
-        <input type="password" placeholder="Nova Password">
-        <input type="password" placeholder="Confirmar password">    
-    </form>
+
+
+        <div>   
+            <div class="pt-3">
+              <label>Novo nome de Utilizador </label>
+              <input type="text" [(ngModel)]="name"  class="form-control">
+            </div>
+            <div>
+              <label>Novo e-mail </label>
+              <input type="text" [(ngModel)]="email"  class="form-control">
+            </div>
+            <div class="pt-3">
+              <label>Insira a sua Password</label>
+              <input type="text" [(ngModel)]="userpw" class="form-control">
+            </div>
+
+
+            <button type="submit" (click) = "editUser()"> Confirmar </button>
+        </div>
 
 
 

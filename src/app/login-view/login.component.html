@@ -10,7 +10,7 @@
         <!-- Email -->
         <input type="email" [(ngModel)]="email" class="form-control mb-4" placeholder="E-mail">
         <!-- Password -->
-        <input type="password" [(ngModel)]="userpw" class="form-control mb-4" placeholder="Password">
+        <input type="password" [(ngModel)]="userpw" class="form-control mb-4" placeholder="Password" (keyup.enter)="login()">
 
         <div class="d-flex justify-content-around">
             <div>
@@ -27,7 +27,7 @@
         </div>
 
         <!-- Sign in button -->
-        <button class="btn btn-info btn-block my-4" type="button" (click)="login()">Sign in</button>
+        <button class="btn btn-info btn-block my-4" type="submit" (click)="login()">Sign in</button>
 
     </div>
     <!-- Default form login -->

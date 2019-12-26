@@ -9,7 +9,7 @@
   <tbody>
     <tr *ngFor="let user of users; index as i">
       <th scope="row">{{ i + 1 }}</th>
-      <td> {{ user.nome }} </td>
+      <td> {{ user.name }} </td>
       <td> {{ user.email }} </td>
       <td><button class="btn btn-sm btn-outline-primary" (click)="open(content)">view sessions</button></td>
     </tr>
@@ -17,7 +17,7 @@
 </table>
 
 
-<!--   Modal to display sessions which user has/had   -->
+<!--   Modal to display sessions each user has/had   -->
 <ng-template #content let-modal let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Sessions in user</h4>
@@ -29,7 +29,7 @@
     <tr *ngFor="let s of sessions; index as i">
       <th scope="row">{{ i + 1 }}</th>
       <td> {{ user.name }} </td>
-      <td> {{ <!-- TODO criar endpoint para sessions in user e fazer display aqui -->}}</td>
+      <!-- <td *ngFor="let s of sessions; index as i"> {{ TODO criar endpoint para sessions in user e fazer display aqui }}</td> -->
     </tr>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="register()">Register</button>

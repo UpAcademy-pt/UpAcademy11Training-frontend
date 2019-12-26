@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UserServiceService } from 'src/app/core/services/user-service/user-service.service';
+import { type } from 'os';
+import { User } from 'src/app/core/models/user';
 
 @Component({
   selector: 'app-user-tools-view',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserToolsViewComponent implements OnInit {
 
-  constructor() { }
+
+  
+  constructor( private userService: UserServiceService) {}
+  private name ='';
+  private email = '';
 
   ngOnInit() {
   }
 
+
+
+  editUser() {
+    this.name;
+    this.email;
+  };
+
+  public confirm(){
+    
+}
 }

@@ -49,7 +49,7 @@ export class UserServiceService {
   }
 
   public registerUser(name: string, email: string, userpw: string) {
-    let user = { 'nome': name, 'email': email, 'password': userpw };
+    let user = { 'name': name, 'email': email, 'password': userpw };
     return this.http.post(this.apiUrl, user, { responseType: 'text' });
   }
 
@@ -57,7 +57,7 @@ export class UserServiceService {
 
     return this.http.get(this.apiUrl);
   }
-
+ 
   public setSessionInUser(): Observable<any>{
 
     return this.http.get(this.apiUrl);
@@ -70,6 +70,23 @@ export class UserServiceService {
   public logOut() {
     this.currentUser = new User();
     this.router.navigate(['/login'])
+  }
+
+
+
+  public editUser(){
+    let user = new User();
+    user = this.currentUser;
+    user.name = '';
+    user.email = '';
+    this.http.put(this.apiUrl , user).subscribe((data: User) => {
+      
+    this.currentUser.name = data.name;
+    this.currentUser.email = data.email;
+    
+  });
+    
+
   }
 
 }
