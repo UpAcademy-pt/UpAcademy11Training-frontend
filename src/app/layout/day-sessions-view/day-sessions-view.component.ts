@@ -15,6 +15,8 @@ export class DaySessionsViewComponent implements OnInit {
     private userService: UserServiceService
   ) {
     this.user = userService.getCurrentUser();
+
+
   }
 
   ngOnInit() {

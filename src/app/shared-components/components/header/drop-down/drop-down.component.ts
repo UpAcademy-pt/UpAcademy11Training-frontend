@@ -70,4 +70,6 @@ export class DropDownComponent implements OnInit {
     //$('#sidenav').toggle();
     this.userService.logOut();
   }
+
+ 
 }

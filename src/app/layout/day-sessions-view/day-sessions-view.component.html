@@ -1,20 +1,42 @@
 <p>day-sessions-view works!</p>
-<mat-card class="card">
 
-  <img class='image'>
-  <mat-card-header>
-    
-    <mat-card-title class="user">{{user.nome}}Nome</mat-card-title>
-  <!--  <mat-card-subtitle class="role">{{user.role}}</mat-card-subtitle> -->
-  </mat-card-header>
-  <mat-card-content>
+<div class="container">
+  <div class="row">
 
-    
-    <section>
-      <mat-progress-bar class="progress-bar">
-      </mat-progress-bar>
-    </section>
-  </mat-card-content>
-</mat-card>
+    <div class="col-4">
 
-<app-sessions></app-sessions>
+      <mat-card class="card bg-info mx-auto text-center">
+
+        <mat-card-header>
+          <!-- TODO Change to img tag -->
+          <div class="container">
+            <div>
+              <img
+                src="https://www.french-weekendbreaks.co.uk/sites/uk.picardiev3/themes/picardiev3/img_v2/user-default.jpg"
+                width="200px" alt="user">
+            </div>
+
+            <div>
+              <mat-card-title class="user">{{user.name}}</mat-card-title>
+            </div>
+          </div>
+          <!--  <mat-card-subtitle class="role">{{user.role}}</mat-card-subtitle> -->
+        </mat-card-header>
+
+        <mat-card-content>
+          <section>
+            <mat-progress-bar class="progress-bar">
+            </mat-progress-bar>
+          </section>
+        </mat-card-content>
+
+      </mat-card>
+
+    </div>
+
+    <div class="col-8">
+      <app-sessions></app-sessions>
+    </div>
+
+  </div>
+</div>
