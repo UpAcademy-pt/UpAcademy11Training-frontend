@@ -9,6 +9,8 @@ import { User } from '../../models/user';
 })
 
 export class SubscriptionServiceService {
+  
+  
     private apiUrl = 'http://localhost:8080/Projeto-CTW/api/subscription';
     private subscription: Subscription = new Subscription();
     private user;
@@ -18,7 +20,7 @@ export class SubscriptionServiceService {
 
     constructor(
         private http: HttpClient,
-        private userService: UserServiceService,
+        private userService: UserServiceService
     ) { }
 
 public sub(user: number, session: number, subType: string) {
@@ -37,5 +39,9 @@ public getAllUsersBySession(sessionId: number) {
     subscribe((data: User[]) => this.usersInSession = data);
 
 }
+
+public getSubscription(sessionId: number, userId: number) {
+    return this.http.get(this.apiUrl  + '/user/' + userId + '/session/' + sessionId);
+  }
 
 }

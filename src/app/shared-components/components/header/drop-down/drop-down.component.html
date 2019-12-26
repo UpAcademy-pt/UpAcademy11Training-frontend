@@ -11,7 +11,7 @@
       <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
     </button>
 
-    <button class="btn btn-info btn-rounded btn-sm waves-effect waves-light auth-modal-toggle"
+    <button *ngIf="this.registerButton" class="btn btn-info btn-rounded btn-sm waves-effect waves-light auth-modal-toggle"
       (click)="open(content)" >Register</button>
 
   </mat-toolbar-row>

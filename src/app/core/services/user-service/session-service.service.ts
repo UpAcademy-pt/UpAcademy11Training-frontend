@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 })
 
 export class SessionServiceService {
-
+  
+  
     private apiUrl = 'http://localhost:8080/Projeto-CTW/api/trainingsession';
     /*  private currentSession: Session = new Session(); */
     private sessions: Session[];
@@ -44,13 +45,18 @@ export class SessionServiceService {
         return this.sessions;
     }
 
-    /* public setCurrentSession(session) {
-      session = JSON.parse(session);
-      this.currentSession = session;
-      console.log('SESSION' + session);
-    } */
+    public getSubscribedCount(sessionId) {
 
+        return this.http.get("http://localhost:8080/Projeto-CTW/api/subscription/session/"+sessionId+"/user/count");
+    }
 
+    public getIfSubscribed(sessionId: number, userId: number) {
+        return this.http.get("http://localhost:8080/Projeto-CTW/api/subscription/session/"+sessionId+"/user/"+userId);
+      }
+
+    public logout() {
+        this.sessions = [];
+      }
 }
 
 
