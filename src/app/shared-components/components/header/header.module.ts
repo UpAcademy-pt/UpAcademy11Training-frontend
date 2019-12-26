@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-    declarations: [ 
+    declarations: [
       HeaderComponent,
       UserProgressComponent,
       DropDownComponent

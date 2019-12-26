@@ -1,157 +1,68 @@
 import { Component, OnInit } from '@angular/core';
-import { ChangeDetectionStrategy, ViewChild, TemplateRef} from '@angular/core';
-import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours} from 'date-fns';
-import { Subject } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView} from 'angular-calendar';
-
-
-const colors: any = {
-  red: {
-    primary: '#ad2121',
-    secondary: '#FAE3E3'
-  },
-  blue: {
-    primary: '#1e90ff',
-    secondary: '#D1E8FF'
-  },
-  yellow: {
-    primary: '#e3bc08',
-    secondary: '#FDF1BA'
-  }
-};
-
+import * as $ from 'jquery';
 @Component({
   selector: 'app-all-sessions-view',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './all-sessions-view.component.html',
   styleUrls: ['./all-sessions-view.component.scss']
 })
-
 export class AllSessionsViewComponent implements OnInit {
-  @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
+  weekDays = [11, 12, 13, 14, 15, 16, 17];
+  weekDaysNames = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+  activeDay = 0;
+  index = this.weekDays.findIndex( day => {return day===this.activeDay} );
 
-  view: CalendarView = CalendarView.Month;
+  lp = $(".left-pointer");;
+  rp =  $(".right-pointer");;
+  mItems = $(".menu-item");
+  menu;
+  sc;
+  pos;
+  links = $(".menu-item").children('a');
 
-  CalendarView = CalendarView;
-
-  viewDate: Date = new Date();
-
-  modalData: {
-    action: string;
-    event: CalendarEvent;
-  };
-
-  actions: CalendarEventAction[] = [
-    {
-      label: '<i class="fa fa-fw fa-pencil"></i>',
-      a11yLabel: 'Edit',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent('Edited', event);
-      }
-    },
-    {
-      label: '<i class="fa fa-fw fa-times"></i>',
-      a11yLabel: 'Delete',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter(iEvent => iEvent !== event);
-        this.handleEvent('Deleted', event);
-      }
-    }
-  ];
-
-  refresh: Subject<any> = new Subject();
-
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue,
-      allDay: true
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    }
-  ];
-
-  activeDayIsOpen: boolean = true;
-
-  constructor(private modal: NgbModal) {}
+  constructor() { }
 
   ngOnInit() {
+    
+// var tItemsWidth = 0;
+// mItems.find("a").each(function(){
+//   tItemsWidth += $(this).outerWidth(true);
+// });
+this.links.on('click', () =>{
+  this.links.removeClass('active');
+  $(this).addClass('active');
+});
+
+this.mItems.scroll( () => {
+  if( $(this).scrollLeft() == 0){
+    $(".left-pointer").addClass("dis");
+  }else{
+    $(".left-pointer").removeClass("dis");
+  }
+});
   }
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    if (isSameMonth(date, this.viewDate)) {
-      if (
-        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-        events.length === 0
-      ) {
-        this.activeDayIsOpen = false;
-      } else {
-        this.activeDayIsOpen = true;
-      }
-      this.viewDate = date;
-    }
+  changeDay(day) {
+    console.log(day);
+    this.activeDay = day;
+    //this.index = this.weekDays.findIndex( day => {return day===this.activeDay} );
   }
 
-  eventTimesChanged({
-    event,
-    newStart,
-    newEnd
-  }: CalendarEventTimesChangedEvent): void {
-    this.events = this.events.map(iEvent => {
-      if (iEvent === event) {
-        return {
-          ...event,
-          start: newStart,
-          end: newEnd
-        };
-      }
-      return iEvent;
-    });
-    this.handleEvent('Dropped or resized', event);
+  goLeft() {
+    console.log('cliquei na esquerda');
+  
+    this.sc = $(".menu-item").width() - 60;
+    this.pos = $(".menu-item").scrollLeft() - this.sc;
+    $(".menu-item").animate({'scrollLeft': this.pos}, 'slow');
   }
 
-  handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
-  }
-
-  setView(view: CalendarView) {
-    this.view = view;
-  }
-
-  closeOpenMonthViewDay() {
-    this.activeDayIsOpen = false;
+  goRight(){
+    console.log('cliquei na direita');
+    console.log($(".menu-item"));
+    
+    this.sc = $(".menu-item").width() - 60;
+    this.pos = $(".menu-item").scrollLeft() + this.sc;
+    $(".menu-item").animate({'scrollLeft': this.pos}, 'slow');
   }
 }
+
+

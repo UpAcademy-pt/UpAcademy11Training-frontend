@@ -10,8 +10,8 @@ import { DropDownComponent } from '../shared-components/components/header/drop-d
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  public email = '';
-  public userpw = '';
+  public email = 'cad@gmail.com';
+  public userpw = '1';
 
   constructor(
     private router: Router,

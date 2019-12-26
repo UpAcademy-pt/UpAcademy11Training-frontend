@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { QuestionsViewComponent } from './questions-view/questions-view.component';
@@ -11,6 +10,7 @@ import { DaySessionsViewComponent } from './day-sessions-view/day-sessions-view.
 import { HistoryComponent } from './history-view/history.component';
 import { SharedModule } from '../shared-components/shared.module';
 import { AdminManageUsersViewComponent } from './admin-manage-users-view/admin-manage-users-view.component';
+import { MbscModule } from '@mobiscroll/angular';
 import { AllSessionsViewComponent } from './all-sessions-view/all-sessions-view.component';
 
 @NgModule({
@@ -23,12 +23,13 @@ import { AllSessionsViewComponent } from './all-sessions-view/all-sessions-view.
     AdminManageSessionsViewComponent,
     UserPageViewComponent,
     AdminManageUsersViewComponent,
-    AllSessionsViewComponent,
+    AllSessionsViewComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     LayoutRoutingModule,
+    MbscModule,
   ]
 })
 export class LayoutModule { }
