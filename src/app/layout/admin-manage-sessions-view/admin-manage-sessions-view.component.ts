@@ -29,7 +29,7 @@ export class AdminManageSessionsViewComponent implements OnInit {
   }
 
   open(content) {
-    this.modalService.open(content);
+    this.modalService.open(content, { scrollable: true });
   }
 
   create() {

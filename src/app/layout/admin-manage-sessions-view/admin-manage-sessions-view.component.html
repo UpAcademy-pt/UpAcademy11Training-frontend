@@ -12,30 +12,30 @@
         <div class="modal-body">
           <div>
             <label>Titulo: </label>
-            <input type="text" [(ngModel)]="title"  class="form-control">
+            <input type="text" [(ngModel)]="title" class="form-control">
           </div>
           <div class="pt-3">
             <label>Formador: </label>
-            <input type="text" [(ngModel)]="instructor"  class="form-control">
+            <input type="text" [(ngModel)]="instructor" class="form-control">
           </div>
           <div class="pt-3">
             <label>Local: </label>
-            <input type="text" [(ngModel)]="location" class="local">
+            <input type="text" [(ngModel)]="location" class="form-control">
           </div>
           <div class="pt-3">
-            <label>Data: </label>
-            <input type="datetime-local" [(ngModel)]="sessionDate"  class="data">
-          </div>
+          <label>Data: </label>
+          <input type="datetime-local" [(ngModel)]="sessionDate" class="form-control">
+        </div>
+        <div class="pt-3">
+          <label>Duração: </label>
+          <input type="time" [(ngModel)]="duration" class="form-control">
+        </div>
           <div class="pt-3">
             <label>Capacidade: </label>
-            <input type="number" [(ngModel)]="capacity" class="capacidade">
+            <input type="number" min="0" max="50" [(ngModel)]="capacity" class="form-control">
           </div>
           <div class="pt-3">
-            <label>Duração: </label>
-            <input type="time" [(ngModel)]="duration" class="form-control">
-          </div>
-          <div class="pt-3">
-            <label>Requerimentos: </label>
+            <label>Requesitos: </label>
             <input type="text" [(ngModel)]="requirements" class="form-control">
           </div>
 
