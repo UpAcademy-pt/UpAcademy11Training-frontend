@@ -21,7 +21,7 @@
       <mat-nav-list>
   
         <a mat-list-item [routerLink]="'layout/day-sessions-view'"(click)='sidenav.toggle()'> Sessoes do dia </a>
-        <a mat-list-item [routerLink]="'layout/history-sessions-view'"(click)='sidenav.toggle()'> Todas as sessoes </a>
+        <a mat-list-item [routerLink]="'layout/all-sessions-view'"(click)='sidenav.toggle()'> Todas as sessoes </a>
         <!-- <a mat-list-item [routerLink]="'/Sessıes Marcadas'"> Sessıes Marcadas </a> -->
         <a mat-list-item [routerLink]="'layout/history-view'"(click)='sidenav.toggle()'> Historico </a>
         <a mat-list-item [routerLink]="'layout/questions-view'"(click)='sidenav.toggle()'> questionarios </a>
@@ -68,7 +68,7 @@
         <label>Confirm password: </label>
         <input type="password" [(ngModel)]='userpwc' compare-to='userpw' required class="form-control" />
       </div>
-      <div class="error" *ngIf="errorMsg">
+      <div class="error" *ngIf='errorMsg'>
         <p>Password does not match</p>
       </div>
     </div>

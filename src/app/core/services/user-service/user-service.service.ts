@@ -22,7 +22,7 @@ export class UserServiceService {
     console.log(this.currentUser.id);
 
     if (this.currentUser.id) {
-      console.log("LOGGED IN");
+      console.log('LOGGED IN');
 
       return true;
     } else {
@@ -49,16 +49,16 @@ export class UserServiceService {
   }
 
   public registerUser(name: string, email: string, userpw: string) {
-    let user = { 'nome': name, 'email': email, 'password': userpw };
+    let user = { 'name': name, 'email': email, 'password': userpw };
     return this.http.post(this.apiUrl, user, { responseType: 'text' });
   }
 
-  public getAllUsers(): Observable<any>{
+  public getAllUsers(): Observable<any> {
 
     return this.http.get(this.apiUrl);
   }
 
-  public setSessionInUser(): Observable<any>{
+  public setSessionInUser(): Observable<any> {
 
     return this.http.get(this.apiUrl);
   }
@@ -69,7 +69,7 @@ export class UserServiceService {
 
   public logOut() {
     this.currentUser = new User();
-    this.router.navigate(['/login'])
+    this.router.navigate(['/login']);
   }
 
 }

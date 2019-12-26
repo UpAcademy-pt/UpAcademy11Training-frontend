@@ -14,7 +14,7 @@ import { $ } from 'protractor';
 })
 export class DropDownComponent implements OnInit {
 
-  private nome = '';
+  private name = '';
   private email = '';
   private userpw = '';
   private userpwc = '';
@@ -52,14 +52,13 @@ export class DropDownComponent implements OnInit {
 
   register() {
       if (this.userpw == this.userpwc ) {
-        this.userService.registerUser(this.nome, this.email, this.userpw).subscribe( data => {
+        this.userService.registerUser(this.name, this.email, this.userpw).subscribe( data => {
           console.log(data);
           this.modalService.dismissAll();
-          this.nome = '';
+          this.name = '';
           this.email = '';
           this.userpw = '';
           this.userpwc = '';
-          
         });
       } else {
         this.errorMsg = true;
@@ -68,8 +67,6 @@ export class DropDownComponent implements OnInit {
 
   logOut(side){
     console.log();
-    
-    
     //$('#sidenav').toggle();
     this.userService.logOut();
   }

@@ -30,7 +30,6 @@ constructor(
       console.log(data);
       this.sessions = data;
       this.sessions.map(session => { session.subscribed = false; });
-      
     });
   }
 

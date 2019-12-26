@@ -1,6 +1,6 @@
 export class User {
     'id'?: number;
-    'nome': string;
+    'name': string;
     'email': string;
     'password': string;
     constructor(data?: any) {
