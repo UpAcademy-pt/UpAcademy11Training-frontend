@@ -26,10 +26,39 @@ constructor(
 
 
   ngOnInit() {
+
     this.sessionService.getTodaySessions().subscribe((data: Session[]) => {
       console.log(data);
+      let i = 0;
       this.sessions = data;
-      this.sessions.map(session => { session.subscribed = false; });
+      for (let index = 0; index < this.sessions.length; index++) {
+        this.subId[index]=0;
+      }
+      // console.log(this.subId);
+      
+      this.sessions.map(session => { 
+        // console.log('get today');
+        
+        this.sessionService.getSubscribedCount(session.id).subscribe((data1: number)=> {
+          session.subscribedCount = data1;
+          // console.log('get count');
+        });
+        this.sessionService.getIfSubscribed(session.id,this.userService.getCurrentUser().id).subscribe((data2: boolean) => {
+          session.subscribed = data2;
+          // console.log('get if subscribed');
+          
+          if(session.subscribed){
+            this.subscriptionService.getSubscription(session.id,this.userService.getCurrentUser().id).subscribe((data3: Subscription) => {
+              this.subId[i] = data3.id;
+              // console.log('get subscription');
+              
+            })
+          }
+          i += 1;
+          console.log(this.sessions);
+          
+        });
+      });    
     });
   }
 
@@ -50,6 +79,9 @@ constructor(
       console.log('INSCRIÇÃO COM ID : ' + data.id);
       this.subId[index] = data.id;
       this.sessions[index].subscribed = true;
+      console.log(this.subId);
+      this.sessionService.getSubscribedCount(this.sessions[index].id).subscribe((data1: number)=>this.sessions[index].subscribedCount = data1);
+      // this.sessionService.getIfSubscribed(this.sessions[index].id,this.userService.getCurrentUser().id).subscribe((data2: boolean) => this.sessions[index].subscribed = data2);
     });
   }
 
@@ -59,6 +91,8 @@ constructor(
       console.log('DESINSCRIÇÃO COM ID : ' + this.subId[index]);
       this.subId[index] = 0;
       this.sessions[index].subscribed = false;
+      this.sessionService.getSubscribedCount(this.sessions[index].id).subscribe((data1: number)=>this.sessions[index].subscribedCount = data1);
+      // this.sessionService.getIfSubscribed(this.sessions[index].id,this.userService.getCurrentUser().id).subscribe((data2: boolean) => this.sessions[index].subscribed = data2);
     });
   }
 

@@ -18,7 +18,7 @@
           {{session.sessionDate}}
         </mat-panel-description>
         <mat-panel-description>
-          0/{{session.capacity}}
+          {{session.subscribedCount}}/{{session.capacity}}
         </mat-panel-description>
       </div>
 
@@ -53,11 +53,13 @@
       <span class="example-fill-remaining-space"></span>
     </mat-action-row>
     <mat-action-row>
-      <div class="btn-group btn-group-toggle" *ngIf="!sessions[i].subscribed">
-        <button mat-button color="primary" (click)="sub(session.id, i)">Subscribe</button>
-      </div>
-      <div class="btn-group btn-group-toggle" *ngIf="sessions[i].subscribed">
-        <button mat-button color="primary" (click)="unsub(i)">Unsubscribe</button>
+      <div *ngIf="subId[i] != -1;"> <!-- -1 if instructor -->
+        <div class="btn-group btn-group-toggle" *ngIf="!sessions[i].subscribed">
+          <button mat-button color="primary" (click)="sub(session.id, i)">Subscribe</button>
+        </div>
+        <div class="btn-group btn-group-toggle" *ngIf="sessions[i].subscribed">
+          <button mat-button color="primary" (click)="unsub(i)">Unsubscribe</button>
+        </div>
       </div>
       <span class="example-fill-remaining-space"></span>
       <button mat-button color="warn" (click)="prevStep()">Previous</button>

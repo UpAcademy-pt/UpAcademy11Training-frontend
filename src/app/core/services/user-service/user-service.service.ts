@@ -5,6 +5,8 @@ import { User } from '../../models/user';
 import { EmailValidator } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { SessionServiceService } from './session-service.service';
+import { SubscriptionServiceService } from './subscription-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,7 @@ export class UserServiceService {
   private apiUrl = 'http://localhost:8080/Projeto-CTW/api/user/';
   private currentUser: User = new User();
   constructor(
+    private sessionService: SessionServiceService,
     private http: HttpClient,
     private router: Router
   ) { }
@@ -69,6 +72,7 @@ export class UserServiceService {
 
   public logOut() {
     this.currentUser = new User();
+    this.sessionService.logout();
     this.router.navigate(['/login']);
   }
 

@@ -23,6 +23,7 @@ export class DropDownComponent implements OnInit {
   private progressBar = false;
   private dropDownButton = false;
   private userFace = false;
+  private registerButton = true;
 
   constructor(
     private userService: UserServiceService,
@@ -37,8 +38,12 @@ export class DropDownComponent implements OnInit {
         this.progressBar = true;
         this.dropDownButton = true;
         this.userFace = true;
-      }
-      if (this.activeRoute != '/login') {
+        this.registerButton = false;
+      }else{
+        this.progressBar = false;
+        this.dropDownButton = false;
+        this.userFace = false;
+        this.registerButton = true;
       }
     });
   }
@@ -65,9 +70,7 @@ export class DropDownComponent implements OnInit {
       }
   }
 
-  logOut(side){
-    console.log();
-    //$('#sidenav').toggle();
+  logOut(side){ 
     this.userService.logOut();
   }
 
