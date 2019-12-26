@@ -13,11 +13,11 @@ export class HeaderComponent implements OnInit {
   view = 'login';
 
   ngOnInit() {
-    console.log(this.router.url);
+   // console.log(this.router.url);
     this.router.events.subscribe( (data:any) => {
-      console.log(data);
+      //console.log(data);
       if( data.constructor.name === 'NavigationEnd'){
-        console.log(data.url.substr(1));
+        //console.log(data.url.substr(1));
         this.view = data.url.substr(1);
       }
     });

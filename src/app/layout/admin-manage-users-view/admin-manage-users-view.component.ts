@@ -23,7 +23,7 @@ export class AdminManageUsersViewComponent implements OnInit {
 
     this.userService.getAllUsers().subscribe((data:any) => {
 
-      console.log(data);
+     // console.log(data);
       this.users = data;  
 
     });

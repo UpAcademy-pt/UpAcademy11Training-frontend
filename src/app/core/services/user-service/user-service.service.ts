@@ -22,10 +22,10 @@ export class UserServiceService {
   ) { }
 
   public isAuthenticated(): boolean {
-    console.log(this.currentUser.id);
+    //console.log(this.currentUser.id);
 
     if (this.currentUser.id) {
-      console.log('LOGGED IN');
+     // console.log('LOGGED IN');
 
       return true;
     } else {
@@ -36,7 +36,7 @@ export class UserServiceService {
   public setCurrentUser(user) {
     user = JSON.parse(user);
     this.currentUser = user;
-    console.log('USER' + user);
+   // console.log('USER' + user);
   }
 
   public getCurrentUser() {

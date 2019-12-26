@@ -7,8 +7,10 @@ export class Session {
     'requirements': string;
     'duration': string;
     'instructor': number;
+    'instructorName' : string;
     'subscribed': boolean;
     'subscribedCount': number;
+    'isInstructor': boolean;
 
     constructor(data?: any) {
         Object.assign(this, data);

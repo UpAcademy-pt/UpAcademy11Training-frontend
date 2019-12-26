@@ -58,7 +58,7 @@ export class DropDownComponent implements OnInit {
   register() {
       if (this.userpw == this.userpwc ) {
         this.userService.registerUser(this.name, this.email, this.userpw).subscribe( data => {
-          console.log(data);
+         // console.log(data);
           this.modalService.dismissAll();
           this.name = '';
           this.email = '';

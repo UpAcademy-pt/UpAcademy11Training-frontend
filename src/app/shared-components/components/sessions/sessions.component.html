@@ -1,6 +1,6 @@
 
 <mat-accordion class="example-headers-align">
-  <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)" hideToggle
+  <mat-expansion-panel [ngStyle]="{'background-color':sessions[i].isInstructor ?  'white' : '#b2f6f8' }" [expanded]="step === i" (opened)="setStep(i)" hideToggle
     *ngFor="let session of sessions; let i = index;">
     <mat-expansion-panel-header [collapsedHeight]="'80px'" [expandedHeight]="'80px'">
 
@@ -33,7 +33,8 @@
       </mat-form-field> -->
     <mat-action-row>
       <div class="left-aligned">
-        Instructor Info
+        <b>Instructor Info:</b> <br>
+        {{session.instructorName}}
       </div>
       <span class="example-fill-remaining-space"></span>
       <div class="right-aligned">
@@ -53,17 +54,17 @@
       <span class="example-fill-remaining-space"></span>
     </mat-action-row>
     <mat-action-row>
-      <div *ngIf="subId[i] != -1;"> <!-- -1 if instructor -->
+      <div *ngIf="!sessions[i].isInstructor" >
         <div class="btn-group btn-group-toggle" *ngIf="!sessions[i].subscribed">
-          <button mat-button color="primary" (click)="sub(session.id, i)">Subscribe</button>
+          <button mat-button color="primary" [disabled]="sessions[i].capacity == sessions[i].subscribedCount" (click)="sub(session.id, i)">Subscribe</button>
         </div>
         <div class="btn-group btn-group-toggle" *ngIf="sessions[i].subscribed">
           <button mat-button color="primary" (click)="unsub(i)">Unsubscribe</button>
         </div>
       </div>
       <span class="example-fill-remaining-space"></span>
-      <button mat-button color="warn" (click)="prevStep()">Previous</button>
-      <button mat-button color="primary" (click)="nextStep()">Next</button>
+      <button mat-button color="warn" *ngIf="step != 0" (click)="prevStep()">Previous</button>
+      <button mat-button color="primary" *ngIf="step != sessions.length -1" (click)="nextStep()">Next</button>
 
     </mat-action-row>
 
