@@ -1,4 +1,3 @@
-import { MbscModule } from '@mobiscroll/angular';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,8 +20,7 @@ import { CommonModule } from '@angular/common';
     LoginComponent,
     NotFoundComponent,
   ],
-  imports: [ 
-    MbscModule, 
+  imports: [
     CommonModule,
     AppRoutingModule,
     FormsModule,
