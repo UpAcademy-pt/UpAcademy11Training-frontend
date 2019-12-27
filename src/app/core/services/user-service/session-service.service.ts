@@ -2,15 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Session } from '../../models/session';
 import { Observable } from 'rxjs';
+import { UserServiceService } from './user-service.service';
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class SessionServiceService {
-  
-  
-  
+
+
+
+
     private apiUrl = 'http://localhost:8080/Projeto-CTW/api/trainingsession';
     /*  private currentSession: Session = new Session(); */
     private sessions: Session[];
@@ -30,7 +32,7 @@ export class SessionServiceService {
             'duration': duration,
             'instructor': instructor
         };
-        return this.http.post(this.apiUrl, session, { responseType: 'text' });
+        return this.http.post(this.apiUrl, session);
     }
 
     public getTodaySessions(): Observable<any> {
@@ -38,6 +40,11 @@ export class SessionServiceService {
         // no componente que chama o metodo.subscribe((data : Session[]) => this.sessions = data)
     }
 
+    public initGetIntervalSessions(): any {
+        let interval = '2019-12-28';
+        /* TODO IR BUSCAR O INTERVAL */
+        return this.http.post(this.apiUrl + '/interval', interval).subscribe((data: Session[]) => this.sessions = data);
+    }
     public getIntervalSessions(data1) {
         return this.http.post(this.apiUrl + '/interval', data1).subscribe((data: Session[]) => this.sessions = data);
     }
@@ -48,20 +55,26 @@ export class SessionServiceService {
 
     public getSubscribedCount(sessionId) {
 
-        return this.http.get("http://localhost:8080/Projeto-CTW/api/subscription/session/"+sessionId+"/user/count");
+        return this.http.get("http://localhost:8080/Projeto-CTW/api/subscription/session/" + sessionId + "/user/count");
     }
 
     public getIfSubscribed(sessionId: number, userId: number) {
-        return this.http.get("http://localhost:8080/Projeto-CTW/api/subscription/session/"+sessionId+"/user/"+userId);
-      }
+        return this.http.get("http://localhost:8080/Projeto-CTW/api/subscription/session/" + sessionId + "/user/" + userId);
+    }
 
     public getInstructor(sessionId: number) {
-        return this.http.get("http://localhost:8080/Projeto-CTW/api/subscription/session/"+sessionId+"/instructor");
-      }
+        return this.http.get("http://localhost:8080/Projeto-CTW/api/subscription/session/" + sessionId + "/instructor");
+    }
 
     public logout() {
         this.sessions = [];
-      }
+    }
+
+    
+    public getPastSessions(userId) {
+        
+        return this.http.get(this.apiUrl + "/past/user/"+userId);
+    }
 }
 
 

@@ -54,7 +54,7 @@
       <span class="example-fill-remaining-space"></span>
     </mat-action-row>
     <mat-action-row>
-      <div *ngIf="!sessions[i].isInstructor" >
+      <div *ngIf="!sessions[i].isInstructor && subButtons" >
         <div class="btn-group btn-group-toggle" *ngIf="!sessions[i].subscribed">
           <button mat-button color="primary" [disabled]="sessions[i].capacity == sessions[i].subscribedCount" (click)="sub(session.id, i)">Subscribe</button>
         </div>

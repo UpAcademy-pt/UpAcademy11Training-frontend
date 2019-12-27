@@ -11,36 +11,34 @@
       <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
     </button>
 
-    <button *ngIf="this.registerButton" class="btn btn-info btn-rounded btn-sm waves-effect waves-light auth-modal-toggle"
-      (click)="open(content)" >Register</button>
+    <button *ngIf="this.registerButton"
+      class="btn btn-info btn-rounded btn-sm waves-effect waves-light auth-modal-toggle"
+      (click)="open(content)">Register</button>
 
   </mat-toolbar-row>
 </mat-toolbar>
 <mat-sidenav-container>
-    <mat-sidenav position="end" #sidenav>
-      <mat-nav-list>
-  
-        <a mat-list-item [routerLink]="'layout/day-sessions-view'"(click)='sidenav.toggle()'> Sessoes do dia </a>
-        <a mat-list-item [routerLink]="'layout/all-sessions-view'"(click)='sidenav.toggle()'> Todas as sessoes </a>
-        <!-- <a mat-list-item [routerLink]="'/Sessıes Marcadas'"> Sessıes Marcadas </a> -->
-        <a mat-list-item [routerLink]="'layout/history-view'"(click)='sidenav.toggle()'> Historico </a>
-        <a mat-list-item [routerLink]="'layout/questions-view'"(click)='sidenav.toggle()'> questionarios </a>
-        <a mat-list-item [routerLink]="'layout/user-tools-view'" (click)='sidenav.toggle()'>  Editar Utilizador </a>
-        <a mat-list-item [routerLink]="'layout/admin-manage-sessions-view'" (click)='sidenav.toggle()'> Gerir Sessao </a>
-        <a mat-list-item [routerLink]="'layout/admin-manage-users-view'" (click)='sidenav.toggle()' > Gerir Utilizadores </a>
-        <a mat-list-item (click)='sidenav.toggle();logOut(sidenav)'> Sair </a>
-       
-  
-      </mat-nav-list>
-  
-    </mat-sidenav>
-    <mat-sidenav-content> 
-      <div style="height: 88vh;">
-  
-        <router-outlet></router-outlet>
-      </div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+  <mat-sidenav position="end" #sidenav>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="'layout/day-sessions-view'" (click)='sidenav.toggle()'> Sessoes do dia </a>
+      <a mat-list-item [routerLink]="'layout/all-sessions-view'" (click)='sidenav.toggle()'> Todas as sessoes </a>
+      <!-- <a mat-list-item [routerLink]="'/Sessıes Marcadas'"> Sessıes Marcadas </a> -->
+      <a mat-list-item [routerLink]="'layout/history-view'" (click)='sidenav.toggle()'> Historico </a>
+      <a mat-list-item [routerLink]="'layout/questions-view'" (click)='sidenav.toggle()'> questionarios </a>
+      <a mat-list-item [routerLink]="'layout/user-tools-view'" (click)='sidenav.toggle()'> Editar Utilizador </a>
+      <a *ngIf='isAdmin' mat-list-item [routerLink]="'layout/admin-manage-sessions-view'"(click)='sidenav.toggle()'> Gerir Sessao</a>
+      <a *ngIf='isAdmin' mat-list-item [routerLink]="'layout/admin-manage-users-view'" (click)='sidenav.toggle()'>Gerir Utilizadores</a>
+      <a mat-list-item (click)='sidenav.toggle();logOut(sidenav)'> Sair </a>
+    </mat-nav-list>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: 88vh;">
+
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
 <ul class="nav navbar-nav nav-flex-icons ml-auto">
 
