@@ -11,7 +11,8 @@
       <th scope="row">{{ i + 1 }}</th>
       <td> {{ user.name }} </td>
       <td> {{ user.email }} </td>
-      <td><button class="btn btn-sm btn-outline-primary" (click)="open(content)">view sessions</button></td>
+      <td><button class="btn btn-sm btn-outline-primary" (click)="open(content, i)">view sessions</button></td>
+      <td><button type="button" class="btn btn-sm btn-outline-danger" (click)="removeUser(id)"> x </button></td>
     </tr>
   </tbody>
 </table>
@@ -26,13 +27,11 @@
     </button>
   </div>
   <div class="modal-body">
-    <tr *ngFor="let s of sessions; index as i">
-      <th scope="row">{{ i + 1 }}</th>
-      <td> {{ user.name }} </td>
-      <!-- <td *ngFor="let s of sessions; index as i"> {{ TODO criar endpoint para sessions in user e fazer display aqui }}</td> -->
+    <tr *ngFor="let s of sessionsInUser; index as i">
+      <td> {{ s.title }}</td>
     </tr>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="register()">Register</button>
     </div>
-    </div>
+  </div>
 </ng-template>

@@ -62,6 +62,12 @@ export class SessionServiceService {
     public logout() {
         this.sessions = [];
       }
+
+    public getSessionInUser(userId: number): any {
+
+        return this.http.get(this.apiUrl + '/user/' + userId)
+    }
+
 }
 
 

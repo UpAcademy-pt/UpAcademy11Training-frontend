@@ -83,6 +83,8 @@ export class UserServiceService {
     user = this.currentUser;
     user.name = '';
     user.email = '';
+
+
     this.http.put(this.apiUrl , user).subscribe((data: User) => {
       
     this.currentUser.name = data.name;

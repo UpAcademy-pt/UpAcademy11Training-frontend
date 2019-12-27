@@ -1,24 +1,25 @@
 <div class="container">
-    <h1> Editar perfil de utilizador</h1>
+  <h1> Editar perfil de utilizador</h1>
 
 
-        <div>   
-            <div class="pt-3">
-              <label>Novo nome de Utilizador </label>
-              <input type="text" [(ngModel)]="name"  class="form-control">
-            </div>
-            <div>
-              <label>Novo e-mail </label>
-              <input type="text" [(ngModel)]="email"  class="form-control">
-            </div>
-            <div class="pt-3">
-              <label>Insira a sua Password</label>
-              <input type="text" [(ngModel)]="userpw" class="form-control">
-            </div>
-
-
-            <button type="submit" (click) = "editUser()"> Confirmar </button>
-        </div>
+  <form #editForm="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+    <div class="pt-3">
+      <label>New Username </label>
+      <input type="text" [(ngModel)]="user.name" class="form-control">
+    </div>
+    <div>
+      <label>New e-mail </label>
+      <input type="text" [(ngModel)]="user.email" class="form-control">
+    </div>
+    <div class="pt-3">
+    <label>Confirm password: </label>
+    <input type="password" [(ngModel)]='userpwc' compare-to='userpw' required class="form-control" />
+    </div>
+      <div class="error" *ngIf='errorMsg'>
+        <p>Passwords do not match</p>
+    </div>
+    <button type="submit" (click)="editUser()"> Confirmar </button>
+</form>
 
 
 
