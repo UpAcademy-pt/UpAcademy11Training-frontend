@@ -10,7 +10,7 @@ import { DropDownComponent } from '../shared-components/components/header/drop-d
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  public email = 'cad@gmail.com';
+  public email = 'eng.joao.barreto@gmail.com';
   public userpw = '1';
 
   constructor(
@@ -26,7 +26,7 @@ ngOnInit() {
   public login() {
    // console.log(this.email, this.userpw);
     this.userService.login(this.email, this.userpw).subscribe((data) => {
-     // console.log(data);
+     console.log(data);
       this.userService.setCurrentUser(data);
       this.router.navigate(['layout/day-sessions-view']);
     });

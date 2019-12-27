@@ -24,6 +24,7 @@ export class DropDownComponent implements OnInit {
   private dropDownButton = false;
   private userFace = false;
   private registerButton = true;
+  private isAdmin = false;
 
   constructor(
     private userService: UserServiceService,
@@ -35,6 +36,14 @@ export class DropDownComponent implements OnInit {
     ).subscribe((event: NavigationEnd) => {
       this.activeRoute = event.urlAfterRedirects;
       if (this.activeRoute != '/login') {
+        if(this.userService.getCurrentUser().role == 'admin'){
+          this.isAdmin = true;
+          console.log("É ADMIN");
+          
+        }else{
+          this.isAdmin = false;
+          console.log("NÃO É ADMIN");
+        }
         this.progressBar = true;
         this.dropDownButton = true;
         this.userFace = true;
@@ -43,12 +52,13 @@ export class DropDownComponent implements OnInit {
         this.progressBar = false;
         this.dropDownButton = false;
         this.userFace = false;
-        this.registerButton = true;
       }
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});

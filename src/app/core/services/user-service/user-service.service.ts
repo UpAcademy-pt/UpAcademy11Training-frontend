@@ -48,6 +48,11 @@ export class UserServiceService {
     user.password = userpw;
     user.email=emailUser; */
     let user = { email: emailUser, password: userpw };
+ ;
+
+
+    
+    
     return this.http.post(this.apiUrl + 'auth', user, { responseType: 'text' });
   }
 

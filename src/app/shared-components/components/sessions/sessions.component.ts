@@ -5,6 +5,8 @@ import { SubscriptionServiceService } from 'src/app/core/services/user-service/s
 import { UserServiceService } from 'src/app/core/services/user-service/user-service.service';
 import { Subscription } from 'src/app/core/models/subscription';
 import { User } from 'src/app/core/models/user';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-sessions',
@@ -20,53 +22,47 @@ export class SessionsComponent implements OnInit {
   subButtons = true;
   subbed = false;
   currentUser: User;
+  private activeRoute;
 
   constructor(
     private sessionService: SessionServiceService,
     private subscriptionService: SubscriptionServiceService,
     private userService: UserServiceService,
-  ) { }
-
+    private router: Router
+  ) {
+    this.router.events.pipe(
+      filter((event) => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this.activeRoute = event.urlAfterRedirects;
+    })
+  }
 
   ngOnInit() {
-    this.sessionService.getTodaySessions().subscribe((data: Session[]) => {
-      let i = 0;
-      this.sessions = data;
-
-      for (let index = 0; index < this.sessions.length; index++) {
-        this.subId[index] = 0;
-        this.sessions[index].sessionDate = this.sessions[index].sessionDate.slice(0, 16).replace("T", " ")
-      }
-
-      this.sessions.map(session => {
-
-
-        this.sessionService.getSubscribedCount(session.id).subscribe((data1: number) => {
-          session.subscribedCount = data1;
-
+    console.log(this.activeRoute);
+    
+    switch (this.activeRoute) {
+      case '/layout/day-sessions-view':
+        this.sessionService.getTodaySessions().subscribe((data: Session[]) => {
+          this.initPanels(data);
+          this.subButtons = true;
         });
+        break;
 
-        this.sessionService.getInstructor(session.id).subscribe((instructor: User) => {
-          session.instructorName = instructor.name;
-          if (instructor.id == this.userService.getCurrentUser().id) {
-            session.isInstructor = true;
-          } else {
-            session.isInstructor = false;
-          }
-
+      case '/layout/all-sessions-view':
+        this.sessionService.initGetIntervalSessions().subscribe((data: Session[]) => {
+          this.initPanels(data);
+          this.subButtons = true;
         });
+        break;
 
-        this.sessionService.getIfSubscribed(session.id, this.userService.getCurrentUser().id).subscribe((data2: boolean) => {
-          session.subscribed = data2;
-          if (session.subscribed) {
-            this.subscriptionService.getSubscription(session.id, this.userService.getCurrentUser().id).subscribe((data3: Subscription) => {
-              this.subId[i] = data3.id;
-            });
-          }
-          i += 1;
+      case '/layout/history-view':
+        this.sessionService.getPastSessions(this.userService.getCurrentUser().id).subscribe((data: Session[]) => {
+          this.initPanels(data);
+          this.subButtons = false;
         });
-      });
-    });
+        break;
+    }
+    
   }
 
   setStep(index: number) {
@@ -101,6 +97,40 @@ export class SessionsComponent implements OnInit {
       this.sessionService.getSubscribedCount(this.sessions[index].id).subscribe((data1: number) => this.sessions[index].subscribedCount = data1);
       // this.sessionService.getIfSubscribed(this.sessions[index].id,this.userService.getCurrentUser().id).subscribe((data2: boolean) => this.sessions[index].subscribed = data2);
     });
+  }
+
+  initPanels(data: Session[]) {
+    let i = 0;
+    this.sessions = data;
+    for (let index = 0; index < this.sessions.length; index++) {
+      this.subId[index] = 0;
+      this.sessions[index].sessionDate = this.sessions[index].sessionDate.slice(0, 16).replace("T", " ")
+    }
+    this.sessions.map(session => {
+      this.sessionService.getSubscribedCount(session.id).subscribe((data1: number) => {
+        session.subscribedCount = data1;
+      });
+      this.sessionService.getInstructor(session.id).subscribe((instructor: User) => {
+        session.instructorName = instructor.name;
+        if (instructor.id == this.userService.getCurrentUser().id) {
+          session.isInstructor = true;
+        } else {
+          session.isInstructor = false;
+        }
+
+      });
+
+      this.sessionService.getIfSubscribed(session.id, this.userService.getCurrentUser().id).subscribe((data2: boolean) => {
+        session.subscribed = data2;
+        if (session.subscribed) {
+          this.subscriptionService.getSubscription(session.id, this.userService.getCurrentUser().id).subscribe((data3: Subscription) => {
+            this.subId[i] = data3.id;
+          })
+        }
+        i += 1;
+      });
+    });
+
   }
 
 }

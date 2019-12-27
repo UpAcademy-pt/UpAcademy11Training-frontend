@@ -20,6 +20,7 @@ export class DaySessionsViewComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
 
