@@ -35,15 +35,15 @@ export class SessionsComponent implements OnInit {
 
       for (let index = 0; index < this.sessions.length; index++) {
         this.subId[index] = 0;
-        this.sessions[index].sessionDate = this.sessions[index].sessionDate.slice(0,16).replace("T", " ")
+        this.sessions[index].sessionDate = this.sessions[index].sessionDate.slice(0, 16).replace("T", " ")
       }
 
       this.sessions.map(session => {
 
-      
+
         this.sessionService.getSubscribedCount(session.id).subscribe((data1: number) => {
           session.subscribedCount = data1;
-          
+
         });
 
         this.sessionService.getInstructor(session.id).subscribe((instructor: User) => {
@@ -53,7 +53,7 @@ export class SessionsComponent implements OnInit {
           } else {
             session.isInstructor = false;
           }
-          
+
         });
 
         this.sessionService.getIfSubscribed(session.id, this.userService.getCurrentUser().id).subscribe((data2: boolean) => {
@@ -61,7 +61,7 @@ export class SessionsComponent implements OnInit {
           if (session.subscribed) {
             this.subscriptionService.getSubscription(session.id, this.userService.getCurrentUser().id).subscribe((data3: Subscription) => {
               this.subId[i] = data3.id;
-            })
+            });
           }
           i += 1;
         });

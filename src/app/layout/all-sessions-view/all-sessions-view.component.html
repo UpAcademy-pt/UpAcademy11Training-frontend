@@ -2,22 +2,12 @@
 <h1 class="text-center h2">Horizontal Scrollable Menu</h1>
 <div class="myClass">
   <div class="menu-item">
-    <span [ngClass]="{'active': 0 === activeDay}" (click)="changeDay(0)">Home</span>
-    <span [ngClass]="{'active': 1 === activeDay}" (click)="changeDay(1)">Contact</span>
-    <span>Courses</span>
-    <span>About</span>
-    <span>Service</span>
-    <span>Events</span>
-    <span>Courses</span>
-    <span>FAQ</span>
-    <span>Home</span>
-    <span>Contact</span>
-    <span>Courses</span>
-    <span>About</span>
-    <span>Service</span>
-    <span>Events</span>
-    <span>Courses</span>
-    <span>FAQ</span>
+    <div *ngFor="let day of displayWeek; let i = index;" [ngClass]="{'active': i === activeDay}" (click)="changeDay(i)">
+      <span>{{returnDayName(day)}}</span>
+      <br>
+      <span>{{returnDayNumber(day)}}</span>
+    </div>
+   
   </div> 
   <span class="pointer left-pointer dis" (click)="goLeft()">
     <i class="fa fa-chevron-left"></i>
