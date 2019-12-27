@@ -40,8 +40,8 @@ export class SessionServiceService {
         // no componente que chama o metodo.subscribe((data : Session[]) => this.sessions = data)
     }
 
-    public initGetIntervalSessions(): any {
-        let interval = '2019-12-28';
+    public initGetIntervalSessions(interval): any {
+        interval = '2019-12-28';
         /* TODO IR BUSCAR O INTERVAL */
         return this.http.post(this.apiUrl + '/interval', interval).subscribe((data: Session[]) => this.sessions = data);
     }

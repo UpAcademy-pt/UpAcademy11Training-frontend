@@ -18,7 +18,7 @@ export class AllSessionsViewComponent implements OnInit {
   weeksDayName = [this.days[this.i-3], this.days[this.i-2], this.days[this.i-1], this.dayName, this.days[this.i+1], this.days[this.i+2], this.days[this.i+3]]; */
 
   weekDays = [];
-  activeDay = 0;
+  activeDay = 3;
   index = this.weekDays.findIndex(day => { return day === this.activeDay });
 
   lp = $(".left-pointer");

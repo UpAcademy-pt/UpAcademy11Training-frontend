@@ -1,4 +1,4 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit, NgModule, Input } from '@angular/core';
 import { SessionServiceService } from 'src/app/core/services/user-service/session-service.service';
 import { Session } from 'src/app/core/models/session';
 import { SubscriptionServiceService } from 'src/app/core/services/user-service/subscription-service.service';
@@ -23,6 +23,7 @@ export class SessionsComponent implements OnInit {
   subbed = false;
   currentUser: User;
   private activeRoute;
+  @Input() interval;
 
   constructor(
     private sessionService: SessionServiceService,
@@ -49,7 +50,7 @@ export class SessionsComponent implements OnInit {
         break;
 
       case '/layout/all-sessions-view':
-        this.sessionService.initGetIntervalSessions().subscribe((data: Session[]) => {
+        this.sessionService.initGetIntervalSessions(this.interval).subscribe((data: Session[]) => {
           this.initPanels(data);
           this.subButtons = true;
         });
