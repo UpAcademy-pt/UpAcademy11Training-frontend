@@ -11,8 +11,7 @@
       <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
     </button>
 
-    <button *ngIf="this.registerButton" class="buttonModal"
-      (click)="open(content)" >Register</button>
+    <button *ngIf="this.registerButton" class="buttonModal" (click)="open(content)">Register</button>
 
   </mat-toolbar-row>
 </mat-toolbar>
@@ -25,8 +24,10 @@
       <a mat-list-item [routerLink]="'layout/history-view'" (click)='sidenav.toggle()'> Historico </a>
       <a mat-list-item [routerLink]="'layout/questions-view'" (click)='sidenav.toggle()'> questionarios </a>
       <a mat-list-item [routerLink]="'layout/user-tools-view'" (click)='sidenav.toggle()'> Editar Utilizador </a>
-      <a *ngIf='isAdmin' mat-list-item [routerLink]="'layout/admin-manage-sessions-view'"(click)='sidenav.toggle()'> Gerir Sessao</a>
-      <a *ngIf='isAdmin' mat-list-item [routerLink]="'layout/admin-manage-users-view'" (click)='sidenav.toggle()'>Gerir Utilizadores</a>
+      <a *ngIf='isAdmin' mat-list-item [routerLink]="'layout/admin-manage-sessions-view'" (click)='sidenav.toggle()'>
+        Gerir Sessao</a>
+      <a *ngIf='isAdmin' mat-list-item [routerLink]="'layout/admin-manage-users-view'" (click)='sidenav.toggle()'>Gerir
+        Utilizadores</a>
       <a mat-list-item (click)='sidenav.toggle();logOut(sidenav)'> Sair </a>
     </mat-nav-list>
 
@@ -65,6 +66,10 @@
         <label>Confirm password: </label>
         <input type="password" [(ngModel)]='userpwc' compare-to='userpw' required class="form-control" />
       </div>
+      <input #imageInput
+         type="file"
+         accept="image/*"
+         (change)="processFile(imageInput)">
       <div class="error" *ngIf='errorMsg'>
         <p>Password does not match</p>
       </div>

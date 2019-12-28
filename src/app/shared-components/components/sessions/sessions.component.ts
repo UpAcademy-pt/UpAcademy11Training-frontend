@@ -1,4 +1,4 @@
-import { Component, OnInit, NgModule, Input } from '@angular/core';
+import { Component, OnInit, NgModule, Input, SimpleChanges } from '@angular/core';
 import { SessionServiceService } from 'src/app/core/services/user-service/session-service.service';
 import { Session } from 'src/app/core/models/session';
 import { SubscriptionServiceService } from 'src/app/core/services/user-service/subscription-service.service';
@@ -38,6 +38,14 @@ export class SessionsComponent implements OnInit {
     })
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    this.sessionService.initGetIntervalSessions(changes.interval.currentValue).subscribe((data: Session[]) => {
+      this.sessionService.setSessions(data);
+      this.initPanels(data);
+      this.subButtons = true;
+    });
+}
+
   ngOnInit() {
     console.log(this.activeRoute);
     
@@ -51,6 +59,7 @@ export class SessionsComponent implements OnInit {
 
       case '/layout/all-sessions-view':
         this.sessionService.initGetIntervalSessions(this.interval).subscribe((data: Session[]) => {
+          this.sessionService.setSessions(data);
           this.initPanels(data);
           this.subButtons = true;
         });
@@ -58,6 +67,11 @@ export class SessionsComponent implements OnInit {
 
       case '/layout/history-view':
         this.sessionService.getPastSessions(this.userService.getCurrentUser().id).subscribe((data: Session[]) => {
+          this.initPanels(data);
+          this.subButtons = false;
+        });
+      case '/layout/questions-view':
+        this.sessionService.getSessionInUser(this.userService.getCurrentUser().id).subscribe((data: Session[]) => {
           this.initPanels(data);
           this.subButtons = false;
         });

@@ -41,16 +41,22 @@ export class SessionServiceService {
     }
 
     public initGetIntervalSessions(interval): any {
-        interval = '2019-12-28';
-        /* TODO IR BUSCAR O INTERVAL */
-        return this.http.post(this.apiUrl + '/interval', interval).subscribe((data: Session[]) => this.sessions = data);
+
+        var dateFormat = require('dateformat');
+
+        return this.http.post(this.apiUrl + '/interval', dateFormat(interval, "yyyy-mm-dd HH:MM"));
     }
+
     public getIntervalSessions(data1) {
         return this.http.post(this.apiUrl + '/interval', data1).subscribe((data: Session[]) => this.sessions = data);
     }
 
     public getSessionId() {
         return this.sessions;
+    }
+
+    public setSessions(sessionsArray){
+        this.sessions = sessionsArray;
     }
 
     public getSubscribedCount(sessionId) {

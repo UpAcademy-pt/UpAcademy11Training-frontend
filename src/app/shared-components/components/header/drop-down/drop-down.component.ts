@@ -1,11 +1,8 @@
 import { Component, OnInit, NgModule, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserServiceService } from 'src/app/core/services/user-service/user-service.service';
-import { $ } from 'protractor';
-
-
 
 @Component({
   selector: 'app-drop-down',
@@ -32,15 +29,15 @@ export class DropDownComponent implements OnInit {
     private router: Router
   ) {
     this.router.events.pipe(
-    filter((event) => event instanceof NavigationEnd)
+      filter((event) => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
       this.activeRoute = event.urlAfterRedirects;
       if (this.activeRoute != '/login') {
-        if(this.userService.getCurrentUser().role == 'admin'){
+        if (this.userService.getCurrentUser().role == 'admin') {
           this.isAdmin = true;
           console.log("É ADMIN");
-          
-        }else{
+
+        } else {
           this.isAdmin = false;
           console.log("NÃO É ADMIN");
         }
@@ -48,7 +45,7 @@ export class DropDownComponent implements OnInit {
         this.dropDownButton = true;
         this.userFace = true;
         this.registerButton = false;
-      }else{
+      } else {
         this.progressBar = false;
         this.dropDownButton = false;
         this.userFace = false;
@@ -57,32 +54,33 @@ export class DropDownComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
     this.errorMsg = false;
   }
 
   register() {
-      if (this.userpw == this.userpwc ) {
-        this.userService.registerUser(this.name, this.email, this.userpw).subscribe( data => {
-         // console.log(data);
-          this.modalService.dismissAll();
-          this.name = '';
-          this.email = '';
-          this.userpw = '';
-          this.userpwc = '';
-        });
-      } else {
-        this.errorMsg = true;
-      }
+    if (this.userpw == this.userpwc) {
+      this.userService.registerUser(this.name, this.email, this.userpw).subscribe(data => {
+        // console.log(data);
+        this.modalService.dismissAll();
+        this.name = '';
+        this.email = '';
+        this.userpw = '';
+        this.userpwc = '';
+      });
+    } else {
+      this.errorMsg = true;
+    }
   }
 
-  logOut(side){ 
+  logOut(side) {
     this.userService.logOut();
   }
 
- 
+
+
 }
