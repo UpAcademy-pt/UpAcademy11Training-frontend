@@ -21,6 +21,7 @@ export class SessionsComponent implements OnInit {
   subButton = true;
   subButtons = true;
   subbed = false;
+  rows:  User[];
   currentUser: User;
   private activeRoute;
   @Input() interval;
@@ -104,17 +105,15 @@ export class SessionsComponent implements OnInit {
   }
 
   unsub(index) {
-    // console.log(this.subId);
     this.subscriptionService.unsub(this.subId[index]).subscribe(data => {
-      // console.log('DESINSCRIÇÃO COM ID : ' + this.subId[index]);
       this.subId[index] = 0;
       this.sessions[index].subscribed = false;
       this.sessionService.getSubscribedCount(this.sessions[index].id).subscribe((data1: number) => this.sessions[index].subscribedCount = data1);
-      // this.sessionService.getIfSubscribed(this.sessions[index].id,this.userService.getCurrentUser().id).subscribe((data2: boolean) => this.sessions[index].subscribed = data2);
     });
   }
 
   initPanels(data: Session[]) {
+    
     let i = 0;
     this.sessions = data;
     for (let index = 0; index < this.sessions.length; index++) {
@@ -122,6 +121,7 @@ export class SessionsComponent implements OnInit {
       this.sessions[index].sessionDate = this.sessions[index].sessionDate.slice(0, 16).replace("T", " ")
     }
     this.sessions.map(session => {
+      
       this.sessionService.getSubscribedCount(session.id).subscribe((data1: number) => {
         session.subscribedCount = data1;
       });
@@ -143,6 +143,12 @@ export class SessionsComponent implements OnInit {
           })
         }
         i += 1;
+      });
+      this.subscriptionService.getAllUsersBySession(session.id).subscribe((data4:User[]) =>{ 
+        console.log(data4);
+        
+        this.rows = data4;
+        this.subscriptionService.setUsersInSession(data4);
       });
     });
 

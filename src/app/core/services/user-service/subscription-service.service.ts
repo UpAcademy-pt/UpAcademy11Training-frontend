@@ -34,14 +34,19 @@ public unsub(id: number) {
     return this.http.delete(this.apiUrl + '/' + id);
 }
 
-public getAllUsersBySession(sessionId: number) {
-    return this.http.get(this.apiUrl + '/session/' + sessionId + '/user/count').
-    subscribe((data: User[]) => this.usersInSession = data);
+public getAllUsersBySession(sessionId: number):any {
+    console.log("ENTREI");
+    
+    return this.http.get('http://localhost:8080/Projeto-CTW/api/user/session/' + sessionId);
 
 }
 
 public getSubscription(sessionId: number, userId: number) {
     return this.http.get(this.apiUrl  + '/user/' + userId + '/session/' + sessionId);
+  }
+
+  public setUsersInSession(users){
+      this.usersInSession = users;
   }
 
 }
