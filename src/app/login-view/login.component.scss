@@ -19,13 +19,21 @@ border-radius: 20px;
 }
 
 .text-center {
-
-    align-content: center;
-    text-align: center;
-    padding: 30px 30px;
-    border-style: solid;
+   
+    padding: 30px;
+    width: 60%;
+    margin: auto;
+    border: solid;
     border-color: #0b0255;
-    border-width: 1.5px;
+    background-color: white;
+    opacity: 80%;
+    border-radius: 50px;
+    
+}
+
+.backgroung {
+
+    position: absolute;
 }
 
 

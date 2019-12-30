@@ -1,23 +1,31 @@
 .mat-toolbar {
-    color: #16dfdf;
+    color: #19bebe;
     background-color: #0b0255;
-}
+    background-image: url("https://www.criticaltechworks.com/img/_6AaJMV5c-logo_banner.svg");
+    background-repeat: no-repeat;
+    background-size: 170px;
+    background-position: left;
+    
+    
+  
+  }
 
 .mat-sidenav {
     background-color: #b2f6f8;
   
   }
   
-  .example-fill-remaining-space {
+   .example-fill-remaining-space {
     /* This fills the remaining space, by using flexbox.
        Every toolbar row uses a flexbox row layout. */
-    flex: 1 1 auto;
-  }
+     flex: 1 1  auto;
+     text-align: center;
+  } 
   
-  .bar {
+   .mat-progress-bar {
   
     position: relative;
-    left: 20px;
+    left: 200px;
     width: 100px;
   
   }
@@ -25,11 +33,11 @@
   .icon {
   
     position: relative;
-    left: 20px;
+    left: 175px;
     width: 40px;
     font-size: 36px;
   
-  }
+  } 
 
   .error {
    
@@ -38,6 +46,7 @@
 
   .modal-title {
 
+
     color:#0b0255;
     font-size: 25px;
     font-weight: bold; 
@@ -45,6 +54,7 @@
 
   .modal-body {
 
+    
     color: #0b0255; 
     font-size: 13px;
     font-weight: bold;
@@ -71,5 +81,15 @@
     border-radius: 20px;
   }
   
-  
+     .mat-sidenav-container {
+
+    background-image: url('https://flexa.cloud/wp-content/uploads/2018/11/videoblocks-blue-business-background-2_h3cvzluwb_thumbnail-full01.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    height: 90vh;
+    
+    
+    
+    
+}  
   
