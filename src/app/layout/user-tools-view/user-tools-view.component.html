@@ -1,27 +1,61 @@
 <div class="container">
+  <p></p>
   <h1> Editar perfil de utilizador</h1>
 
 
-  <form #editForm="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+  <div #editForm>
     <div class="pt-3">
       <label>New Username </label>
-      <input type="text" [(ngModel)]="user.name" class="form-control">
+      <input type="text" [(ngModel)]="name" class="form-control">
     </div>
     <div>
       <label>New e-mail </label>
-      <input type="text" [(ngModel)]="user.email" class="form-control">
+      <input type="email" [(ngModel)]="email" class="form-control">
     </div>
+    <div>
+      <label>Confirm e-mail </label>
+      <input type="email" [(ngModel)]="emailc" class="form-control">
+    </div>
+
     <div class="pt-3">
-    <label>Confirm password: </label>
-    <input type="password" [(ngModel)]='userpwc' compare-to='userpw' required class="form-control" />
+      <label>Profile Picture: </label>
+      <div mat-card-avatar class="image">{{userFace}}</div>
+      <p></p>
+      <input type="file">
     </div>
-      <div class="error" *ngIf='errorMsg'>
-        <p>Passwords do not match</p>
+    <!--  <div class="pt-3">
+      <label>Confirm password: </label>
+      <input type="password" [(ngModel)]='userpwc' compare-to='userpw' required class="form-control">
     </div>
-    <button type="submit" (click)="editUser()"> Confirmar </button>
-</form>
+    <div class="error" *ngIf='errorMsg'>
+      <p>Passwords do not match</p>
+    </div> -->
+    <p></p>
 
-
-
-
-</div>
+    <!-- TODO: Implementar o password check neste modal -->
+  </div>
+    <button class="buttonConfirm" (click)="open(content)">Confirm</button>
+  
+  <ul>
+    <ng-template #content let-modal let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Criar Sessão</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <label>Enter your password to proceed: </label>
+          <input type="password" [(ngModel)]="userpw" class="form-control">
+        </div>
+        <div class="pt-3">
+          <label>Confirm your password: </label>
+          <input type="password" [(ngModel)]="userpwc" class="form-control">
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)='editUser()' class="buttonPassword">Confirm changes</button>
+        </div>
+        </div>
+    </ng-template>
+  </ul>

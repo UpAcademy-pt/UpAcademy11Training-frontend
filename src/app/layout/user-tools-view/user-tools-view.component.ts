@@ -3,6 +3,8 @@ import { UserServiceService } from 'src/app/core/services/user-service/user-serv
 import { type } from 'os';
 import { User } from 'src/app/core/models/user';
 import { NgForm}  from '@angular/forms';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-user-tools-view',
   templateUrl: './user-tools-view.component.html',
@@ -12,30 +14,30 @@ export class UserToolsViewComponent implements OnInit {
 
 
   
-  constructor( private userService: UserServiceService) {}
+  constructor ( private userService: UserServiceService,  private modalService: NgbModal){}
   private name ='';
   private email = '';
+ 
+  
 
   ngOnInit() {
+
   }
 
+  open(content) {
+    this.modalService.open(content);
+  }
 
+  /* Adicionar metodo email check para validar se os e-mails inseridos sao iguais */
+  editUser(){
+    this.userService.editUser(this.name, this.email);
+    this.modalService.dismissAll();
+  }
 
-  editUser() {
-    this.name;
-    this.email;
-  };
-
-  public confirm(){
+  
+  /* TODO: Adicionar metodo password check ao editUser */
+  
+  /* public pwCheck(){
     
-}
-
+  } */
 };
-export class SimpleNgModelComp {
-
-  constructor ( private userService : UserServiceService){}
-
-  name: string = '';
-  email: string = '';
-  setValue() { this.name = this.name ; this.email = this.email }
-}

@@ -81,13 +81,11 @@ export class UserServiceService {
     this.router.navigate(['/login']);
   }
 
-
-
-  public editUser(){
+  public editUser(name, email){
     let user = new User();
     user = this.currentUser;
-    user.name = '';
-    user.email = '';
+    user.name = name;
+    user.email = email;
 
 
     this.http.put(this.apiUrl , user).subscribe((data: User) => {

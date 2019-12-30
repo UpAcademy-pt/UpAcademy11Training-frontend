@@ -79,6 +79,7 @@ export class DropDownComponent implements OnInit {
 
   logOut(side) {
     this.userService.logOut();
+    this.registerButton = true;
   }
 
 
