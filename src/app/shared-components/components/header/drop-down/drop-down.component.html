@@ -1,9 +1,9 @@
 <mat-toolbar>
   <mat-toolbar-row>
     <span class="menu-spacer"></span>
-    <img src="https://www.criticaltechworks.com/img/_6AaJMV5c-logo_banner.svg" width="10%">
-    <mat-icon *ngIf="this.userFace" class="icon">account_circle</mat-icon>
-    <mat-progress-bar *ngIf="this.progressBar" class="bar" mode="determinate" value="40">
+    
+    <mat-icon class="icon" *ngIf="this.userFace">account_circle</mat-icon>
+    <mat-progress-bar *ngIf="this.progressBar" mode="determinate" value="40">
     </mat-progress-bar>
     <span class="example-fill-remaining-space"></span>
 
@@ -15,6 +15,7 @@
 
   </mat-toolbar-row>
 </mat-toolbar>
+
 <mat-sidenav-container>
   <mat-sidenav position="end" #sidenav>
     <mat-nav-list>
@@ -33,12 +34,15 @@
 
   </mat-sidenav>
   <mat-sidenav-content>
-    <div style="height: 88vh;">
+    <div>
+  
 
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
+  
 </mat-sidenav-container>
+
 
 <ul class="nav navbar-nav nav-flex-icons ml-auto">
 
@@ -79,3 +83,4 @@
     </div>
   </ng-template>
 </ul>
+

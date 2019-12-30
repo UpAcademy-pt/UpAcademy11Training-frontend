@@ -1,3 +1,9 @@
+.text-center {
+
+  color: #0b0255;
+  font-weight: bold;
+}
+
 .myClass {
   max-width: 800px;
   height: 100px;
@@ -5,6 +11,7 @@
   margin: 20px auto;
   position: relative;
   overflow: hidden;
+
   .menu-item {
     height: 100%;
     white-space: nowrap;
@@ -12,14 +19,16 @@
       padding-bottom: 200px;
     } */
     overflow-y: hidden;
+
     div {
       display: inline-block;
       padding: 5px 20px;
-      color: #333;
+      color: #0b0255;
+      text-align: center;
       cursor: pointer;
       // height: 100%;
       &.active {
-        background-color: #f33c3c;
+        background-color: #19bebe;
       }
       &:hover {
         text-decoration: none;
@@ -40,7 +49,7 @@
     position: absolute;
     top: 0;
     i {
-      color: #333;
+      color: #0b0255;
       cursor: pointer;
     }
   }
@@ -51,7 +60,7 @@
     right: 0;
   }
   .dis i {
-    color: #ccc;
+    color: rgb(0, 0, 0);
   }
 }
 
