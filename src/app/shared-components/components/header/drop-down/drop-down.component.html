@@ -1,7 +1,7 @@
 <mat-toolbar>
   <mat-toolbar-row>
     <span class="menu-spacer"></span>
-    
+
     <mat-icon class="icon" *ngIf="this.userFace">account_circle</mat-icon>
     <mat-progress-bar *ngIf="this.progressBar" mode="determinate" value="40">
     </mat-progress-bar>
@@ -35,12 +35,12 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <div>
-  
+
 
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
-  
+
 </mat-sidenav-container>
 
 
@@ -70,10 +70,7 @@
         <label>Confirm password: </label>
         <input type="password" [(ngModel)]='userpwc' compare-to='userpw' required class="form-control" />
       </div>
-      <input #imageInput
-         type="file"
-         accept="image/*"
-         (change)="processFile(imageInput)">
+      <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
       <div class="error" *ngIf='errorMsg'>
         <p>Password does not match</p>
       </div>
@@ -83,4 +80,3 @@
     </div>
   </ng-template>
 </ul>
-

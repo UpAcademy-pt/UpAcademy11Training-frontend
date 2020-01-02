@@ -3,6 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserServiceService } from 'src/app/core/services/user-service/user-service.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-drop-down',
@@ -22,11 +23,15 @@ export class DropDownComponent implements OnInit {
   private userFace = false;
   private registerButton = true;
   private isAdmin = false;
+  selectedFile: any;
+  showImage: boolean;
+  imgUrl: any;
 
   constructor(
     private userService: UserServiceService,
     private modalService: NgbModal,
-    private router: Router
+    private router: Router,
+    private sanitizer:DomSanitizer
   ) {
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd)
@@ -72,6 +77,7 @@ export class DropDownComponent implements OnInit {
         this.userpw = '';
         this.userpwc = '';
       });
+      this.onUpload();
     } else {
       this.errorMsg = true;
     }
@@ -81,6 +87,23 @@ export class DropDownComponent implements OnInit {
     this.userService.logOut();
     this.registerButton = true;
   }
+
+  onFileChanged(event) {
+    this.selectedFile = event.target.files[0];const reader = new FileReader();
+    //to preview image before upload
+    reader.readAsDataURL(this.selectedFile);
+    reader.onloadend = () => {
+      const base64data = reader.result;
+      this.showImage = true;
+      this.imgUrl = this.sanitizer.bypassSecurityTrustUrl(base64data.toString());
+    }
+  }
+
+  onUpload() {
+    this.userService.onUpload(this.selectedFile, this.selectedFile.name);
+  }
+
+  
 
 
 

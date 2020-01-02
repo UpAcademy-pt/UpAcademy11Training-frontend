@@ -84,6 +84,13 @@ export class SessionServiceService {
         
         return this.http.get(this.apiUrl + "/past/user/"+userId);
     }
+
+    public getAllUsersBySession(sessionId: number):any {
+        console.log("ENTREI");
+        
+        return this.http.get('http://localhost:8080/Projeto-CTW/api/user/session/' + sessionId);
+    
+    }
 }
 
 

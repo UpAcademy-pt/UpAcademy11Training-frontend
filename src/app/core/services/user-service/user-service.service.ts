@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { log } from 'util';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../../models/user';
 import { EmailValidator } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -96,6 +96,23 @@ export class UserServiceService {
   });
     
 
+  }
+
+  onUpload(selectedFile, name) {
+    const uploadData = new FormData();
+    uploadData.append('uploadedFile', selectedFile, name);
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    let options = { headers: headers };
+    this.http.post(this.apiUrl + "/"+ this.currentUser.id, uploadData, options)
+      .subscribe(data => {
+        console.log(data);
+      });
+  }
+
+  getImage(){
+    return this.http.get('http://localhost:8080/stockApi2/api/users/image', {responseType: 'blob'});
   }
 
 }

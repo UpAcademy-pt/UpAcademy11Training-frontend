@@ -1,3 +1,5 @@
+import { User } from './user';
+
 export class Session {
     'id'?: number;
     'title': string;
@@ -11,6 +13,7 @@ export class Session {
     'subscribed': boolean;
     'subscribedCount': number;
     'isInstructor': boolean;
+    'users': User[];
 
     constructor(data?: any) {
         Object.assign(this, data);
