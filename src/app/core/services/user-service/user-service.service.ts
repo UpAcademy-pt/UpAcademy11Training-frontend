@@ -25,7 +25,7 @@ export class UserServiceService {
     //console.log(this.currentUser.id);
 
     if (this.currentUser.id) {
-     // console.log('LOGGED IN');
+      // console.log('LOGGED IN');
 
       return true;
     } else {
@@ -36,7 +36,7 @@ export class UserServiceService {
   public setCurrentUser(user) {
     user = JSON.parse(user);
     this.currentUser = user;
-   // console.log('USER' + user);
+    // console.log('USER' + user);
   }
 
   public getCurrentUser() {
@@ -48,11 +48,11 @@ export class UserServiceService {
     user.password = userpw;
     user.email=emailUser; */
     let user = { email: emailUser, password: userpw };
- ;
+    ;
 
 
-    
-    
+
+
     return this.http.post(this.apiUrl + 'auth', user, { responseType: 'text' });
   }
 
@@ -65,8 +65,8 @@ export class UserServiceService {
 
     return this.http.get(this.apiUrl);
   }
- 
-  public setSessionInUser(): Observable<any>{
+
+  public setSessionInUser(): Observable<any> {
 
     return this.http.get(this.apiUrl);
   }
@@ -81,23 +81,25 @@ export class UserServiceService {
     this.router.navigate(['/login']);
   }
 
-  public editUser(name, email){
+  public editUser(name, email) {
     let user = new User();
     user = this.currentUser;
     user.name = name;
     user.email = email;
 
+    return this.http.put(this.apiUrl, user).subscribe((data: User) => {
 
-    this.http.put(this.apiUrl , user).subscribe((data: User) => {
-      
-    this.currentUser.name = data.name;
-    this.currentUser.email = data.email;
-    
-  });
-    
+      this.currentUser.name = data.name;
+      this.currentUser.email = data.email;
+
+    });
+
 
   }
 
+  public removeUser(id) {
+   return this.http.delete(this.apiUrl + id);
+  }
 }
 
 

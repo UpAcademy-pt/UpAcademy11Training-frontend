@@ -18,6 +18,7 @@ export class AdminManageUsersViewComponent implements OnInit {
 
   
   users : User[] = [];
+  
   sessionsInUser : Session[] = [];
   currentUser = this.userService.getCurrentUser().id;
   
@@ -40,10 +41,14 @@ export class AdminManageUsersViewComponent implements OnInit {
 
     });
   }
-  
- 
-
-  
-
+  removeUser(id){
+    this.userService.removeUser(this.users[id].id).subscribe((data) => {
+      console.log(this.users);
+      
+      this.users.splice(id, 1);
+      console.log(this.users);
+      
+    })
+  }
   
 }
