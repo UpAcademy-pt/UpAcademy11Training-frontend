@@ -1,0 +1,55 @@
+.title {
+
+   color: #0b0255;
+   font-weight: bold;
+   text-align: center;
+   font-size: 30px;
+}
+
+.edit {
+
+    
+    padding: 8px 20px;
+    width: 80%;
+    margin: auto;
+    border-color: none;
+    background-color: white;
+    opacity: 90%;
+    color: #0b0255;
+    border-radius: 10px;
+    
+  
+}
+
+input [type=text] {
+
+    padding: 8px 20px;
+    margin: 5px 0;
+}
+
+.button-confirm {
+
+position: relative;
+background-color: #19bebe;
+border: none;
+color: white;
+padding: 12px 20px;
+font-size: 15px;
+border-radius: 20px;
+}
+
+.buttonPassword {
+
+    position: relative;
+    background-color: #19bebe;
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    font-size: 15px;
+    border-radius: 20px;
+    }
+
+.modal-body {
+
+    color: #0b0255;
+}

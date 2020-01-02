@@ -1,17 +1,19 @@
 .mat-toolbar {
-    color: #19bebe;
-    background-color: #0b0255;
-    background-image: url("https://www.criticaltechworks.com/img/_6AaJMV5c-logo_banner.svg");
-    background-repeat: no-repeat;
-    background-size: 170px;
-    background-position: left;
+    
+  color: #19bebe;
+  background-color: #0b0255;
+  background-image: url("https://www.criticaltechworks.com/img/_6AaJMV5c-logo_banner.svg");
+  background-repeat: no-repeat;
+  background-size: 170px;
+  background-position: left;
     
     
   
   }
 
 .mat-sidenav {
-    background-color: #b2f6f8;
+    background-color:#19bebe;
+    
   
   }
   
@@ -30,7 +32,7 @@
   
   }
   
-  .icon {
+.icon {
   
     position: relative;
     left: 175px;
@@ -39,12 +41,12 @@
   
   } 
 
-  .error {
+.error {
    
     color: #f50000;
   }
 
-  .modal-title {
+.modal-title {
 
 
     color:#0b0255;
@@ -52,7 +54,7 @@
     font-weight: bold; 
   }
 
-  .modal-body {
+.modal-body {
 
     
     color: #0b0255; 
@@ -61,7 +63,7 @@
     
   }
 
-  .buttonRegister {
+.buttonRegister {
 
     background-color: #19bebe;
     padding: 10px 20px;
@@ -71,7 +73,7 @@
 
   }
 
-  .buttonModal {
+.buttonModal {
 
     background-color: #19bebe;
     padding: 5px 20px;
@@ -81,12 +83,12 @@
     border-radius: 20px;
   }
   
-     .mat-sidenav-container {
+.mat-sidenav-container {
 
-    background-image: url('https://flexa.cloud/wp-content/uploads/2018/11/videoblocks-blue-business-background-2_h3cvzluwb_thumbnail-full01.png');
-    background-repeat: no-repeat;
-    background-size: auto;
-    height: 90vh;
+  background-image: url("https://media.licdn.com/dms/image/C561BAQGs0LvEXvIKAg/company-background_10000/0?e=2159024400&v=beta&t=TriLulSYPjnNbATJ9F8M4B9Pib0Km1Wr3CH8JOmHnfo");     
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 90vh;
     
     
     

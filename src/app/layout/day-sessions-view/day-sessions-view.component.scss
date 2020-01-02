@@ -1,35 +1,35 @@
 .card {
-    position: relative;
-    background-color: rgb(224, 248, 255);
-    max-width: 300px;
+    background-color:  #0b0255;
+    color: white;
+    max-width: 250px;
     left: 30px;
     top: 50px;
   
   }
   
   .user {
-    text-align: justify;
+    text-align: left;
   
   }
   
   .image {
-    position: static;
-    width: 250px;
-    height: 250px;
+    
+    background-position: center;
+    width: 200px;
+    height: 200px;
     background-image: url("http://www.tuktukdesign.com/wp-content/uploads/2017/12/person-icon.jpg");
     background-size: cover;
-    display: block;
     border-radius: 125px;
 
-    
-    
-  
   }
   
   .progress-bar {
     height: 20px;
   
   }
+
+
+
   
   
   
