@@ -124,6 +124,15 @@ export class SessionsComponent implements OnInit {
       
       this.sessionService.getSubscribedCount(session.id).subscribe((data1: number) => {
         session.subscribedCount = data1;
+        if (data1 != 0) {
+          this.subscriptionService.getAllUsersBySession(session.id).subscribe((data4:User[]) =>{ 
+            console.log(data4);
+              session.users = data4;
+              console.log(session.users);
+              
+          });
+        }
+        
       });
       this.sessionService.getInstructor(session.id).subscribe((instructor: User) => {
         session.instructorName = instructor.name;
@@ -144,12 +153,7 @@ export class SessionsComponent implements OnInit {
         }
         i += 1;
       });
-      this.subscriptionService.getAllUsersBySession(session.id).subscribe((data4:User[]) =>{ 
-        console.log(data4);
-        
-        this.rows = data4;
-        this.subscriptionService.setUsersInSession(data4);
-      });
+      
     });
 
   }
