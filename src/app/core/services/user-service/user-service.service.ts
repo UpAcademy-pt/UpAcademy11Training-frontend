@@ -97,11 +97,9 @@ export class UserServiceService {
 
   }
 
-<<<<<<< HEAD
   public removeUser(id) {
    return this.http.delete(this.apiUrl + id);
   }
-=======
   onUpload(selectedFile, name) {
     const uploadData = new FormData();
     uploadData.append('uploadedFile', selectedFile, name);
@@ -119,7 +117,6 @@ export class UserServiceService {
     return this.http.get('http://localhost:8080/stockApi2/api/users/image', {responseType: 'blob'});
   }
 
->>>>>>> JBarreto
 }
 
 

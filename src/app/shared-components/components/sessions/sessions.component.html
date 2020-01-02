@@ -1,126 +1,111 @@
 <div class="container">
-<mat-accordion class="headers-align">
-  <mat-expansion-panel [ngStyle]="{'background-color':sessions[i].isInstructor ?  'white' : '#b2f6f8' }"
-    [expanded]="step === i" (opened)="setStep(i)" hideToggle *ngFor="let session of sessions; let i = index;">
-    <mat-expansion-panel-header [collapsedHeight]="'50px'" [expandedHeight]="'50px'">
-
-      <div>
-        <mat-panel-title class="title">
-          <h5><b>{{session.title}}</b></h5>
-        </mat-panel-title>
-        
-        <mat-panel-description class="instructor">
-          {{session.instructor}}
-        </mat-panel-description>
-      </div>
-      <span class="example-fill-remaining-space"></span>
-      <div>
-        <mat-panel-description class="session-date">
-          {{session.sessionDate}}
-        </mat-panel-description>
-        <mat-panel-description class="capacity">
-          {{session.subscribedCount}}/{{session.capacity}}
-        </mat-panel-description>
-      </div>
-      <ng-template #content let-modal let-c="close" let-d="dismiss">
-        <div class="modal-header">
-          <h4 class="modal-title" id="modal-basic-title">Questionnaire</h4>
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
+  <mat-accordion class="headers-align">
+    <mat-expansion-panel [ngStyle]="{'background-color':sessions[i].isInstructor ?  'white' : '#b2f6f8' }"
+      [expanded]="step === i" (opened)="setStep(i)" hideToggle *ngFor="let session of sessions; let i = index;">
+      <mat-expansion-panel-header [collapsedHeight]="'50px'" [expandedHeight]="'50px'">
+        <div>
+          <mat-panel-title class="title">
+            <h5><b>{{session.title}}</b></h5>
+          </mat-panel-title>
+          <mat-panel-description class="instructor">
+            {{session.instructor}}
+          </mat-panel-description>
         </div>
-        <div class="modal-body">
-          <div>
-            <!-- <ngb-rating [(rate)]="currentRate"></ngb-rating> -->
-            <hr>
-            <pre>Rate: <b>{{currentRate}}</b></pre>
+        <span class="example-fill-remaining-space"></span>
+        <div>
+          <mat-panel-description class="session-date">
+            {{session.sessionDate}}
+          </mat-panel-description>
+          <mat-panel-description class="capacity">
+            {{session.subscribedCount}}/{{session.capacity}}
+          </mat-panel-description>
+        </div>
+        <ng-template #content let-modal let-c="close" let-d="dismiss">
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Questionnaire</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-          <div>
-            Question 2
+          <div class="modal-body">
+            <div>
+              <!-- <ngb-rating [(rate)]="currentRate"></ngb-rating> -->
+              <hr>
+              <pre>Rate: <b>{{currentRate}}</b></pre>
+            </div>
+            <div>
+              Question 2
+            </div>
           </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark">Save</button>
+          </div>
+        </ng-template>
+        <div *ngIf="questionButton">
+          <button type="button" class="btn btn-outline-primary" (click)="open(content)">Answer...</button>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark">Save</button>
-        </div>
-      </ng-template>
-      <div *ngIf="questionButton">
-        <button type="button" class="btn btn-lg btn-outline-primary" (click)="open(content)">Answer...</button>
 
+      </mat-expansion-panel-header>
 
-      </div>
-
-    </mat-expansion-panel-header>
-
-    <!--       <mat-form-field>
+      <!--       <mat-form-field>
         <input matInput placeholder="First name">
       </mat-form-field>
   
       <mat-form-field>
         <input matInput type="number" min="1" placeholder="Age">
       </mat-form-field> -->
-    <mat-action-row *ngIf="uselessRows">
-      <div class="left-aligned">
-        <b>Instructor Info:</b> <br>
-        {{session.instructorName}}
-      </div>
-      <span class="example-fill-remaining-space"></span>
-      <div class="right-aligned">
+      <mat-action-row *ngIf="uselessRows">
+        <div class="left-aligned">
+          <b>Instructor Info:</b> <br>
+          {{session.instructorName}}
+        </div>
+        <span class="example-fill-remaining-space"></span>
+        <div class="right-aligned">
+          <div>
+            {{session.location}}
+          </div>
+          <div>
+            {{session.requirements}}
+          </div>
+        </div>
+      </mat-action-row>
+      <mat-action-row *ngIf="uselessRows">
+        <span class="example-fill-remaining-space"></span>
         <div>
-          {{session.location}}
+          Description
         </div>
-        <div>
-          {{session.requirements}}
+        <span class="example-fill-remaining-space"></span>
+      </mat-action-row>
+      <mat-action-row class="row" *ngIf="sessions[i].isInstructor && sessions[i].subscribedCount > 0">
+        <div *ngFor="let user of session.users; let y = index">
+          <div *ngIf="y % 5 == 0">
+            <!-- <div class="col-2">{{ session.users[y].name }}</div> -->
+            <span class="ml-2" *ngIf="y + 1 < session.users.length">{{ session.users[y + 1].name }}</span>
+            <span class="ml-2" *ngIf="y + 2 < session.users.length">{{ session.users[y + 2].name }}</span>
+            <span class="ml-2" *ngIf="y + 3 < session.users.length">{{ session.users[y + 3].name }}</span>
+            <span class="ml-2" *ngIf="y + 4 < session.users.length">{{ session.users[y + 4].name }}</span>
+          </div>
         </div>
-      </div>
-    </mat-action-row>
-    <mat-action-row *ngIf="uselessRows">
-      <span class="example-fill-remaining-space"></span>
-      <div>
-        Description
-      </div>
-      <span class="example-fill-remaining-space"></span>
-    </mat-action-row>
-<<<<<<< HEAD
-    <mat-action-row class="row" *ngIf="sessions[i].isInstructor && sessions[i].subscribedCount > 0">
-      <div *ngFor="let user of session.users; let y = index">
-        <div *ngIf="y % 5 == 0" >
-          <!-- <div class="col-2">{{ session.users[y].name }}</div> -->
-          <span class="ml-2" *ngIf="y + 1 < session.users.length">{{ session.users[y + 1].name }}</span>
-          <span class="ml-2" *ngIf="y + 2 < session.users.length">{{ session.users[y + 2].name }}</span>
-          <span class="ml-2" *ngIf="y + 3 < session.users.length">{{ session.users[y + 3].name }}</span>
-          <span class="ml-2" *ngIf="y + 4 < session.users.length">{{ session.users[y + 4].name }}</span>
-=======
-    <mat-action-row *ngIf="sessions[i].isInstructor && uselessRows">
-      <div *ngFor="let row of rows; let y = index">
-        <div *ngIf="y % 5 == 0" class="row">
-          {{ row.name }}
-          <div *ngIf="y + 1 < rows.length">{{ rows[y + 1].name }}</div>
-          <div *ngIf="y + 2 < rows.length">{{ rows[y + 2].name }}</div>
-          <div *ngIf="y + 3 < rows.length">{{ rows[y + 3].name }}</div>
-          <div *ngIf="y + 4 < rows.length">{{ rows[y + 4].name }}</div>
->>>>>>> 60d7714e08b5b819065bdb695661f31ee83a4671
+        <span class="example-fill-remaining-space"></span>
+      </mat-action-row>
+      <mat-action-row *ngIf="uselessRows">
+        <div *ngIf="!sessions[i].isInstructor && subButtons">
+          <div class="btn-group btn-group-toggle" *ngIf="!sessions[i].subscribed">
+            <button mat-button color="primary" [disabled]="sessions[i].capacity == sessions[i].subscribedCount"
+              (click)="sub(session.id, i)">Subscribe</button>
+          </div>
+          <div class="btn-group btn-group-toggle" *ngIf="sessions[i].subscribed">
+            <button mat-button color="primary" (click)="unsub(i)">Unsubscribe</button>
+          </div>
         </div>
-      </div>
-      <span class="example-fill-remaining-space"></span>
-    </mat-action-row>
-    <mat-action-row *ngIf="uselessRows">
-      <div *ngIf="!sessions[i].isInstructor && subButtons">
-        <div class="btn-group btn-group-toggle" *ngIf="!sessions[i].subscribed">
-          <button mat-button color="primary" [disabled]="sessions[i].capacity == sessions[i].subscribedCount"
-            (click)="sub(session.id, i)">Subscribe</button>
-        </div>
-        <div class="btn-group btn-group-toggle" *ngIf="sessions[i].subscribed">
-          <button mat-button color="primary" (click)="unsub(i)">Unsubscribe</button>
-        </div>
-      </div>
-      <span class="example-fill-remaining-space"></span>
-      <button mat-button color="warn" *ngIf="step != 0" (click)="prevStep()">Previous</button>
-      <button mat-button color="primary" *ngIf="step != sessions.length -1" (click)="nextStep()">Next</button>
+        <span class="example-fill-remaining-space"></span>
+        <button mat-button color="warn" *ngIf="step != 0" (click)="prevStep()">Previous</button>
+        <button mat-button color="primary" *ngIf="step != sessions.length -1" (click)="nextStep()">Next</button>
 
-    </mat-action-row>
+      </mat-action-row>
 
-  </mat-expansion-panel>
+    </mat-expansion-panel>
 
 
-</mat-accordion>
+  </mat-accordion>
 </div>

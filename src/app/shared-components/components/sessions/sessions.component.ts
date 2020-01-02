@@ -60,6 +60,7 @@ export class SessionsComponent implements OnInit {
         this.sessionService.getTodaySessions().subscribe((data: Session[]) => {
           this.initPanels(data);
           this.subButtons = true;
+          this.questionButton = false;
         });
         break;
 
@@ -68,6 +69,7 @@ export class SessionsComponent implements OnInit {
           this.sessionService.setSessions(data);
           this.initPanels(data);
           this.subButtons = true;
+          this.questionButton = false;
         });
         break;
 
@@ -75,6 +77,7 @@ export class SessionsComponent implements OnInit {
         this.sessionService.getPastSessions(this.userService.getCurrentUser().id).subscribe((data: Session[]) => {
           this.initPanels(data);
           this.subButtons = false;
+          this.questionButton = false;
         });
       case '/layout/questions-view':
         this.sessionService.getSessionInUser(this.userService.getCurrentUser().id).subscribe((data: Session[]) => {
