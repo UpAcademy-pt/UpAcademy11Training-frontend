@@ -107,14 +107,14 @@ export class UserServiceService {
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
     let options = { headers: headers };
-    this.http.post(this.apiUrl + "/"+ this.currentUser.id, uploadData, options)
+    this.http.post(this.apiUrl + 'image-upload', uploadData, options)
       .subscribe(data => {
         console.log(data);
       });
   }
 
   getImage(){
-    return this.http.get('http://localhost:8080/stockApi2/api/users/image', {responseType: 'blob'});
+    return this.http.get(this.apiUrl + this.currentUser.id, {responseType: 'blob'});
   }
 
 }

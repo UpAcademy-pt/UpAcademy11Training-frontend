@@ -20,7 +20,8 @@
     <div class="pt-2">
       <label>Profile Picture: </label>
       <div mat-card-avatar class="image"></div>
-      <input type="file">
+      <img *ngIf="showImage" height="200" [src]="imgUrl">
+      <input type="file" (change)="onFileChanged($event)" #fileInput>
     </div>
     <div class="pt-3">
       <label>Confirm password: </label>
@@ -32,7 +33,7 @@
     <p></p>
 
     <!-- TODO: Implementar o password check neste modal -->
-  
+
     <button class="button-confirm" (click)="open(content)">Confirm</button>
   </div>
   <ul>
@@ -45,16 +46,15 @@
       <div class="modal-body">
         <div>
           <label>Password: </label>
-           <input type="password" class="form-control">
+          <input type="password" class="form-control">
         </div>
         <div class="pt-3">
           <label>Confirm password: </label>
-         <input type="password" class="form-control"> 
+          <input type="password" class="form-control">
         </div>
         <div class="modal-footer">
           <button type="button" (click)='editUser()' class="buttonPassword">Confirm</button>
         </div>
-        </div>
+      </div>
     </ng-template>
   </ul>
-  
