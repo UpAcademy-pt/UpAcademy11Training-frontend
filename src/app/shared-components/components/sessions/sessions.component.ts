@@ -7,6 +7,7 @@ import { Subscription } from 'src/app/core/models/subscription';
 import { User } from 'src/app/core/models/user';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-sessions',
@@ -21,15 +22,19 @@ export class SessionsComponent implements OnInit {
   subButton = true;
   subButtons = true;
   subbed = false;
+  uselessRows = true;
+  questionButton = false;
   rows:  User[];
   currentUser: User;
   private activeRoute;
   @Input() interval;
+  currentRate = 8;
 
   constructor(
     private sessionService: SessionServiceService,
     private subscriptionService: SubscriptionServiceService,
     private userService: UserServiceService,
+    private modalService: NgbModal,
     private router: Router
   ) {
     this.router.events.pipe(
@@ -75,6 +80,8 @@ export class SessionsComponent implements OnInit {
         this.sessionService.getSessionInUser(this.userService.getCurrentUser().id).subscribe((data: Session[]) => {
           this.initPanels(data);
           this.subButtons = false;
+          this.uselessRows = false;
+          this.questionButton = true;
         });
         break;
     }
@@ -156,6 +163,10 @@ export class SessionsComponent implements OnInit {
       
     });
 
+  }
+
+  open(content) {
+    this.modalService.open(content);
   }
 
 }
