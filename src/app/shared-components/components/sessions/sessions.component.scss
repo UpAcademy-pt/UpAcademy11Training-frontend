@@ -1,21 +1,40 @@
-.example-headers-align .mat-expansion-panel-header-title,
-.example-headers-align .mat-expansion-panel-header-description {
-  flex-basis: 0;
+.container {
+
+  padding: 30px;
+  width: 85%;
+  text-align: center;
+  
+}
+
+.headers-align {
+
+  position: relative;
+  padding: 30px;
+
+}
+
+.title {
+
+  color:#0b0255;
+  
+}
+
+.session-date {
+
+  text-align: end;
 }
 
 .example-headers-align .mat-expansion-panel-header-description {
   justify-content: space-between;
-  align-items: center;
+  
 }
 
 .mat-form-field {
-  margin-right: 12px;
+  margin-right: 10px;
 }
 
   
 .example-fill-remaining-space {
-  /* This fills the remaining space, by using flexbox.
-     Every toolbar row uses a flexbox row layout. */
   flex: 1 1 auto;
 }
 

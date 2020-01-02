@@ -1,22 +1,24 @@
-<mat-accordion class="example-headers-align">
+<div class="container">
+<mat-accordion class="headers-align">
   <mat-expansion-panel [ngStyle]="{'background-color':sessions[i].isInstructor ?  'white' : '#b2f6f8' }"
     [expanded]="step === i" (opened)="setStep(i)" hideToggle *ngFor="let session of sessions; let i = index;">
-    <mat-expansion-panel-header [collapsedHeight]="'80px'" [expandedHeight]="'80px'">
+    <mat-expansion-panel-header [collapsedHeight]="'50px'" [expandedHeight]="'50px'">
 
       <div>
-        <mat-panel-title>
+        <mat-panel-title class="title">
           <h5><b>{{session.title}}</b></h5>
         </mat-panel-title>
-        <mat-panel-description>
+        
+        <mat-panel-description class="instructor">
           {{session.instructor}}
         </mat-panel-description>
       </div>
       <span class="example-fill-remaining-space"></span>
       <div>
-        <mat-panel-description>
+        <mat-panel-description class="session-date">
           {{session.sessionDate}}
         </mat-panel-description>
-        <mat-panel-description>
+        <mat-panel-description class="capacity">
           {{session.subscribedCount}}/{{session.capacity}}
         </mat-panel-description>
       </div>
@@ -83,3 +85,4 @@
 
 
 </mat-accordion>
+</div>
