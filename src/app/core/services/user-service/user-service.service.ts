@@ -114,7 +114,7 @@ export class UserServiceService {
   }
 
   getImage(){
-    return this.http.get(this.apiUrl + this.currentUser.id, {responseType: 'blob'});
+    return this.http.get(this.apiUrl + 'image', {responseType: 'blob'});
   }
 
 }
