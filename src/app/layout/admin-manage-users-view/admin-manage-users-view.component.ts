@@ -16,21 +16,16 @@ export class AdminManageUsersViewComponent implements OnInit {
 
   constructor(private userService: UserServiceService, private sessionService : SessionServiceService, config: NgbModalConfig, private modalService: NgbModal){ }
 
-  
-  users : User[] = [];
-  
-  sessionsInUser : Session[] = [];
+  users: User[] = [];
+  sessionsInUser: Session[] = [];
   currentUser = this.userService.getCurrentUser().id;
   
- 
   ngOnInit() {
 
     this.userService.getAllUsers().subscribe((data:User[]) => {
       this.users = data;  
-
-    });
+});
      
-
   }
   open(content, index){
 
@@ -48,7 +43,7 @@ export class AdminManageUsersViewComponent implements OnInit {
       this.users.splice(id, 1);
       console.log(this.users);
       
-    })
+    });
   }
-  
+
 }
