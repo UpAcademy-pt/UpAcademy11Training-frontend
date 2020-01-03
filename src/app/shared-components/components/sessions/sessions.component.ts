@@ -24,7 +24,7 @@ export class SessionsComponent implements OnInit {
   subbed = false;
   uselessRows = true;
   questionButton = false;
-  rows:  User[];
+  rows: User[];
   currentUser: User;
   private activeRoute;
   @Input() interval;
@@ -50,11 +50,11 @@ export class SessionsComponent implements OnInit {
       this.initPanels(data);
       this.subButtons = true;
     });
-}
+  }
 
   ngOnInit() {
     console.log(this.activeRoute);
-    
+
     switch (this.activeRoute) {
       case '/layout/day-sessions-view':
         this.sessionService.getTodaySessions().subscribe((data: Session[]) => {
@@ -88,7 +88,7 @@ export class SessionsComponent implements OnInit {
         });
         break;
     }
-    
+
   }
 
   setStep(index: number) {
@@ -123,7 +123,7 @@ export class SessionsComponent implements OnInit {
   }
 
   initPanels(data: Session[]) {
-    
+
     let i = 0;
     this.sessions = data;
     for (let index = 0; index < this.sessions.length; index++) {
@@ -131,18 +131,18 @@ export class SessionsComponent implements OnInit {
       this.sessions[index].sessionDate = this.sessions[index].sessionDate.slice(0, 16).replace("T", " ")
     }
     this.sessions.map(session => {
-      
+
       this.sessionService.getSubscribedCount(session.id).subscribe((data1: number) => {
         session.subscribedCount = data1;
         if (data1 != 0) {
-          this.subscriptionService.getAllUsersBySession(session.id).subscribe((data4:User[]) =>{ 
+          this.subscriptionService.getAllUsersBySession(session.id).subscribe((data4: User[]) => {
             console.log(data4);
-              session.users = data4;
-              console.log(session.users);
-              
+            session.users = data4;
+            console.log(session.users);
+
           });
         }
-        
+
       });
       this.sessionService.getInstructor(session.id).subscribe((instructor: User) => {
         session.instructorName = instructor.name;
@@ -163,7 +163,7 @@ export class SessionsComponent implements OnInit {
         }
         i += 1;
       });
-      
+
     });
 
   }
@@ -171,5 +171,7 @@ export class SessionsComponent implements OnInit {
   open(content) {
     this.modalService.open(content);
   }
+
+
 
 }

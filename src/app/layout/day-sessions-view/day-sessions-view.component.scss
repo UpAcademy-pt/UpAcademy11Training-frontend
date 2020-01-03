@@ -1,40 +1,29 @@
 .card {
-    background-color:  #0b0255;
-    color: white;
-    max-width: 250px;
-    left: 30px;
-    top: 50px;
-  
-  }
-  
-  .user {
-    text-align: left;
-  
-  }
-  
-  .image {
-    
-    background-position: center;
-    width: 200px;
-    height: 200px;
-    background-image: url("http://www.tuktukdesign.com/wp-content/uploads/2017/12/person-icon.jpg");
-    background-size: cover;
-    border-radius: 125px;
+  background-color: #0b0255;
+  color: white;
+  max-width: 250px;
+  left: 30px;
+  top: 50px;
+}
 
-  }
-  
-  .progress-bar {
-    height: 20px;
-  
-  }
+.user {
+  text-align: left;
+}
 
+.image {
+  background-position: center;
+  width: 200px;
+  height: 200px;
+  background-image: url("http://www.tuktukdesign.com/wp-content/uploads/2017/12/person-icon.jpg");
+  background-size: cover;
+  border-radius: 125px;
+}
 
+.progress-bar {
+  height: 20px;
+}
 
-  
-  
-  
-  
-  
-  
-  
-  
+.title {
+  text-align: center;
+  padding-top: 10px;
+}

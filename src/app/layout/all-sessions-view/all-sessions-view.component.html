@@ -7,14 +7,15 @@
       <br>
       <span>{{returnDayNumber(day)}}</span>
     </div>
-   
-  </div> 
-  <span class="pointer left-pointer dis" (click)="goLeft()">
-    <i class="fa fa-chevron-left"></i>
-  </span>
-  <span class="pointer right-pointer" (click)="goRight()" >
-    <i class="fa fa-chevron-right"></i>
-  </span>
+
+  </div>
+
+  <mat-icon class="pointer left-pointer dis" (click)="goLeft()">
+    <i>arrow_back_ios</i>
+  </mat-icon>
+  <mat-icon class="pointer right-pointer" (click)="goRight()">
+    <i>arrow_forward_ios</i>
+  </mat-icon>
 </div>
 
 <app-sessions [interval]="displayWeek[activeDay]"></app-sessions>

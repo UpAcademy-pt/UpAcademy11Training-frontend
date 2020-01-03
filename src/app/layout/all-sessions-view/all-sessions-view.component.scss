@@ -23,10 +23,14 @@
     div {
       display: inline-block;
       padding: 5px 20px;
-      color: #0b0255;
+
+      color:white;
       text-align: center;
       cursor: pointer;
-      // height: 100%;
+      background-color: #0b0255;
+      border: solid 1px;
+      border-color: black;
+      // height: 100%; 
       &.active {
         background-color: #19bebe;
       }
@@ -52,6 +56,7 @@
       color: #0b0255;
       cursor: pointer;
     }
+    
   }
   .left-pointer {
     left: 0;
@@ -62,5 +67,6 @@
   .dis i {
     color: rgb(0, 0, 0);
   }
+  
 }
 

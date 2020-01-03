@@ -20,6 +20,7 @@
             {{session.subscribedCount}}/{{session.capacity}}
           </mat-panel-description>
         </div>
+
         <ng-template #content let-modal let-c="close" let-d="dismiss">
           <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">Questionnaire</h4>
@@ -27,18 +28,55 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <div>
-              <!-- <ngb-rating [(rate)]="currentRate"></ngb-rating> -->
-              <hr>
-              <pre>Rate: <b>{{currentRate}}</b></pre>
-            </div>
-            <div>
-              Question 2
-            </div>
+
+          <div class="ratings text-center">
+            <form>
+              <p>Como classifica a produtividade da sessão?</p>
+              <label for="one">Baixa</label>
+              <input type="radio" id="one" name="gender" value="1">
+              <input type="radio" id="two" name="gender" value="2">
+              <input type="radio" id="three" name="gender" value="3">
+              <input type="radio" id="four" name="gender" value="4">
+              <input type="radio" id="five" name="gender" value="5">
+              <label for="five">Alta</label>
+            </form>
+            <form>
+              <p>Na sua opinião os conteúdos são adequados?</p>
+              <label for="one">Pouco</label>
+              <input type="radio" id="one" name="maturity" value="1">
+              <input type="radio" id="two" name="maturity" value="2">
+              <input type="radio" id="three" name="maturity" value="3">
+              <input type="radio" id="four" name="maturity" value="4">
+              <input type="radio" id="five" name="maturity" value="5">
+              <label for="five">Muito</label>
+            </form>
+            <form>
+              <p>De um mode geral como classifica o desempenho do formador?</p>
+              <label for="one">Mau</label>
+              <input type="radio" id="one" name="friendliness" value="1">
+              <input type="radio" id="two" name="friendliness" value="2">
+              <input type="radio" id="three" name="friendliness" value="3">
+              <input type="radio" id="four" name="friendliness" value="4">
+              <input type="radio" id="five" name="friendliness" value="5">
+              <label for="five">Bom</label>
+            </form>
+            <form>
+              <p>O objetivo pretendido foi alcançado?</p>
+              <label for="one">Não</label>
+              <input type="radio" id="one" name="intelligence" value="1">
+              <input type="radio" id="two" name="intelligence" value="2">
+              <input type="radio" id="three" name="intelligence" value="3">
+              <input type="radio" id="four" name="intelligence" value="4">
+              <input type="radio" id="five" name="intelligence" value="5">
+              <label for="five">Sim</label>
+            </form>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark">Save</button>
+          <!-- OCCUPATION QUESTION -->
+          <div class="occupation">
+            <p>Na sua opinião há algo que pode melhorar na formação?</p>
+           <textarea cols="50" rows="5"></textarea>
+           <br>
+            <input type="submit">
           </div>
         </ng-template>
         <div *ngIf="questionButton">

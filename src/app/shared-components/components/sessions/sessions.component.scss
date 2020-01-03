@@ -1,42 +1,99 @@
 .container {
-
   padding: 30px;
   width: 85%;
   text-align: center;
-  
 }
 
 .headers-align {
-
   position: relative;
   padding: 30px;
-
 }
 
 .title {
-
-  color:#0b0255;
-  
+  color: #0b0255;
 }
 
 .session-date {
-
   text-align: end;
 }
 
 .example-headers-align .mat-expansion-panel-header-description {
   justify-content: space-between;
-  
 }
 
 .mat-form-field {
   margin-right: 10px;
 }
 
-  
 .example-fill-remaining-space {
   flex: 1 1 auto;
 }
 
+div#firstHeader {
+  background-color: gray;
+  border: 2px gray solid;
+  align: center;
+  text-align: center;
+}
 
+div.occupation {
+  padding-bottom: 20px;
+  text-align: center;
+}
 
+form {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  align-content: center;
+  padding: 5px;
+  margin: 0 0 10px 0;
+}
+
+label {
+  display: inline-block;
+  width: 90px;
+  text-align: center;
+}
+
+div.ratings {
+  padding-left: 20px;
+  padding-right: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  background-color: gray;
+}
+
+.new-select {
+  display: inline-block;
+}
+
+div.imageName {
+  text-align: right;
+  justify-content: center;
+  font-size: 16px;
+}
+
+img.resize {
+  max-width: 150px;
+  max-height: 150px;
+}
+
+input[type="radio"] {
+  opacity: 1;
+  position: relative;
+  margin-left: 10px;
+  pointer-events: fill;
+  border: 0px;
+  width: 5%;
+  height: 1.2em;
+}
+
+input[type="text"] {
+  color: gray;
+}

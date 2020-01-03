@@ -13,14 +13,13 @@ export class AllSessionsViewComponent implements OnInit {
   todayDate = new Date();
   i = this.todayDate.getDay();
   dayName = this.days[this.i];
-  displayWeek = [this.nextweek(-3), this.nextweek(-2), this.nextweek(-1), this.todayDate, this.nextweek(1), this.nextweek(2), this.nextweek(3)];
- /*  weeksDayNumber = [this.nextweek(-3).getDate(), this.nextweek(-2).getDate(), this.nextweek(-1).getDate(), this.todayDate.getDate(), this.nextweek(1).getDate(), this.nextweek(2).getDate(), this.nextweek(3).getDate()];
-  weeksDayName = [this.days[this.i-3], this.days[this.i-2], this.days[this.i-1], this.dayName, this.days[this.i+1], this.days[this.i+2], this.days[this.i+3]]; */
+  nextWeekArr = this.nextweek(this.todayDate);
+  displayWeek = [this.todayDate, ...this.nextWeekArr, ...this.nextweek(this.nextWeekArr[5]) ];
 
   weekDays = [];
-  activeDay = 3;
+  activeDay = 0;
   index = this.weekDays.findIndex(day => { return day === this.activeDay });
-
+  getNext = false;
   lp = $(".left-pointer");
   rp = $(".right-pointer");
   mItems = $(".menu-item");
@@ -32,10 +31,7 @@ export class AllSessionsViewComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-   
     console.log(this.displayWeek);
-    
-    
     this.links.on('click', () => {
       this.links.removeClass('active');
       $(this).addClass('active');
@@ -48,15 +44,16 @@ export class AllSessionsViewComponent implements OnInit {
         $(".left-pointer").removeClass("dis");
       }
     });
-
-    let actualWeek = this.nextweek(0);
-    console.log(actualWeek);
   }
 
-  nextweek(inc) {
-    let today = new Date();
-    let nextweek = new Date(today.getFullYear(), today.getMonth(), today.getDate() + inc);
-    return nextweek;
+  nextweek(initialDay:Date) {
+    let nextWeek=[];
+    for (let index = 1; index < 7; index++) {
+      /* let today = new Date(); */
+      nextWeek.push(new Date(initialDay.getFullYear(), initialDay.getMonth(), initialDay.getDate() + index));
+    }
+    console.log(nextWeek);
+    return nextWeek;
   }
 
   returnDayNumber(date) {
@@ -74,14 +71,19 @@ export class AllSessionsViewComponent implements OnInit {
   }
 
   goLeft() {
+    this.getNext = false;
     this.sc = $(".menu-item").width() - 60;
     this.pos = $(".menu-item").scrollLeft() - this.sc;
     $(".menu-item").animate({ 'scrollLeft': this.pos }, 'slow');
   }
 
   goRight() {
+    if (this.getNext) {
+      this.displayWeek.push(...this.nextweek(this.displayWeek[this.displayWeek.length-1]));
+    }
     this.sc = $(".menu-item").width() - 60;
     this.pos = $(".menu-item").scrollLeft() + this.sc;
     $(".menu-item").animate({ 'scrollLeft': this.pos }, 'slow');
+    this.getNext = true;
   }
 }
