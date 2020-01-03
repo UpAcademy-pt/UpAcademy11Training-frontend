@@ -80,6 +80,7 @@ export class SessionsComponent implements OnInit {
           this.subButtons = false;
           this.questionButton = false;
         });
+        break;
       case '/layout/questions-view':
         this.sessionService.getSessionInUser(this.userService.getCurrentUser().id).subscribe((data: Session[]) => {
           this.initPanels(data);
@@ -173,6 +174,7 @@ export class SessionsComponent implements OnInit {
   }
 
   setAttendance(id: number, i: number, y: number){
+    if(this.activeRoute == "/layout/history-view"){
     this.subscriptionService.getSubscriptionById(id).subscribe((data: Subscription) =>{
       console.log("LOG DO SUBSCRPTION BY ID" , data);
       this.subscriptionToEdit = data;
@@ -192,6 +194,7 @@ export class SessionsComponent implements OnInit {
         console.log(response);
       });
     });
+  }
   }
 
   open(content) {
