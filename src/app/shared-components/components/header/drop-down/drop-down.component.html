@@ -5,11 +5,14 @@
 
     <mat-progress-bar *ngIf="this.progressBar" mode="determinate" value="40">
     </mat-progress-bar>
-    <span class="example-fill-remaining-space"></span>
-
+    
+    <!-- <span class="example-fill-remaining-space"></span> -->
+    <h1 class="title">CriticalTraining</h1>
+   <!--  <span class="example-fill-remaining-space"></span> -->
     <button *ngIf="this.dropDownButton" mat-icon-button>
-      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+    <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
     </button>
+    
 
     <button *ngIf="this.registerButton" class="buttonModal" (click)="open(content)">Register</button>
 
