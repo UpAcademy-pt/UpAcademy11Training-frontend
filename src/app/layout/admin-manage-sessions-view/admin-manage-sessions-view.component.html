@@ -15,8 +15,8 @@
             <input type="text" [(ngModel)]="title" class="form-control">
           </div>
           <div class="pt-3">
-            <label>Formador: </label>
-            <input type="text" [(ngModel)]="instructor" class="form-control">
+            <label for="formador">Formador: </label>
+            <select id="formador" [(ngModel)]="instructor" class="form-control"></select>
           </div>
           <div class="pt-3">
             <label>Local: </label>
@@ -31,8 +31,8 @@
           <input type="time" [(ngModel)]="duration" class="form-control">
         </div>
           <div class="pt-3">
-            <label>Capacidade: </label>
-            <input type="number" min="0" max="50" [(ngModel)]="capacity" class="form-control">
+            <label for="capacity">Capacidade: </label>
+            <select id="capacity" type="number" min="0" max="50" [(ngModel)]="capacity" class="form-control"></select>
           </div>
           <div class="pt-3">
             <label>Requesitos: </label>
