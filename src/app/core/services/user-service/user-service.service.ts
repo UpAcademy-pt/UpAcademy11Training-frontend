@@ -48,10 +48,6 @@ export class UserServiceService {
     user.password = userpw;
     user.email=emailUser; */
     let user = { email: emailUser, password: userpw };
-    ;
-
-
-
 
     return this.http.post(this.apiUrl + 'auth', user, { responseType: 'text' });
   }
@@ -98,7 +94,7 @@ export class UserServiceService {
   }
 
   public removeUser(id) {
-   return this.http.delete(this.apiUrl + id);
+    return this.http.delete(this.apiUrl + id);
   }
   onUpload(selectedFile, name) {
     const uploadData = new FormData();
@@ -113,8 +109,8 @@ export class UserServiceService {
       });
   }
 
-  getImage(){
-    return this.http.get(this.apiUrl + 'image', {responseType: 'blob'});
+  getImage() {
+    return this.http.get(this.apiUrl + 'image', { responseType: 'blob' });
   }
 
 }

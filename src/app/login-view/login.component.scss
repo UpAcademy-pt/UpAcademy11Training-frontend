@@ -30,9 +30,26 @@ border-radius: 20px;
     
 }
 
-.backgroung {
+.modal-header{
+    
+    color: #19bebe;
+    background-color: #0b0255;
+    
+}
+.modal-header h4{
+    font-weight: bold;
+}
+.modal-body{
+    text-align: center;
+    
+}
+.close {
+    color: white;
+    pointer-events: auto;
+}
 
-    position: absolute;
+.close:hover{
+    color:white;
 }
 
 

@@ -11,30 +11,31 @@
         <!-- Email -->
         <input type="email" [(ngModel)]="email" class="form-control mb-4" placeholder="E-mail">
         <!-- Password -->
-        <input type="password" [(ngModel)]="userpw" class="form-control mb-4" placeholder="Password" (keyup.enter)="login()">
-
-        <div class="d-flex justify-content-around">
-            <div>
-                <!-- Remember me -->
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-                    <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
-                </div>
-            </div>
-            <div>
-                <!-- Forgot password -->
-                <a href="">Forgot password?</a>
-            </div>
-        </div>
+        <input type="password" [(ngModel)]="userpw" class="form-control mb-4" placeholder="Password" (keyup.enter)="login(content)">
 
         <!-- Sign in button -->
         <p></p>
-        <button class="button" type="submit" (click)="login()">Sign in</button>
+        <button class="button" type="submit" (click)="login(content)">Sign in</button>
 
     </div>
     <!-- Default form login -->
 
 </div>
-<!--Section: Live preview-->
+
+<div>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Error</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Wrong email or password. Please login again.</p>
+    </div>
+
+  </ng-template>
+</div>
+
 
 

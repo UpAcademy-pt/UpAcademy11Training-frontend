@@ -14,36 +14,39 @@ import { SessionServiceService } from 'src/app/core/services/user-service/sessio
 })
 export class AdminManageUsersViewComponent implements OnInit {
 
-  constructor(private userService: UserServiceService, private sessionService : SessionServiceService, config: NgbModalConfig, private modalService: NgbModal){ }
+  constructor(private userService: UserServiceService, private sessionService: SessionServiceService, config: NgbModalConfig, private modalService: NgbModal) { }
+
 
   users: User[] = [];
+
   sessionsInUser: Session[] = [];
   currentUser = this.userService.getCurrentUser().id;
-  
+
+
   ngOnInit() {
 
-    this.userService.getAllUsers().subscribe((data:User[]) => {
-      this.users = data;  
-});
-     
-  }
-  open(content, index){
+    this.userService.getAllUsers().subscribe((data: User[]) => {
+      this.users = data;
 
-    this.sessionService.getSessionInUser(this.users[index].id).subscribe ((data:Session[])=> {
+    });
+
+
+  }
+  open(content, index) {
+
+    this.sessionService.getSessionInUser(this.users[index].id).subscribe((data: Session[]) => {
       this.sessionsInUser = data;
       this.modalService.open(content);
 
 
     });
   }
-  removeUser(id){
+  removeUser(id) {
     this.userService.removeUser(this.users[id].id).subscribe((data) => {
-      console.log(this.users);
-      
       this.users.splice(id, 1);
-      console.log(this.users);
-      
-    });
+
+
+    })
   }
 
 }
