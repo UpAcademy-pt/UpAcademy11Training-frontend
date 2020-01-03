@@ -189,6 +189,7 @@ export class SessionsComponent implements OnInit {
   }
 
   setAttendance(id: number, i: number, y: number){
+    if(this.activeRoute == "/layout/history-view"){
     this.subscriptionService.getSubscriptionById(id).subscribe((data: Subscription) =>{
       console.log("LOG DO SUBSCRPTION BY ID" , data);
       this.subscriptionToEdit = data;
@@ -208,6 +209,7 @@ export class SessionsComponent implements OnInit {
         console.log(response);
       });
     });
+  }
   }
 
   open(content) {
