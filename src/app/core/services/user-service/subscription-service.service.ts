@@ -10,11 +10,10 @@ import { User } from '../../models/user';
 
 export class SubscriptionServiceService {
   
-  
+
     private apiUrl = 'http://localhost:8080/Projeto-CTW/api/subscription';
     private subscription: Subscription = new Subscription();
     private user;
-    private usersInSession: User[];
     private session;
     private subType: string;
 
@@ -43,10 +42,17 @@ public getAllUsersBySession(sessionId: number):any {
 
 public getSubscription(sessionId: number, userId: number) {
     return this.http.get(this.apiUrl  + '/user/' + userId + '/session/' + sessionId);
+}
+
+public getSubscriptionById(subId: number) {
+    return this.http.get(this.apiUrl+ "/" + subId);
+}
+
+  public setAttendance(subId : number, subscription: Subscription){
+      this.http.put(this.apiUrl +"/"+ subId, subscription);
   }
 
-  public setUsersInSession(users){
-      this.usersInSession = users;
+  public getAllSubsBySession(id: number) {
+    return this.http.get(this.apiUrl +"/session/" + id);
   }
-
 }
