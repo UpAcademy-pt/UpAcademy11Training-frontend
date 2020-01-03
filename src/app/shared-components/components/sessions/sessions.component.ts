@@ -19,6 +19,7 @@ export class SessionsComponent implements OnInit {
   sessions: Session[] = [];
   step = 0;
   subId = [];
+  subs = [];
   subButton = true;
   subButtons = true;
   subbed = false;
@@ -29,6 +30,7 @@ export class SessionsComponent implements OnInit {
   private activeRoute;
   @Input() interval;
   currentRate = 8;
+  subscriptionToEdit: Subscription;
 
   constructor(
     private sessionService: SessionServiceService,
@@ -135,11 +137,13 @@ export class SessionsComponent implements OnInit {
       this.sessionService.getSubscribedCount(session.id).subscribe((data1: number) => {
         session.subscribedCount = data1;
         if (data1 != 0) {
-          this.subscriptionService.getAllUsersBySession(session.id).subscribe((data4: User[]) => {
-            console.log(data4);
-            session.users = data4;
-            console.log(session.users);
-
+          this.subscriptionService.getAllUsersBySession(session.id).subscribe((data4:User[]) =>{
+              session.users = data4;
+          });
+          this.subscriptionService.getAllSubsBySession(session.id).subscribe((data5:Subscription[]) =>{ 
+            console.log(data5);
+              this.subs = data5;
+              console.log(this.subs);
           });
         }
 
@@ -161,11 +165,28 @@ export class SessionsComponent implements OnInit {
             this.subId[i] = data3.id;
           })
         }
+
         i += 1;
       });
 
     });
 
+  }
+
+  setAttendance(y){
+    this.subscriptionService.getSubscriptionById(this.subs[y].id).subscribe((data: Subscription) =>{
+      console.log("LOG DO SUBSCRPTION BY ID" , data);
+      
+      this.subscriptionToEdit = data;
+      if (data.attended != "attended") {
+        this.subscriptionToEdit.attended = "attended";
+        this.subscriptionService.setAttendance(this.subs[y].id,this.subscriptionToEdit);
+      }else{
+        this.subscriptionToEdit.attended = "missed";
+        this.subscriptionService.setAttendance(this.subs[y].id,this.subscriptionToEdit);
+      }
+
+    });
   }
 
   open(content) {
