@@ -49,7 +49,7 @@ public getSubscriptionById(subId: number) {
 }
 
   public setAttendance(subId : number, subscription: Subscription){
-      this.http.put(this.apiUrl +"/"+ subId, subscription);
+    return  this.http.put(this.apiUrl +"/"+ subId, subscription);
   }
 
   public getAllSubsBySession(id: number) {

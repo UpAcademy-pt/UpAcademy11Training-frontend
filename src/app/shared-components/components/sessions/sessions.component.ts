@@ -176,22 +176,21 @@ export class SessionsComponent implements OnInit {
     this.subscriptionService.getSubscriptionById(id).subscribe((data: Subscription) =>{
       console.log("LOG DO SUBSCRPTION BY ID" , data);
       this.subscriptionToEdit = data;
-      if (data.attended == "missed" || "Pending") {
+      if (data.attended != "attended") {
         console.log("attended");
         this.subscriptionToEdit.attended = "attended";
-        this.sessions[i].subs[y].attended = "attended";
-        console.log(this.sessions[i].subs[y].attended);
-        
+        this.sessions[i].subs[y]['attended'] = "attended";
+        console.log(this.sessions[i].subs[y]['attended']);
         //this.sessions[i].subs[y] = this.subscriptionToEdit;
-        this.subscriptionService.setAttendance(id,this.subscriptionToEdit);
       }else{
         console.log("missed");
         
         this.subscriptionToEdit.attended = "missed";
-        this.sessions[i].subs[y].attended = "missed";
-        this.subscriptionService.setAttendance(id,this.subscriptionToEdit);
+        this.sessions[i].subs[y]['attended'] = "missed";
       }
-
+      this.subscriptionService.setAttendance(id,this.subscriptionToEdit).subscribe( response => {
+        console.log(response);
+      });
     });
   }
 
