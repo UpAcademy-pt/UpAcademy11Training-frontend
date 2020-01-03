@@ -1,26 +1,65 @@
 .table {
 
-    background-color: white;
-    width: 80%;
-    padding: 30px;
+    position: absolute;
+    padding: 20px 20px;
     text-align: center;
-    border: solid;
-    border-color: #0b0255;
+    width: 100%;  
+    border-radius: 20px;
        
+}
+
+.text-center {
+
+    color: #0b0255;
+    font-weight: bold;
+    font-size: 40px;
 }
 
 .table-top {
 
     background-color: #0b0255;
     color: white;
-    text-align: center;
+    
 }
 
-.line {
+.button {
 
-    text-align: center;
-    height: 30px;
-    
+position: relative;
+background-color: #19bebe;
+border: none;
+color: white;
+padding: 12px 20px;
+font-size: 15px;
+border-radius: 20px;
+}
+
+.table td {
+
+    padding: 0.75rem;
+    vertical-align: middle !important;
+    background-color: white;
+}
+.button2 {
+
+    position: relative;
+    background-color: white;
+    border: none;
+    color:red;
+    border: solid;
+    border-color: red;
+    padding: 10px 18px;
+    font-size: 15px;
+    border-radius: 20px;
+
+}
+
+.modal-title {
+
+    font-size: 15px;
+    color:#0b0255;
+    font-weight: bold;
+
+
 }
 
 

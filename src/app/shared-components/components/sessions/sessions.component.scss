@@ -1,21 +1,24 @@
 .container {
 
   padding: 30px;
-  width: 85%;
-  text-align: center;
   
 }
 
 .headers-align {
 
-  position: relative;
   padding: 30px;
 
+}
+
+.mat-expansion-panel-header-0 {
+
+  align-items: baseline;
 }
 
 .title {
 
   color:#0b0255;
+  
   
 }
 

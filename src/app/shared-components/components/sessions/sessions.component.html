@@ -4,8 +4,8 @@
       [expanded]="step === i" (opened)="setStep(i)" hideToggle *ngFor="let session of sessions; let i = index;">
       <mat-expansion-panel-header [collapsedHeight]="'50px'" [expandedHeight]="'50px'">
         <div>
-          <mat-panel-title class="title">
-            <h5><b>{{session.title}}</b></h5>
+          <mat-panel-title>
+            <h5 class="title"><b>{{session.title}}</b></h5>
           </mat-panel-title>
           <mat-panel-description class="instructor">
             {{session.instructor}}
