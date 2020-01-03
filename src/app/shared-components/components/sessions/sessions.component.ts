@@ -19,7 +19,6 @@ export class SessionsComponent implements OnInit {
   sessions: Session[] = [];
   step = 0;
   subId = [];
-  subs = [];
   subButton = true;
   subButtons = true;
   subbed = false;
@@ -140,10 +139,10 @@ export class SessionsComponent implements OnInit {
           this.subscriptionService.getAllUsersBySession(session.id).subscribe((data4:User[]) =>{
               session.users = data4;
           });
-          this.subscriptionService.getAllSubsBySession(session.id).subscribe((data5:Subscription[]) =>{ 
+          this.subscriptionService.getAllSubsBySession(session.id).subscribe((data5: any) =>{ 
             console.log(data5);
-              this.subs = data5;
-              console.log(this.subs);
+              session.subs = data5;
+              console.log(session.subs);
           });
         }
 
@@ -173,17 +172,24 @@ export class SessionsComponent implements OnInit {
 
   }
 
-  setAttendance(y){
-    this.subscriptionService.getSubscriptionById(this.subs[y].id).subscribe((data: Subscription) =>{
+  setAttendance(id: number, i: number, y: number){
+    this.subscriptionService.getSubscriptionById(id).subscribe((data: Subscription) =>{
       console.log("LOG DO SUBSCRPTION BY ID" , data);
-      
       this.subscriptionToEdit = data;
-      if (data.attended != "attended") {
+      if (data.attended == "missed" || "Pending") {
+        console.log("attended");
         this.subscriptionToEdit.attended = "attended";
-        this.subscriptionService.setAttendance(this.subs[y].id,this.subscriptionToEdit);
+        this.sessions[i].subs[y].attended = "attended";
+        console.log(this.sessions[i].subs[y].attended);
+        
+        //this.sessions[i].subs[y] = this.subscriptionToEdit;
+        this.subscriptionService.setAttendance(id,this.subscriptionToEdit);
       }else{
+        console.log("missed");
+        
         this.subscriptionToEdit.attended = "missed";
-        this.subscriptionService.setAttendance(this.subs[y].id,this.subscriptionToEdit);
+        this.sessions[i].subs[y].attended = "missed";
+        this.subscriptionService.setAttendance(id,this.subscriptionToEdit);
       }
 
     });

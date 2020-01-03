@@ -1,4 +1,5 @@
 import { User } from './user';
+import { Subscription } from 'rxjs';
 
 export class Session {
     'id'?: number;
@@ -14,6 +15,7 @@ export class Session {
     'subscribedCount': number;
     'isInstructor': boolean;
     'users': User[];
+    'subs': Subscription[];
 
     constructor(data?: any) {
         Object.assign(this, data);

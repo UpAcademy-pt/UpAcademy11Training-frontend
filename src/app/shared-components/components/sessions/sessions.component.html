@@ -118,10 +118,10 @@
         <div *ngFor="let user of session.users; let y = index">
           <div *ngIf="y % 5 == 0">
             <!-- <div class="col-2">{{ session.users[y].name }}</div> -->
-            <span (click)="setAttendance(y)" [ngStyle]="{'background-color':subs[y].attended == 'Pending' ?  'white' : subs[y+1].attended == 'attended' ? 'green': 'red' }" class="ml-2" *ngIf="y + 1 < session.users.length">{{ session.users[y + 1].name }}</span>
-            <span (click)="setAttendance(y)" [ngStyle]="{'background-color':subs[y+1].attended == 'Pending' ?  'white' : subs[y+2].attended == 'attended' ? 'green': 'red' }" class="ml-2" *ngIf="y + 2 < session.users.length">{{ session.users[y + 2].name }}</span>
-            <span (click)="setAttendance(y)" [ngStyle]="{'background-color':subs[y+2].attended == 'Pending' ?  'white' : subs[y+3].attended == 'attended' ? 'green': 'red' }" class="ml-2" *ngIf="y + 3 < session.users.length">{{ session.users[y + 3].name }}</span>
-            <span (click)="setAttendance(y)" [ngStyle]="{'background-color':subs[y+3].attended == 'Pending' ?  'white' : subs[y+4].attended == 'attended' ? 'green': 'red' }" class="ml-2" *ngIf="y + 4 < session.users.length">{{ session.users[y + 4].name }}</span>
+            <span (click)="setAttendance(session.subs[y+1].id, i, y+1)" [ngStyle]="{'background-color':session.subs[y+1].attended == 'Pending' ?  'white' : (session.subs[y+1].attended == 'attended' ? 'green': 'red') }" class="ml-2" *ngIf="y + 1 < session.users.length">{{ session.users[y + 1].name }}</span>
+            <span (click)="setAttendance(session.subs[y+2].id, i, y+2)" [ngStyle]="{'background-color':session.subs[y+2].attended == 'Pending' ?  'white' : (session.subs[y+2].attended == 'attended' ? 'green': 'red') }" class="ml-2" *ngIf="y + 2 < session.users.length">{{ session.users[y + 2].name }}</span>
+            <span (click)="setAttendance(session.subs[y+3].id, i, y+3)" [ngStyle]="{'background-color':session.subs[y+3].attended == 'Pending' ?  'white' : (session.subs[y+3].attended == 'attended' ? 'green': 'red') }" class="ml-2" *ngIf="y + 3 < session.users.length">{{ session.users[y + 3].name }}</span>
+            <span (click)="setAttendance(session.subs[y+4].id, i, y+4)" [ngStyle]="{'background-color':session.subs[y+4].attended == 'Pending' ?  'white' : (session.subs[y+4].attended == 'attended' ? 'green': 'red') }" class="ml-2" *ngIf="y + 4 < session.users.length">{{ session.users[y + 4].name }}</span>
           </div>
         </div>
         <span class="example-fill-remaining-space"></span>
