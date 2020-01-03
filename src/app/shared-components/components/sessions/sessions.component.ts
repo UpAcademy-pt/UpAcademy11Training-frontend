@@ -24,6 +24,8 @@ export class SessionsComponent implements OnInit {
   subbed = false;
   uselessRows = true;
   questionButton = false;
+  emptyHist = true;
+  emptyQues = true;
   rows: User[];
   currentUser: User;
   private activeRoute;
@@ -62,6 +64,8 @@ export class SessionsComponent implements OnInit {
           this.initPanels(data);
           this.subButtons = true;
           this.questionButton = false;
+          this.emptyQues = false;
+          this.emptyHist = false;
         });
         break;
 
@@ -71,21 +75,33 @@ export class SessionsComponent implements OnInit {
           this.initPanels(data);
           this.subButtons = true;
           this.questionButton = false;
+          this.emptyQues = false;
+          this.emptyHist = false;
         });
         break;
 
       case '/layout/history-view':
         this.sessionService.getPastSessions(this.userService.getCurrentUser().id).subscribe((data: Session[]) => {
           this.initPanels(data);
-          this.subButtons = false;
           this.questionButton = false;
+          this.emptyHist = false;
+          this.emptyQues = false;
+          if (data.length == 0) {
+            this.emptyHist = true;
+          }
         });
+        break;
       case '/layout/questions-view':
         this.sessionService.getSessionInUser(this.userService.getCurrentUser().id).subscribe((data: Session[]) => {
           this.initPanels(data);
           this.subButtons = false;
           this.uselessRows = false;
           this.questionButton = true;
+          this.emptyQues = false;
+          this.emptyHist = false;
+          if (data.length == 0) {
+            this.emptyQues = true;
+          }
         });
         break;
     }

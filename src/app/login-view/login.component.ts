@@ -11,7 +11,7 @@ import { Content } from '@angular/compiler/src/render3/r3_ast';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  public email = 'eng1@gmail.com';
+  public email = 'eng.joao.barreto@gmail.com';
   public userpw = '1';
 
   constructor(

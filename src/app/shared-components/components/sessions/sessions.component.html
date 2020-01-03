@@ -139,11 +139,10 @@
         <span class="example-fill-remaining-space"></span>
         <button mat-button color="warn" *ngIf="step != 0" (click)="prevStep()">Previous</button>
         <button mat-button color="primary" *ngIf="step != sessions.length -1" (click)="nextStep()">Next</button>
-
       </mat-action-row>
-
     </mat-expansion-panel>
-
-
   </mat-accordion>
+  <div *ngIf="emptyHist">You have no sessions on track record.</div>
+  <div *ngIf="emptyQues">You have no pendent feedback to send us.</div>
+  
 </div>
