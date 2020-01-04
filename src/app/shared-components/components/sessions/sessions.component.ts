@@ -32,6 +32,11 @@ export class SessionsComponent implements OnInit {
   @Input() interval;
   currentRate = 8;
   subscriptionToEdit: Subscription;
+  intelligence: string;
+  friendliness: string;
+  improvements: string;
+  maturity: string;
+  productivity: string;
 
   constructor(
     private sessionService: SessionServiceService,
@@ -83,6 +88,7 @@ export class SessionsComponent implements OnInit {
       case '/layout/history-view':
         this.sessionService.getPastSessions(this.userService.getCurrentUser().id).subscribe((data: Session[]) => {
           this.initPanels(data);
+          this.subButtons = false;
           this.questionButton = false;
           this.emptyHist = false;
           this.emptyQues = false;
@@ -92,8 +98,10 @@ export class SessionsComponent implements OnInit {
         });
         break;
       case '/layout/questions-view':
-        this.sessionService.getSessionInUser(this.userService.getCurrentUser().id).subscribe((data: Session[]) => {
+        this.sessionService.getUnansweredSessionInUser(this.userService.getCurrentUser().id).subscribe((data: Session[]) => {
           this.initPanels(data);
+          console.log("QUESTIONS PÁ", data);
+          
           this.subButtons = false;
           this.uselessRows = false;
           this.questionButton = true;
@@ -105,6 +113,7 @@ export class SessionsComponent implements OnInit {
         });
         break;
     }
+
 
   }
 
@@ -125,7 +134,7 @@ export class SessionsComponent implements OnInit {
       // console.log('INSCRIÇÃO COM ID : ' + data.id);
       this.subId[index] = data.id;
       this.sessions[index].subscribed = true;
-      // console.log(this.subId);
+      //console.log(this.subId);
       this.sessionService.getSubscribedCount(this.sessions[index].id).subscribe((data1: number) => this.sessions[index].subscribedCount = data1);
       // this.sessionService.getIfSubscribed(this.sessions[index].id,this.userService.getCurrentUser().id).subscribe((data2: boolean) => this.sessions[index].subscribed = data2);
     });
@@ -135,30 +144,34 @@ export class SessionsComponent implements OnInit {
     this.subscriptionService.unsub(this.subId[index]).subscribe(data => {
       this.subId[index] = 0;
       this.sessions[index].subscribed = false;
+      //console.log(this.subId);
       this.sessionService.getSubscribedCount(this.sessions[index].id).subscribe((data1: number) => this.sessions[index].subscribedCount = data1);
     });
   }
 
   initPanels(data: Session[]) {
 
-    let i = 0;
+    /* let i = 0; */
     this.sessions = data;
     for (let index = 0; index < this.sessions.length; index++) {
-      this.subId[index] = 0;
+      /* this.subId[index] = 0; */
       this.sessions[index].sessionDate = this.sessions[index].sessionDate.slice(0, 16).replace("T", " ")
+
     }
+
     this.sessions.map(session => {
 
       this.sessionService.getSubscribedCount(session.id).subscribe((data1: number) => {
         session.subscribedCount = data1;
         if (data1 != 0) {
-          this.subscriptionService.getAllUsersBySession(session.id).subscribe((data4:User[]) =>{
-              session.users = data4;
+          this.subscriptionService.getAllUsersBySession(session.id).subscribe((data4: User[]) => {
+            session.users = data4;
           });
-          this.subscriptionService.getAllSubsBySession(session.id).subscribe((data5: any) =>{ 
-            console.log(data5);
-              session.subs = data5;
-              console.log(session.subs);
+          this.subscriptionService.getAllSubsBySession(session.id).subscribe((data5: any) => {
+            //console.log(data5);
+            session.subs = data5;
+
+            console.log("ESTES SAO OS SUBS", session.subs);
           });
         }
 
@@ -175,47 +188,64 @@ export class SessionsComponent implements OnInit {
 
       this.sessionService.getIfSubscribed(session.id, this.userService.getCurrentUser().id).subscribe((data2: boolean) => {
         session.subscribed = data2;
-        if (session.subscribed) {
-          this.subscriptionService.getSubscription(session.id, this.userService.getCurrentUser().id).subscribe((data3: Subscription) => {
-            this.subId[i] = data3.id;
-          })
+       // console.log(session.subscribed);
+
+      });
+      this.subscriptionService.getSubscription(session.id, this.userService.getCurrentUser().id).subscribe((data3: Subscription) => {
+        this.subId.push(data3.id)
+        //console.log("TAS INSCRITO COM OS SEGUINTES IDS: ", this.subId);
+      }, (error: any) => {
+       // console.log(error);
+        this.subId.push(0);
+      });
+
+    });
+
+  }
+
+  setAttendance(id: number, i: number, y: number) {
+    if (this.activeRoute == "/layout/history-view") {
+      this.subscriptionService.getSubscriptionById(id).subscribe((data: Subscription) => {
+      //  console.log("LOG DO SUBSCRPTION BY ID", data);
+        this.subscriptionToEdit = data;
+        if (data.attended != "attended") {
+         // console.log("attended");
+          this.subscriptionToEdit.attended = "attended";
+          this.sessions[i].subs[y]['attended'] = "attended";
+         // console.log(this.sessions[i].subs[y]['attended']);
+          //this.sessions[i].subs[y] = this.subscriptionToEdit;
+        } else {
+          console.log("missed");
+
+          this.subscriptionToEdit.attended = "missed";
+          this.sessions[i].subs[y]['attended'] = "missed";
         }
-
-        i += 1;
+        this.subscriptionService.setAttendance(id, this.subscriptionToEdit).subscribe(response => {
+          //console.log(response);
+        });
       });
-
-    });
-
-  }
-
-  setAttendance(id: number, i: number, y: number){
-    if(this.activeRoute == "/layout/history-view"){
-    this.subscriptionService.getSubscriptionById(id).subscribe((data: Subscription) =>{
-      console.log("LOG DO SUBSCRPTION BY ID" , data);
-      this.subscriptionToEdit = data;
-      if (data.attended != "attended") {
-        console.log("attended");
-        this.subscriptionToEdit.attended = "attended";
-        this.sessions[i].subs[y]['attended'] = "attended";
-        console.log(this.sessions[i].subs[y]['attended']);
-        //this.sessions[i].subs[y] = this.subscriptionToEdit;
-      }else{
-        console.log("missed");
-        
-        this.subscriptionToEdit.attended = "missed";
-        this.sessions[i].subs[y]['attended'] = "missed";
-      }
-      this.subscriptionService.setAttendance(id,this.subscriptionToEdit).subscribe( response => {
-        console.log(response);
-      });
-    });
-  }
+    }
   }
 
   open(content) {
     this.modalService.open(content);
   }
 
-
+  answerQuestionnaire(i) {
+    let answers = [this.productivity, this.maturity, this.friendliness, this.intelligence, this.improvements];
+    let questions = ["Como classifica a produtividade da sessão?", "Na sua opinião os conteúdos são adequados?", "De um modo geral como classifica o desempenho do formador?", "O objetivo pretendido foi alcançado?", "Na sua opinião há algo que pode melhorar na formação?"];
+    this.subscriptionService.getSubscriptionById(this.subId[i]).subscribe((data: Subscription) => {
+      data.answers = answers;
+      data.questions = questions;
+      data.answered = true;
+      this.subscriptionService.setAnswers(this.subId[i], data).subscribe((data: any) => {
+      // console.log(data);
+       this.sessionService.getUnansweredSessionInUser(this.userService.getCurrentUser().id).subscribe((data1: Session[]) => {
+        this.initPanels(data1);
+        this.modalService.dismissAll();
+      });
+       });
+      });
+  }
 
 }

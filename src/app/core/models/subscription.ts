@@ -7,6 +7,9 @@ export class Subscription {
     'trainingSession': Session;
     'subType': string;
     'attended': any;
+    'answers': string[];
+    'questions': string[];
+    'answered': boolean = false;
     constructor(data?: any) {
         Object.assign(this, data);
     }

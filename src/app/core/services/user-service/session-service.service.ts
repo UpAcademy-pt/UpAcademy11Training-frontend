@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Session } from '../../models/session';
-import { Observable } from 'rxjs';
-import { UserServiceService } from './user-service.service';
+import {  Observable} from 'rxjs';
+
+
 
 @Injectable({
     providedIn: 'root'
@@ -11,15 +12,11 @@ import { UserServiceService } from './user-service.service';
 export class SessionServiceService {
 
 
-
-
     private apiUrl = 'http://localhost:8080/Projeto-CTW/api/trainingsession';
     /*  private currentSession: Session = new Session(); */
     private sessions: Session[];
 
-    constructor(
-        private http: HttpClient
-    ) { }
+    constructor(private http: HttpClient) {}
 
     public createSession(
         title: string, local: string, sessionDate: string, capacity: number, reqs: string, duration: string, instructor: number) {
@@ -55,7 +52,7 @@ export class SessionServiceService {
         return this.sessions;
     }
 
-    public setSessions(sessionsArray){
+    public setSessions(sessionsArray) {
         this.sessions = sessionsArray;
     }
 
@@ -74,22 +71,27 @@ export class SessionServiceService {
 
     public logout() {
         this.sessions = [];
-      }
+    }
 
     public getSessionInUser(userId: number): any {
 
         return this.http.get(this.apiUrl + '/user/' + userId)
     }
-    public getPastSessions(userId) {
-        
-        return this.http.get(this.apiUrl + "/past/user/"+userId);
+
+    getUnansweredSessionInUser(userId: number) {
+        return this.http.get(this.apiUrl + "/unanswered/user/" + userId);
     }
 
-    public getAllUsersBySession(sessionId: number):any {
+    public getPastSessions(userId) {
+
+        return this.http.get(this.apiUrl + "/past/user/" + userId);
+    }
+
+    public getAllUsersBySession(sessionId: number): any {
         console.log("ENTREI");
-        
+
         return this.http.get('http://localhost:8080/Projeto-CTW/api/user/session/' + sessionId);
-    
+
     }
 }
 

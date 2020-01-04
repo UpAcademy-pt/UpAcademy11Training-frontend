@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SessionServiceService } from 'src/app/core/services/user-service/session-service.service';
+
+
+
+
 
 @Component({
   selector: 'app-admin-manage-sessions-view',
@@ -17,16 +21,20 @@ export class AdminManageSessionsViewComponent implements OnInit {
   private duration = '';
   private instructor = 0;
 
+
   constructor(config: NgbModalConfig, 
               private modalService: NgbModal, 
               private sessionService: SessionServiceService) {
     // customize default values of modals used by this component tree
+    
     config.backdrop = 'static';
     config.keyboard = false;
   }
 
   ngOnInit() {
   }
+
+  
 
   open(content) {
     this.modalService.open(content, { scrollable: true });
@@ -45,8 +53,8 @@ export class AdminManageSessionsViewComponent implements OnInit {
     this.requirements = '';
     this.duration = '';
     this.instructor = 0;
-  });
-}
+  });}
+
 }
 
 

@@ -33,65 +33,57 @@
             <form>
               <p>Como classifica a produtividade da sessão?</p>
               <label for="one">Baixa</label>
-              <input type="radio" id="one" name="gender" value="1">
-              <input type="radio" id="two" name="gender" value="2">
-              <input type="radio" id="three" name="gender" value="3">
-              <input type="radio" id="four" name="gender" value="4">
-              <input type="radio" id="five" name="gender" value="5">
-              <label for="five">Alta</label>
+              <input type="radio" id="one1" [(ngModel)]="productivity" name="productivity" value="1">
+              <input type="radio" id="two1" [(ngModel)]="productivity" name="productivity" value="2">
+              <input type="radio" id="three1" [(ngModel)]="productivity" name="productivity" value="3">
+              <input type="radio" id="four1" [(ngModel)]="productivity" name="productivity" value="4">
+              <input type="radio" id="five1" [(ngModel)]="productivity" name="productivity" value="5">
+              <label for="five1">Alta</label>
             </form>
             <form>
               <p>Na sua opinião os conteúdos são adequados?</p>
               <label for="one">Pouco</label>
-              <input type="radio" id="one" name="maturity" value="1">
-              <input type="radio" id="two" name="maturity" value="2">
-              <input type="radio" id="three" name="maturity" value="3">
-              <input type="radio" id="four" name="maturity" value="4">
-              <input type="radio" id="five" name="maturity" value="5">
-              <label for="five">Muito</label>
+              <input type="radio" id="one2" [(ngModel)]="maturity" name="maturity" value="1">
+              <input type="radio" id="two2" [(ngModel)]="maturity" name="maturity" value="2">
+              <input type="radio" id="three2" [(ngModel)]="maturity" name="maturity" value="3">
+              <input type="radio" id="four2" [(ngModel)]="maturity" name="maturity" value="4">
+              <input type="radio" id="five2" [(ngModel)]="maturity" name="maturity" value="5">
+              <label for="five2">Muito</label>
             </form>
             <form>
-              <p>De um mode geral como classifica o desempenho do formador?</p>
+              <p>De um modo geral como classifica o desempenho do formador?</p>
               <label for="one">Mau</label>
-              <input type="radio" id="one" name="friendliness" value="1">
-              <input type="radio" id="two" name="friendliness" value="2">
-              <input type="radio" id="three" name="friendliness" value="3">
-              <input type="radio" id="four" name="friendliness" value="4">
-              <input type="radio" id="five" name="friendliness" value="5">
-              <label for="five">Bom</label>
+              <input type="radio" id="on3e" [(ngModel)]="friendliness"  name="friendliness" value="1">
+              <input type="radio" id="two3" [(ngModel)]="friendliness" name="friendliness" value="2">
+              <input type="radio" id="three3" [(ngModel)]="friendliness" name="friendliness" value="3">
+              <input type="radio" id="four3" [(ngModel)]="friendliness" name="friendliness" value="4">
+              <input type="radio" id="five3" [(ngModel)]="friendliness" name="friendliness" value="5">
+              <label for="five3">Bom</label>
             </form>
             <form>
               <p>O objetivo pretendido foi alcançado?</p>
               <label for="one">Não</label>
-              <input type="radio" id="one" name="intelligence" value="1">
-              <input type="radio" id="two" name="intelligence" value="2">
-              <input type="radio" id="three" name="intelligence" value="3">
-              <input type="radio" id="four" name="intelligence" value="4">
-              <input type="radio" id="five" name="intelligence" value="5">
-              <label for="five">Sim</label>
+              <input type="radio" id="one4" [(ngModel)]="intelligence"  name="intelligence" value="1">
+              <input type="radio" id="two4" [(ngModel)]="intelligence"  name="intelligence" value="2">
+              <input type="radio" id="three4" [(ngModel)]="intelligence"  name="intelligence" value="3">
+              <input type="radio" id="four4" [(ngModel)]="intelligence"  name="intelligence" value="4">
+              <input type="radio" id="five4" [(ngModel)]="intelligence"  name="intelligence" value="5">
+              <label for="five4">Sim</label>
             </form>
           </div>
           <!-- OCCUPATION QUESTION -->
           <div class="occupation">
             <p>Na sua opinião há algo que pode melhorar na formação?</p>
-            <textarea cols="50" rows="5"></textarea>
+            <textarea  [(ngModel)]="improvements" cols="50" rows="5"></textarea>
             <br>
-            <input type="submit">
+            <input class="btn" type="button" (click)="answerQuestionnaire(i)">
           </div>
         </ng-template>
         <div *ngIf="questionButton">
           <button type="button" class="btn btn-outline-primary" (click)="open(content)">Answer...</button>
         </div>
-
       </mat-expansion-panel-header>
 
-      <!--       <mat-form-field>
-        <input matInput placeholder="First name">
-      </mat-form-field>
-  
-      <mat-form-field>
-        <input matInput type="number" min="1" placeholder="Age">
-      </mat-form-field> -->
       <mat-action-row *ngIf="uselessRows">
         <div class="left-aligned">
           <b>Instructor Info:</b> <br>
@@ -115,29 +107,6 @@
         <span class="example-fill-remaining-space"></span>
       </mat-action-row>
       <mat-action-row class="container-fluid" *ngIf="sessions[i].isInstructor && sessions[i].subscribedCount > 0">
-        <!-- <div *ngFor="let user of session.users; let y = index">
-          <div *ngIf="y % 5 == 0">
-            <span (click)="setAttendance(session.subs[y+1].id, i, y+1)"
-              [ngStyle]="{'background-color':session.subs[y+1].attended == 'Pending' ?  'white' : (session.subs[y+1].attended == 'attended' ? 'green': 'rgb(226, 44, 44)')}"
-              class="attendeesInSession btn ml-2"
-              *ngIf="y + 1 < session.users.length">{{ session.users[y + 1].name }}</span>
-            <span class="example-fill-remaining-space"></span>
-            <span (click)="setAttendance(session.subs[y+2].id, i, y+2)"
-              [ngStyle]="{'background-color':session.subs[y+2].attended == 'Pending' ?  'white' : (session.subs[y+2].attended == 'attended' ? 'green': 'rgb(226, 44, 44)')}"
-              class="attendeesInSession btn ml-2"
-              *ngIf="y + 2 < session.users.length">{{ session.users[y + 2].name }}</span>
-            <span class="example-fill-remaining-space"></span>
-            <span (click)="setAttendance(session.subs[y+3].id, i, y+3)"
-              [ngStyle]="{'background-color':session.subs[y+3].attended == 'Pending' ?  'white' : (session.subs[y+3].attended == 'attended' ? 'green': 'rgb(226, 44, 44)')}"
-              class="attendeesInSession btn  ml-2"
-              *ngIf="y + 3 < session.users.length">{{ session.users[y + 3].name }}</span>
-            <span class="example-fill-remaining-space"></span>
-            <span (click)="setAttendance(session.subs[y+4].id, i, y+4)"
-              [ngStyle]="{'background-color':session.subs[y+4].attended == 'Pending' ?  'white' : (session.subs[y+4].attended == 'attended' ? 'green': 'rgb(226, 44, 44)')}"
-              class="attendeesInSession btn ml-2"
-              *ngIf="y + 4 < session.users.length">{{ session.users[y + 4].name }}</span>
-          </div>
-        </div> -->
         <div class="row w-100">
           <div class="col-2" *ngFor="let user of session.users; let y = index">
             <span (click)="setAttendance(session.subs[y+1].id, i, y+1)"
@@ -166,5 +135,5 @@
   </mat-accordion>
   <div *ngIf="emptyHist">You have no sessions on track record.</div>
   <div *ngIf="emptyQues">You have no pendent feedback to send us.</div>
-  
+
 </div>
