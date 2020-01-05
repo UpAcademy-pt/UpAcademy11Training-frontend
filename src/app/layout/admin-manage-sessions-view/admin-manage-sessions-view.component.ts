@@ -10,6 +10,8 @@ import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { ColumnMode } from '@swimlane/ngx-datatable/';
 import { Session } from 'protractor';
 import { User } from 'src/app/core/models/user';
+import { SubscriptionServiceService } from 'src/app/core/services/user-service/subscription-service.service';
+import { Subscription } from 'src/app/core/models/subscription';
 
 
 
@@ -42,6 +44,7 @@ export class AdminManageSessionsViewComponent implements OnInit {
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
   constructor(config: NgbModalConfig,
+    private subService: SubscriptionServiceService,
     private modalService: NgbModal,
     private sessionService: SessionServiceService,
     private userService: UserServiceService) {
@@ -60,7 +63,10 @@ export class AdminManageSessionsViewComponent implements OnInit {
       data.forEach((row: Session) => {
         this.sessionService.getAllUsersBySession(row['id']).subscribe((data: User[]) =>{ 
           row['users'] = data;
-          this.temp = [...this.rows];
+          this.subService.getAllSubsBySession(row['id']).subscribe((data:Subscription[]) =>{
+            row['subs'] = data;
+            this.temp = [...this.rows];
+          })
         })
       });
     })
@@ -68,7 +74,6 @@ export class AdminManageSessionsViewComponent implements OnInit {
 
     this.userService.getAllUsers().subscribe((data: User[]) => {
       this.users = data;
-
     });
   }
 

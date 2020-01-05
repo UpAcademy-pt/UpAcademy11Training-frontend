@@ -1,26 +1,16 @@
 <input type="text" style="padding:8px;margin:15px auto;width:30%;" placeholder="Type to filter the name column..."
   (keyup)="updateFilter($event)" />
-<ngx-datatable #table class="material expandable" [columns]="columns" [columnMode]="ColumnMode.force" [headerHeight]="50"
-  [footerHeight]="50" rowHeight="auto" [limit]="10" [rows]="rows">
- <!-- Column Templates -->
- <ngx-datatable-column
- [width]="50"
- [resizeable]="false"
- [sortable]="false"
- [draggable]="false"
- [canAutoResize]="false"
->
- <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-   <a
-     href="javascript:void(0)"
-     [class.datatable-icon-right]="!expanded"
-     [class.datatable-icon-down]="expanded"
-     title="Expand/Collapse Row"
-     (click)="toggleExpandRow(row)"
-   >
-   </a>
- </ng-template>
-</ngx-datatable-column>
+<ngx-datatable #table class="material expandable" [columns]="columns" [columnMode]="ColumnMode.force"
+  [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10" [rows]="rows">
+  <!-- Column Templates -->
+  <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false"
+    [canAutoResize]="false">
+    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+      <a href="javascript:void(0)" [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded"
+        title="Expand/Collapse Row" (click)="toggleExpandRow(row)">
+      </a>
+    </ng-template>
+  </ngx-datatable-column>
   <ngx-datatable-column name="id">
     <ng-template let-value="value" ngx-datatable-cell-template>
       <strong>{{ value }}</strong>
@@ -35,14 +25,39 @@
     <ng-template let-value="value" ngx-datatable-cell-template>
       {{ value }}
     </ng-template>
-  </ngx-datatable-column>  
+  </ngx-datatable-column>
   <!-- Row Detail Template -->
-  <ngx-datatable-row-detail rowHeight="100" #myDetailRow (toggle)="onDetailToggle($event)">
+  <ngx-datatable-row-detail name="users" rowHeight="100" #myDetailRow (toggle)="onDetailToggle($event)">
     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
-      <div style="padding-left:35px;">
-        <div><strong>Address</strong></div>
-        <div>HOLLA, MANEL</div>
-      </div>
+      <table >
+        <thead>
+          <th >
+            User:
+          </th >
+          <th >
+            Question 1:
+          </th>
+          <th  >
+            Question 2:
+          </th >
+          <th  >
+            Question 3:
+          </th>
+          <th  >
+            Question 4:
+          </th>
+          <th  >
+            Question 5:
+          </th>
+        </thead>
+        <tbody>
+          <tr  *ngFor="let sub of row.subs">
+            <td >{{sub.user.name}}</td>
+            <td *ngFor="let answer of sub.answers">{{answer}}</td>
+            <!--<td *ngFor = "let answer of sub.answers">{{answer}}</td>-->
+          </tr>
+        </tbody>
+      </table>
     </ng-template>
   </ngx-datatable-row-detail>
 </ngx-datatable>
@@ -93,9 +108,9 @@
         <input type="text" [(ngModel)]="description" class="form-control">
       </div>
 
-        <select [ngModel]="instructor" (ngModelChange)="onChangeObj($event)" name="sel3">
-          <option *ngFor="let user of users">{{user.name}}</option>
-        </select>
+      <select [ngModel]="instructor" (ngModelChange)="onChangeObj($event)" name="sel3">
+        <option *ngFor="let user of users">{{user.name}}</option>
+      </select>
 
     </div>
     <div class="modal-footer">

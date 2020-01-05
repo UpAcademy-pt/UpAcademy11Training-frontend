@@ -48,6 +48,8 @@ export class DropDownComponent implements OnInit {
         }
         this.progressBar = true;
         this.dropDownButton = true;
+        console.log(this.dropDownButton);
+        
         this.userFace = true;
         this.registerButton = false;
       } else {

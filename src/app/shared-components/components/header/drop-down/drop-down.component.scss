@@ -10,11 +10,10 @@
   }
 
 .title{
-  
+  position: absolute;
   font-size: 30px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 95px;
+  margin-inline-start: 43%;
+  text-align: center;
 }
 
 .mat-sidenav {
@@ -79,9 +78,14 @@
 
   }
 
+  .mat-icon-button{
+    margin-left: auto;
+  }
+
 .buttonModal {
 
     background-color: #19bebe;
+    margin-left: auto;
     padding: 5px 20px;
     font-size: 15px;
     border: none;
