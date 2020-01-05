@@ -16,6 +16,7 @@ export class AdminManageSessionsViewComponent implements OnInit {
   private requirements = '';
   private duration = '';
   private instructor = 0;
+  private description = '';
 
   constructor(config: NgbModalConfig, 
               private modalService: NgbModal, 
@@ -37,7 +38,7 @@ export class AdminManageSessionsViewComponent implements OnInit {
     console.log(this.sessionDate);
     
     this.sessionService.createSession(this.title, this.location, date, this.capacity, 
-    this.requirements, this.duration, this.instructor).subscribe(data => {
+    this.requirements, this.duration, this.instructor, this.description).subscribe(data => {
     this.title = '';
     this.location = '';
     this.sessionDate = '';
@@ -45,6 +46,7 @@ export class AdminManageSessionsViewComponent implements OnInit {
     this.requirements = '';
     this.duration = '';
     this.instructor = 0;
+    this.description = '';
   });
 }
 }

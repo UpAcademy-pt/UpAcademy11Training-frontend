@@ -172,7 +172,7 @@ export class SessionsComponent implements OnInit {
 
   }
 
-  setAttendance(id: number, i: number, y: number){
+   setAttendance(id: number, i: number, y: number){
     this.subscriptionService.getSubscriptionById(id).subscribe((data: Subscription) =>{
       console.log("LOG DO SUBSCRPTION BY ID" , data);
       this.subscriptionToEdit = data;
@@ -193,7 +193,7 @@ export class SessionsComponent implements OnInit {
       }
 
     });
-  }
+  }  
 
   open(content) {
     this.modalService.open(content);

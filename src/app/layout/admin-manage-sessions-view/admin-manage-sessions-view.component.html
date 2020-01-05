@@ -11,33 +11,38 @@
         </div>
         <div class="modal-body">
           <div>
-            <label>Titulo: </label>
+            <label>Title: </label>
             <input type="text" [(ngModel)]="title" class="form-control">
           </div>
           <div class="pt-3">
-            <label for="formador">Formador: </label>
-            <select id="formador" [(ngModel)]="instructor" class="form-control"></select>
+            <label>Instructor: </label>
+            <input type="text"  [(ngModel)]="instructor" class="form-control">
           </div>
           <div class="pt-3">
             <label>Local: </label>
             <input type="text" [(ngModel)]="location" class="form-control">
           </div>
           <div class="pt-3">
-          <label>Data: </label>
+          <label>Date: </label>
           <input type="datetime-local" [(ngModel)]="sessionDate" class="form-control">
         </div>
         <div class="pt-3">
-          <label>Duração: </label>
+          <label>Duration: </label>
           <input type="time" [(ngModel)]="duration" class="form-control">
         </div>
           <div class="pt-3">
-            <label for="capacity">Capacidade: </label>
-            <select id="capacity" type="number" min="0" max="50" [(ngModel)]="capacity" class="form-control"></select>
+            <label>Capacity: </label>
+            <input  type="number" min="0" max="50" [(ngModel)]="capacity" class="form-control">
           </div>
           <div class="pt-3">
-            <label>Requesitos: </label>
+            <label>Requirements: </label>
             <input type="text" [(ngModel)]="requirements" class="form-control">
           </div>
+          <div class="pt-3">
+            <label>Description: </label>
+            <input type="text" [(ngModel)]="description" class="form-control">
+          </div>
+
 
 
         </div>

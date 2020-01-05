@@ -1,4 +1,4 @@
-.card {
+.mat-card {
   background-color: #0b0255;
   color: white;
   max-width: 250px;
@@ -24,6 +24,20 @@
 }
 
 .title {
+  color:#0b0255;
+  font-weight: bold;
+  font-size: 30px;
   text-align: center;
   padding-top: 10px;
 }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 300px auto;
+
+}
+
+
+
+
+

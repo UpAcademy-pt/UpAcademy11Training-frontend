@@ -1,18 +1,18 @@
 <div class="container">
   <mat-accordion class="headers-align">
     <mat-expansion-panel [ngStyle]="{'background-color':sessions[i].isInstructor ?  'white' : '#b2f6f8' }"
-      [expanded]="step === i" (opened)="setStep(i)" hideToggle *ngFor="let session of sessions; let i = index;">
-      <mat-expansion-panel-header [collapsedHeight]="'50px'" [expandedHeight]="'50px'">
+       (opened)="setStep(i)" hideToggle *ngFor="let session of sessions; let i = index;">
+      <mat-expansion-panel-header [collapsedHeight]="'60px'" [expandedHeight]="'50px'">
         <div>
           <mat-panel-title>
             <h5 class="title"><b>{{session.title}}</b></h5>
           </mat-panel-title>
-          <mat-panel-description class="instructor">
+         <!--  <mat-panel-description>
             {{session.instructor}}
-          </mat-panel-description>
+          </mat-panel-description> -->
         </div>
         <span class="example-fill-remaining-space"></span>
-        <div>
+        <div class="date-cap">
           <mat-panel-description class="session-date">
             {{session.sessionDate}}
           </mat-panel-description>
@@ -29,9 +29,9 @@
             </button>
           </div>
 
-          <div class="ratings text-center">
+          <div class="rating">
             <form>
-              <p>Como classifica a produtividade da sessão?</p>
+              <p class="title">Como classifica a produtividade da sessão?</p>
               <label for="one">Baixa</label>
               <input type="radio" id="one" name="gender" value="1">
               <input type="radio" id="two" name="gender" value="2">
@@ -41,7 +41,7 @@
               <label for="five">Alta</label>
             </form>
             <form>
-              <p>Na sua opinião os conteúdos são adequados?</p>
+              <p class="title">Na sua opinião os conteúdos são adequados?</p>
               <label for="one">Pouco</label>
               <input type="radio" id="one" name="maturity" value="1">
               <input type="radio" id="two" name="maturity" value="2">
@@ -76,11 +76,11 @@
             <p>Na sua opinião há algo que pode melhorar na formação?</p>
            <textarea cols="50" rows="5"></textarea>
            <br>
-            <input type="submit">
+            <input class="submit" type="submit">
           </div>
         </ng-template>
         <div *ngIf="questionButton">
-          <button type="button" class="btn btn-outline-primary" (click)="open(content)">Answer...</button>
+          <button type="button" class="button-answer" (click)="open(content)">Answer</button>
         </div>
 
       </mat-expansion-panel-header>
@@ -94,23 +94,25 @@
       </mat-form-field> -->
       <mat-action-row *ngIf="uselessRows">
         <div class="left-aligned">
-          <b>Instructor Info:</b> <br>
+          <b class="instructor">Instructor:</b> <br>
           {{session.instructorName}}
         </div>
         <span class="example-fill-remaining-space"></span>
-        <div class="right-aligned">
+        <div class="center-aligned">
           <div>
+            <b>Location:</b><br>
             {{session.location}}
           </div>
           <div>
+            <b>Requirements:</b><br>
             {{session.requirements}}
           </div>
         </div>
       </mat-action-row>
       <mat-action-row *ngIf="uselessRows">
-        <span class="example-fill-remaining-space"></span>
+       <!--  <span class="example-fill-remaining-space"></span> -->
         <div>
-          Description
+          <b>Description:</b><br>
         </div>
         <span class="example-fill-remaining-space"></span>
       </mat-action-row>
@@ -129,16 +131,16 @@
       <mat-action-row *ngIf="uselessRows">
         <div *ngIf="!sessions[i].isInstructor && subButtons">
           <div class="btn-group btn-group-toggle" *ngIf="!sessions[i].subscribed">
-            <button mat-button color="primary" [disabled]="sessions[i].capacity == sessions[i].subscribedCount"
+            <button mat-button class="sub" [disabled]="sessions[i].capacity == sessions[i].subscribedCount"
               (click)="sub(session.id, i)">Subscribe</button>
           </div>
           <div class="btn-group btn-group-toggle" *ngIf="sessions[i].subscribed">
-            <button mat-button color="primary" (click)="unsub(i)">Unsubscribe</button>
+            <button mat-button class="unsub" (click)="unsub(i)">Unsubscribe</button>
           </div>
         </div>
         <span class="example-fill-remaining-space"></span>
-        <button mat-button color="warn" *ngIf="step != 0" (click)="prevStep()">Previous</button>
-        <button mat-button color="primary" *ngIf="step != sessions.length -1" (click)="nextStep()">Next</button>
+        <button mat-button class="previous" *ngIf="step != 0" (click)="prevStep()">Previous</button>
+        <button mat-button class="next" *ngIf="step != sessions.length -1" (click)="nextStep()">Next</button>
 
       </mat-action-row>
 
