@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, TemplateRef} from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SessionServiceService } from 'src/app/core/services/user-service/session-service.service';
+import { UserServiceService } from 'src/app/core/services/user-service/user-service.service';
+
 
 
 
@@ -39,14 +41,17 @@ export class AdminManageSessionsViewComponent implements OnInit {
   ColumnMode = ColumnMode;
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
-  constructor(config: NgbModalConfig, 
-              private modalService: NgbModal, 
-              private sessionService: SessionServiceService) {
+  constructor(config: NgbModalConfig,
+    private modalService: NgbModal,
+    private sessionService: SessionServiceService,
+    private userService: UserServiceService) {
     // customize default values of modals used by this component tree
     
     config.backdrop = 'static';
     config.keyboard = false;
   }
+  users: User[] = [];
+
 
   ngOnInit() {
     this.sessionService.getAllSessions().subscribe((data: Session[]) => {
@@ -61,6 +66,16 @@ export class AdminManageSessionsViewComponent implements OnInit {
     })
     
 
+    this.userService.getAllUsers().subscribe((data: User[]) => {
+      this.users = data;
+
+    });
+  }
+
+  selectedDeviceObj = this.users[1];
+
+  onChangeObj(newObj) {
+    this.selectedDeviceObj = newObj;
   }
   toggleExpandRow(row) {
     console.log('Toggled Expand Row!', row);
@@ -94,7 +109,7 @@ console.log(temp);
   }
 
   create() {
-    let date = this.sessionDate.replace("T"," ");
+    let date = this.sessionDate.replace("T", " ");
     console.log(this.sessionDate);
     
     this.sessionService.createSession(this.title, this.location, date, this.capacity, 
@@ -110,5 +125,7 @@ console.log(temp);
   });}
 
 }
+
+
 
 
