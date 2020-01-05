@@ -19,6 +19,7 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
+
 <mat-sidenav-container>
   <mat-sidenav position="end" #sidenav>
     <mat-nav-list>
@@ -34,17 +35,19 @@
         Utilizadores</a>
       <a mat-list-item (click)='sidenav.toggle();logOut(sidenav)'> Sair </a>
     </mat-nav-list>
+   
 
   </mat-sidenav>
   <mat-sidenav-content>
-    <div>
+     <div>
 
 
       <router-outlet></router-outlet>
-    </div>
+    </div> 
   </mat-sidenav-content>
-
+ 
 </mat-sidenav-container>
+
 
 
 <ul class="nav navbar-nav nav-flex-icons ml-auto">

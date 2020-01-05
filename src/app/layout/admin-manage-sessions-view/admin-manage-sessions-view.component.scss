@@ -3,7 +3,7 @@
     position: relative;
     left: 20px;
     top: 20px;
-    background-color: #16dfdf;
+    background-color:#19bebe;
     border: none;
     color: white;
     padding: 12px 20px;
@@ -14,12 +14,12 @@
     
     .modal-header {
     
-      background-color:#8df7f7;
+      background-color: #0b0255;
     }
     
     .modal-title {
-      font-size: 20px; ;
-      color: #0b0255;
+      font-weight: bold;
+      color: #19bebe;
     
     }
     
@@ -32,7 +32,7 @@
     
     .button-2 {
     
-      background-color: #16dfdf;
+      background-color: #19bebe;
       border: none;
       color: white;
       padding: 8px 14px;
@@ -40,4 +40,14 @@
       border-radius: 12px;
     
       }
+
+      .close {
+        color: white;
+        pointer-events: auto;
+    }
+    
+    .close:hover{
+        color:white;
+    }
+    
     

@@ -58,13 +58,25 @@ border-radius: 20px;
 
 }
 
+.modal-header {
+
+    background-color: #0b0255;
+}
+
 .modal-title {
 
-    font-size: 15px;
-    color:#0b0255;
+    color: #19bebe;
     font-weight: bold;
 
+}
 
+.close {
+    color: white;
+    pointer-events: auto;
+}
+
+.close:hover{
+    color:white;
 }
 
 
