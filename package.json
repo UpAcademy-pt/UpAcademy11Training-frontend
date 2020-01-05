@@ -23,6 +23,7 @@
     "@angular/router": "~8.2.14",
     "@mobiscroll/angular": "https://npm.mobiscroll.com/@mobiscroll/angular-trial/-/angular-trial-4.9.1.tgz",
     "@ng-bootstrap/ng-bootstrap": "^5.1.4",
+    "@swimlane/ngx-datatable": "^16.0.3",
     "angular-calendar": "^0.28.2",
     "angularx-flatpickr": "^6.1.1",
     "bootstrap": "^4.4.1",

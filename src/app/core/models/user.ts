@@ -4,6 +4,7 @@ export class User {
     'role': string;
     'email': string;
     'password': string;
+    'imgUrl': string;
     constructor(data?: any) {
         Object.assign(this, data);
     }

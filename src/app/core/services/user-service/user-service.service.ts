@@ -77,20 +77,21 @@ export class UserServiceService {
     this.router.navigate(['/login']);
   }
 
-  public editUser(name, email) {
+  public editUser(name, email, password) {
     let user = new User();
-    user = this.currentUser;
+  
     user.name = name;
     user.email = email;
+    if (password != undefined) {
+      user.password = password
+    }
 
-    return this.http.put(this.apiUrl, user).subscribe((data: User) => {
+    return this.http.put(this.apiUrl+this.currentUser.id, user).subscribe((data: User) => {
 
       this.currentUser.name = data.name;
       this.currentUser.email = data.email;
-
+      this.currentUser.password = password;
     });
-
-
   }
 
   public removeUser(id) {

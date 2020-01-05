@@ -19,7 +19,7 @@ export class SessionServiceService {
     constructor(private http: HttpClient) {}
 
     public createSession(
-        title: string, local: string, sessionDate: string, capacity: number, reqs: string, duration: string, instructor: number) {
+        title: string, local: string, sessionDate: string, capacity: number, reqs: string, duration: number, instructor: number, description: string) {
         let session = {
             'title': title,
             'location': local,
@@ -27,9 +27,15 @@ export class SessionServiceService {
             'capacity': capacity,
             'requirements': reqs,
             'duration': duration,
-            'instructor': instructor
+            'instructor': instructor,
+            'description' : description
         };
         return this.http.post(this.apiUrl, session);
+    }
+
+    public getAllSessions(): Observable<any> {
+        return this.http.get(this.apiUrl);
+        // no componente que chama o metodo.subscribe((data : Session[]) => this.sessions = data)
     }
 
     public getTodaySessions(): Observable<any> {

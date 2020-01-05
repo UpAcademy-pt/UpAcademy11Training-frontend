@@ -1,48 +1,102 @@
+<input type="text" style="padding:8px;margin:15px auto;width:30%;" placeholder="Type to filter the name column..."
+  (keyup)="updateFilter($event)" />
+<ngx-datatable #table class="material expandable" [columns]="columns" [columnMode]="ColumnMode.force" [headerHeight]="50"
+  [footerHeight]="50" rowHeight="auto" [limit]="10" [rows]="rows">
+ <!-- Column Templates -->
+ <ngx-datatable-column
+ [width]="50"
+ [resizeable]="false"
+ [sortable]="false"
+ [draggable]="false"
+ [canAutoResize]="false"
+>
+ <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+   <a
+     href="javascript:void(0)"
+     [class.datatable-icon-right]="!expanded"
+     [class.datatable-icon-down]="expanded"
+     title="Expand/Collapse Row"
+     (click)="toggleExpandRow(row)"
+   >
+   </a>
+ </ng-template>
+</ngx-datatable-column>
+  <ngx-datatable-column name="id">
+    <ng-template let-value="value" ngx-datatable-cell-template>
+      <strong>{{ value }}</strong>
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="title">
+    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+      {{ value }}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="sessionDate">
+    <ng-template let-value="value" ngx-datatable-cell-template>
+      {{ value }}
+    </ng-template>
+  </ngx-datatable-column>  
+  <!-- Row Detail Template -->
+  <ngx-datatable-row-detail rowHeight="100" #myDetailRow (toggle)="onDetailToggle($event)">
+    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+      <div style="padding-left:35px;">
+        <div><strong>Address</strong></div>
+        <div>HOLLA, MANEL</div>
+      </div>
+    </ng-template>
+  </ngx-datatable-row-detail>
+</ngx-datatable>
+
+
 <button class="button" (click)="open(content)">Criar Sessão</button>
 
 
 <ul>
-      <ng-template #content let-modal let-c="close" let-d="dismiss">
-        <div class="modal-header">
-          <h4 class="modal-title" id="modal-basic-title">Criar Sessão</h4>
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div>
-            <label>Titulo: </label>
-            <input type="text" [(ngModel)]="title" class="form-control">
-          </div>
-          <div class="pt-3">
-            <label for="formador">Formador: </label>
-            <select id="formador" [(ngModel)]="instructor" class="form-control"></select>
-          </div>
-          <div class="pt-3">
-            <label>Local: </label>
-            <input type="text" [(ngModel)]="location" class="form-control">
-          </div>
-          <div class="pt-3">
-          <label>Data: </label>
-          <input type="datetime-local" [(ngModel)]="sessionDate" class="form-control">
-        </div>
-        <div class="pt-3">
-          <label>Duração: </label>
-          <input type="time" [(ngModel)]="duration" class="form-control">
-        </div>
-          <div class="pt-3">
-            <label for="capacity">Capacidade: </label>
-            <select id="capacity" type="number" min="0" max="50" [(ngModel)]="capacity" class="form-control"></select>
-          </div>
-          <div class="pt-3">
-            <label>Requesitos: </label>
-            <input type="text" [(ngModel)]="requirements" class="form-control">
-          </div>
+  <ng-template #content let-modal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Criar Sessão</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div>
+        <label>Titulo: </label>
+        <input type="text" [(ngModel)]="title" class="form-control">
+      </div>
+      <div class="pt-3">
+        <label for="formador">Formador: </label>
+        <select id="formador" [(ngModel)]="instructor" class="form-control"></select>
+      </div>
+      <div class="pt-3">
+        <label>Local: </label>
+        <input type="text" [(ngModel)]="location" class="form-control">
+      </div>
+      <div class="pt-3">
+        <label>Data: </label>
+        <input type="datetime-local" [(ngModel)]="sessionDate" class="form-control">
+      </div>
+      <div class="pt-3">
+        <label>Duração: </label>
+        <input type="time" [(ngModel)]="duration" class="form-control">
+      </div>
+      <div class="pt-3">
+        <label for="capacity">Capacidade: </label>
+        <select id="capacity" type="number" min="0" max="50" [(ngModel)]="capacity" class="form-control"></select>
+      </div>
+      <div class="pt-3">
+        <label>Requesitos: </label>
+        <input type="text" [(ngModel)]="requirements" class="form-control">
+      </div>
+      <div class="pt-3">
+        <label>Descrição </label>
+        <input type="text" [(ngModel)]="description" class="form-control">
+      </div>
 
 
-        </div>
-        <div class="modal-footer">
-          <button type="button" (click)='create()' class="button-2">Criar Sessão</button>
-        </div>
-      </ng-template>
-    </ul>
+    </div>
+    <div class="modal-footer">
+      <button type="button" (click)='create()' class="button-2">Criar Sessão</button>
+    </div>
+  </ng-template>
+</ul>

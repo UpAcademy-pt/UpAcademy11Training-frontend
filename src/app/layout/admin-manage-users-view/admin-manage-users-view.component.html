@@ -19,7 +19,7 @@
       <td> {{ user.name }} </td>
       <td> {{ user.email }} </td>
       <td><button class="button" (click)="open(content, i)">view sessions</button></td>
-      <td><button type="button" class="button2" (click)="removeUser(i)"> x </button></td>
+      <td><button [disabled]="user.role == 'admin'" type="button" class="button2" (click)="removeUser(i)"> x </button></td>
     </tr>
   </tbody>
 </table>

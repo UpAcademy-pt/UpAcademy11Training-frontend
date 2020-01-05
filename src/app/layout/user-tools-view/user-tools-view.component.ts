@@ -12,17 +12,20 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./user-tools-view.component.scss']
 })
 export class UserToolsViewComponent implements OnInit {
+  private name = this.userService.getCurrentUser().name;
+  private email = this.userService.getCurrentUser().email;
+  private password = this.userService.getCurrentUser().password;
+
   selectedFile: any;
   showImage: boolean;
-  imgUrl: any;
+  imgUrl: any = this.userService.getCurrentUser().imgUrl;
 
 
 
   constructor(private userService: UserServiceService,
     private modalService: NgbModal
     , private sanitizer: DomSanitizer) { }
-  private name = '';
-  private email = '';
+  
 
 
 
@@ -37,7 +40,11 @@ export class UserToolsViewComponent implements OnInit {
   /* Adicionar metodo email check para validar se os e-mails inseridos sao iguais */
   editUser() {
     this.modalService.dismissAll();
-    this.userService.onUpload(this.selectedFile, this.selectedFile.name);
+    if (this.userService.login(this.userService.getCurrentUser().email,this.password)) {
+      this.userService.editUser(this.name, this.email, this.password);
+      this.userService.onUpload(this.selectedFile, this.selectedFile.name);
+    }
+    
     /* this.userService.editUser(this.name, this.email); */
   }
 

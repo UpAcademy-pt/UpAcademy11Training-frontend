@@ -2,25 +2,27 @@
   <mat-accordion class="headers-align">
     <mat-expansion-panel [ngStyle]="{'background-color':sessions[i].isInstructor ?  'white' : '#b2f6f8' }"
       [expanded]="step === i" (opened)="setStep(i)" hideToggle *ngFor="let session of sessions; let i = index;">
-      <mat-expansion-panel-header [collapsedHeight]="'50px'" [expandedHeight]="'50px'">
+      <mat-expansion-panel-header [collapsedHeight]="'70px'" [expandedHeight]="'70px'">
         <div>
           <mat-panel-title>
             <h5 class="title"><b>{{session.title}}</b></h5>
           </mat-panel-title>
           <mat-panel-description class="instructor">
-            {{session.instructor}}
+            <b>Instructor:</b>{{session.instructorName}}
           </mat-panel-description>
         </div>
         <span class="example-fill-remaining-space"></span>
         <div>
           <mat-panel-description class="session-date">
-            {{session.sessionDate}}
+            <span><b>Date: </b></span>{{session.sessionDate}} <!-- WHEN, HOW LONG, HOW MANY-->
+          </mat-panel-description>
+          <mat-panel-description class="duration">
+            <span><b> Duration: </b></span> {{session.duration}} min
           </mat-panel-description>
           <mat-panel-description class="capacity">
-            {{session.subscribedCount}}/{{session.capacity}}
+            <b>Capacity:</b>{{session.subscribedCount}}/{{session.capacity}}
           </mat-panel-description>
         </div>
-
         <ng-template #content let-modal let-c="close" let-d="dismiss">
           <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">Questionnaire</h4>
@@ -28,7 +30,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-
+        
           <div class="ratings text-center">
             <form>
               <p>Como classifica a produtividade da sessão?</p>
@@ -53,7 +55,7 @@
             <form>
               <p>De um modo geral como classifica o desempenho do formador?</p>
               <label for="one">Mau</label>
-              <input type="radio" id="on3e" [(ngModel)]="friendliness"  name="friendliness" value="1">
+              <input type="radio" id="on3e" [(ngModel)]="friendliness" name="friendliness" value="1">
               <input type="radio" id="two3" [(ngModel)]="friendliness" name="friendliness" value="2">
               <input type="radio" id="three3" [(ngModel)]="friendliness" name="friendliness" value="3">
               <input type="radio" id="four3" [(ngModel)]="friendliness" name="friendliness" value="4">
@@ -63,18 +65,18 @@
             <form>
               <p>O objetivo pretendido foi alcançado?</p>
               <label for="one">Não</label>
-              <input type="radio" id="one4" [(ngModel)]="intelligence"  name="intelligence" value="1">
-              <input type="radio" id="two4" [(ngModel)]="intelligence"  name="intelligence" value="2">
-              <input type="radio" id="three4" [(ngModel)]="intelligence"  name="intelligence" value="3">
-              <input type="radio" id="four4" [(ngModel)]="intelligence"  name="intelligence" value="4">
-              <input type="radio" id="five4" [(ngModel)]="intelligence"  name="intelligence" value="5">
+              <input type="radio" id="one4" [(ngModel)]="intelligence" name="intelligence" value="1">
+              <input type="radio" id="two4" [(ngModel)]="intelligence" name="intelligence" value="2">
+              <input type="radio" id="three4" [(ngModel)]="intelligence" name="intelligence" value="3">
+              <input type="radio" id="four4" [(ngModel)]="intelligence" name="intelligence" value="4">
+              <input type="radio" id="five4" [(ngModel)]="intelligence" name="intelligence" value="5">
               <label for="five4">Sim</label>
             </form>
           </div>
           <!-- OCCUPATION QUESTION -->
           <div class="occupation">
             <p>Na sua opinião há algo que pode melhorar na formação?</p>
-            <textarea  [(ngModel)]="improvements" cols="50" rows="5"></textarea>
+            <textarea [(ngModel)]="improvements" cols="50" rows="5"></textarea>
             <br>
             <input class="btn" type="button" (click)="answerQuestionnaire(i)">
           </div>
@@ -85,24 +87,27 @@
       </mat-expansion-panel-header>
 
       <mat-action-row *ngIf="uselessRows">
-        <div class="left-aligned">
+        <!-- <div class="left-aligned">
           <b>Instructor Info:</b> <br>
           {{session.instructorName}}
+        </div> -->
+
+        <div class="left-aligned">
+          <div>
+            <span><b>Location: </b></span>{{session.location}}
+          </div>
         </div>
         <span class="example-fill-remaining-space"></span>
         <div class="right-aligned">
           <div>
-            {{session.location}}
-          </div>
-          <div>
-            {{session.requirements}}
+            <span><b>Requirements: </b></span>{{session.requirements}}
           </div>
         </div>
       </mat-action-row>
       <mat-action-row *ngIf="uselessRows">
         <span class="example-fill-remaining-space"></span>
-        <div>
-          Description
+        <div class="left-aligned">
+          <b>Description: </b> {{session.description}}
         </div>
         <span class="example-fill-remaining-space"></span>
       </mat-action-row>
@@ -130,6 +135,7 @@
         <span class="example-fill-remaining-space"></span>
         <button mat-button color="warn" *ngIf="step != 0" (click)="prevStep()">Previous</button>
         <button mat-button color="primary" *ngIf="step != sessions.length -1" (click)="nextStep()">Next</button>
+        
       </mat-action-row>
     </mat-expansion-panel>
   </mat-accordion>
@@ -137,3 +143,5 @@
   <div *ngIf="emptyQues">You have no pendent feedback to send us.</div>
 
 </div>
+
+

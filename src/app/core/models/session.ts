@@ -8,8 +8,9 @@ export class Session {
     'sessionDate': string;
     'capacity': number;
     'requirements': string;
-    'duration': string;
+    'duration': number;
     'instructor': number;
+    'description': string;
     'instructorName' : string;
     'subscribed': boolean;
     'subscribedCount': number;
