@@ -20,6 +20,7 @@ export class AdminManageSessionsViewComponent implements OnInit {
   private requirements = '';
   private duration = '';
   private instructor = 0;
+  private description = '';
 
 
   constructor(config: NgbModalConfig, 
@@ -53,8 +54,9 @@ export class AdminManageSessionsViewComponent implements OnInit {
     this.requirements = '';
     this.duration = '';
     this.instructor = 0;
-  });}
-
+    this.description = '';
+  });
+}
 }
 
 
