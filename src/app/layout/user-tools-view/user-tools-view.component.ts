@@ -42,7 +42,7 @@ export class UserToolsViewComponent implements OnInit {
     this.modalService.dismissAll();
     if (this.userService.login(this.userService.getCurrentUser().email,this.password)) {
       this.userService.editUser(this.name, this.email, this.password);
-      this.userService.onUpload(this.selectedFile, this.selectedFile.name);
+      //this.userService.onUpload(this.selectedFile, this.selectedFile.name);
     }
     
     /* this.userService.editUser(this.name, this.email); */

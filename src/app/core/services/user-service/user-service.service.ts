@@ -78,8 +78,7 @@ export class UserServiceService {
   }
 
   public editUser(name, email, password) {
-    let user = new User();
-  
+    let user = this.currentUser;
     user.name = name;
     user.email = email;
     if (password != undefined) {
@@ -89,7 +88,7 @@ export class UserServiceService {
     return this.http.put(this.apiUrl+this.currentUser.id, user).subscribe((data: User) => {
 
       this.currentUser.name = data.name;
-      this.currentUser.email = data.email;
+      //this.currentUser.email = data.email;
       this.currentUser.password = password;
     });
   }
