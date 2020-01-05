@@ -1,7 +1,7 @@
 <div class="container">
   <mat-accordion class="headers-align">
     <mat-expansion-panel [ngStyle]="{'background-color':sessions[i].isInstructor ?  'white' : '#b2f6f8' }"
-      [expanded]="step === i" (opened)="setStep(i)" hideToggle *ngFor="let session of sessions; let i = index;">
+     [expanded]="false" [expanded]="step === i" (opened)="setStep(i)" hideToggle *ngFor="let session of sessions; let i = index;">
       <mat-expansion-panel-header [collapsedHeight]="'50px'" [expandedHeight]="'50px'">
         <div>
           <mat-panel-title>
