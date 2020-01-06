@@ -26,6 +26,7 @@ export class SessionsComponent implements OnInit {
   questionButton = false;
   emptyHist = true;
   emptyQues = true;
+  marcarFaltas = true;
   rows: User[];
   currentUser: User;
   private activeRoute;
@@ -37,6 +38,7 @@ export class SessionsComponent implements OnInit {
   improvements: string;
   maturity: string;
   productivity: string;
+  faltas: string[];
 
   constructor(
     private sessionService: SessionServiceService,
@@ -71,6 +73,7 @@ export class SessionsComponent implements OnInit {
           this.questionButton = false;
           this.emptyQues = false;
           this.emptyHist = false;
+          this.marcarFaltas = false;
         });
         break;
 
@@ -82,6 +85,7 @@ export class SessionsComponent implements OnInit {
           this.questionButton = false;
           this.emptyQues = false;
           this.emptyHist = false;
+          this.marcarFaltas = false;
         });
         break;
 
@@ -92,6 +96,7 @@ export class SessionsComponent implements OnInit {
           this.questionButton = false;
           this.emptyHist = false;
           this.emptyQues = false;
+          this.marcarFaltas = true;
           if (data.length == 0) {
             this.emptyHist = true;
           }
@@ -101,12 +106,12 @@ export class SessionsComponent implements OnInit {
         this.sessionService.getUnansweredSessionInUser(this.userService.getCurrentUser().id).subscribe((data: Session[]) => {
           this.initPanels(data);
           console.log("QUESTIONS PÁ", data);
-          
           this.subButtons = false;
           this.uselessRows = false;
           this.questionButton = true;
           this.emptyQues = false;
           this.emptyHist = false;
+          this.marcarFaltas = false;
           if (data.length == 0) {
             this.emptyQues = true;
           }
@@ -192,7 +197,8 @@ export class SessionsComponent implements OnInit {
 
       });
       this.subscriptionService.getSubscription(session.id, this.userService.getCurrentUser().id).subscribe((data3: Subscription) => {
-        this.subId.push(data3.id)
+        this.subId.push(data3.id);
+        
         //console.log("TAS INSCRITO COM OS SEGUINTES IDS: ", this.subId);
       }, (error: any) => {
        // console.log(error);

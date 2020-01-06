@@ -1,7 +1,7 @@
 <div class="container">
   <mat-accordion class="headers-align">
     <mat-expansion-panel [ngStyle]="{'background-color':sessions[i].isInstructor ?  'white' : '#b2f6f8' }"
-     [expanded]="false" [expanded]="step === i" (opened)="setStep(i)" hideToggle *ngFor="let session of sessions; let i = index;">
+      [expanded]="step === i" (opened)="setStep(i)" hideToggle *ngFor="let session of sessions; let i = index;">
       <mat-expansion-panel-header [collapsedHeight]="'90px'" [expandedHeight]="'90px'">
         <div>
           <mat-panel-title>
@@ -14,7 +14,8 @@
         <span class="example-fill-remaining-space"></span>
         <div class="date-cap">
           <mat-panel-description class="session-date">
-            <span><b>Date: </b></span>{{session.sessionDate}} <!-- WHEN, HOW LONG, HOW MANY-->
+            <span><b>Date: </b></span>{{session.sessionDate}}
+            <!-- WHEN, HOW LONG, HOW MANY-->
           </mat-panel-description>
           <mat-panel-description class="duration">
             <span><b> Duration: </b></span> {{session.duration}} min
@@ -25,60 +26,60 @@
         </div>
         <ng-template #content let-modal let-c="close" let-d="dismiss">
           <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">Questionnaire</h4>
+            <h4 class="modal-title" id="modal-basic-title">Survey</h4>
             <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-        
+
           <div class="rating text-center">
             <form>
-              <p class="title">Como classifica a produtividade da sessão?</p>
-              <label for="one">Baixa</label>
+              <p class="title">How would you rate the session's productivity?</p>
+              <label for="one">Low</label>
               <input type="radio" id="one1" [(ngModel)]="productivity" name="productivity" value="1">
               <input type="radio" id="two1" [(ngModel)]="productivity" name="productivity" value="2">
               <input type="radio" id="three1" [(ngModel)]="productivity" name="productivity" value="3">
               <input type="radio" id="four1" [(ngModel)]="productivity" name="productivity" value="4">
               <input type="radio" id="five1" [(ngModel)]="productivity" name="productivity" value="5">
-              <label for="five1">Alta</label>
+              <label for="five1">High</label>
             </form>
             <form>
-              <p class="title">Na sua opinião os conteúdos são adequados?</p>
-              <label for="one">Pouco</label>
+              <p class="title">Do you think the subject is appropriate?</p>
+              <label for="one">No</label>
               <input type="radio" id="one2" [(ngModel)]="maturity" name="maturity" value="1">
               <input type="radio" id="two2" [(ngModel)]="maturity" name="maturity" value="2">
               <input type="radio" id="three2" [(ngModel)]="maturity" name="maturity" value="3">
               <input type="radio" id="four2" [(ngModel)]="maturity" name="maturity" value="4">
               <input type="radio" id="five2" [(ngModel)]="maturity" name="maturity" value="5">
-              <label for="five2">Muito</label>
+              <label for="five2">Yes</label>
             </form>
             <form>
-              <p>De um modo geral como classifica o desempenho do formador?</p>
-              <label for="one">Mau</label>
+              <p>In general how would you rate the instructor's performance?</p>
+              <label for="one">Bad</label>
               <input type="radio" id="on3e" [(ngModel)]="friendliness" name="friendliness" value="1">
               <input type="radio" id="two3" [(ngModel)]="friendliness" name="friendliness" value="2">
               <input type="radio" id="three3" [(ngModel)]="friendliness" name="friendliness" value="3">
               <input type="radio" id="four3" [(ngModel)]="friendliness" name="friendliness" value="4">
               <input type="radio" id="five3" [(ngModel)]="friendliness" name="friendliness" value="5">
-              <label for="five3">Bom</label>
+              <label for="five3">Good</label>
             </form>
             <form>
-              <p>O objetivo pretendido foi alcançado?</p>
-              <label for="one">Não</label>
+              <p>Was the mail goal achieved?</p>
+              <label for="one">No</label>
               <input type="radio" id="one4" [(ngModel)]="intelligence" name="intelligence" value="1">
               <input type="radio" id="two4" [(ngModel)]="intelligence" name="intelligence" value="2">
               <input type="radio" id="three4" [(ngModel)]="intelligence" name="intelligence" value="3">
               <input type="radio" id="four4" [(ngModel)]="intelligence" name="intelligence" value="4">
               <input type="radio" id="five4" [(ngModel)]="intelligence" name="intelligence" value="5">
-              <label for="five4">Sim</label>
+              <label for="five4">Yes</label>
             </form>
           </div>
           <!-- OCCUPATION QUESTION -->
           <div class="occupation">
-            <p>Na sua opinião há algo que pode melhorar na formação?</p>
+            <p>In your opinion what could be an improvement for future sessions?</p>
             <textarea [(ngModel)]="improvements" cols="50" rows="5"></textarea>
             <br>
-            <input class="btn" type="button" (click)="answerQuestionnaire(i)">
+            <button class="button-sub" type="button" (click)="answerQuestionnaire(i)">Submit </button>
           </div>
         </ng-template>
         <div *ngIf="questionButton">
@@ -114,7 +115,7 @@
       <mat-action-row class="container-fluid" *ngIf="sessions[i].isInstructor && sessions[i].subscribedCount > 0">
         <div class="row w-100">
           <div class="col-2" *ngFor="let user of session.users; let y = index">
-            <span (click)="setAttendance(session.subs[y+1].id, i, y+1)"
+            <span (click)="setAttendance(session.subs[y+1]['id'], i, y+1)"
               [ngStyle]="{'background-color':session.subs[y+1].attended == 'Pending' ?  'white' : (session.subs[y+1].attended == 'attended' ? 'green': 'rgb(226, 44, 44)')}"
               class="attendeesInSession btn mx-1"
               *ngIf="y + 1 < session.users.length">{{ session.users[y + 1].name }}</span>
@@ -133,9 +134,22 @@
           </div>
         </div>
         <span class="example-fill-remaining-space"></span>
+
+        <div *ngIf="marcarFaltas">
+          <span class="avisomau">
+            <b>Skipped</b>
+          </span>
+          <span class="aviso">
+            <b>Pending</b>
+          </span>
+          <span class="avisobom"> 
+            <b>Attended</b>
+          </span> 
+        </div>
+
+        <span class="example-fill-remaining-space"></span>
         <button mat-button class="previous" *ngIf="step != 0" (click)="prevStep()">Previous</button>
         <button mat-button class="next" *ngIf="step != sessions.length -1" (click)="nextStep()">Next</button>
-
       </mat-action-row>
     </mat-expansion-panel>
   </mat-accordion>
@@ -143,5 +157,3 @@
   <div *ngIf="emptyQues">You have no pendent feedback to send us.</div>
 
 </div>
-
-
