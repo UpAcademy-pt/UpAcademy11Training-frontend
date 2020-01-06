@@ -101,7 +101,6 @@ export class SessionsComponent implements OnInit {
         this.sessionService.getUnansweredSessionInUser(this.userService.getCurrentUser().id).subscribe((data: Session[]) => {
           this.initPanels(data);
           console.log("QUESTIONS PÁ", data);
-          
           this.subButtons = false;
           this.uselessRows = false;
           this.questionButton = true;
