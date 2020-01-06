@@ -1,15 +1,24 @@
+.filter {
+  position: relative;
+  top: 15px;
+  padding: 12px 20px;
+}
+
 .button {
 
     position: relative;
-    left: 20px;
-    top: 20px;
-    background-color:#19bebe;
+    top: 15px;
+    background-color: #0b0255;
     border: none;
     color: white;
     padding: 12px 20px;
     font-size: 18px;
     border-radius: 12px;
     
+    }
+
+    .example-fill-remaining-space {
+      flex: 1 1 auto;
     }
     
     .modal-header {

@@ -1,5 +1,10 @@
-<input type="text" style="padding:8px;margin:15px auto;width:30%;" placeholder="Type to filter the name column..."
-  (keyup)="updateFilter($event)" />
+<div class="container col-md-6">
+  <div>
+<input class="filter" type="text" style="padding:8px;margin:15px auto;width:30%;" placeholder="Type to filter the name column..."
+  (keyup)="updateFilter($event)" /> </div>
+  <span class="example-fill-remaining-space"></span>
+  <button class="button" (click)="open(content)">Criar Sessão</button>
+  <p></p>
 <ngx-datatable #table class="material expandable" [columns]="columns" [columnMode]="ColumnMode.force"
   [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10" [rows]="rows">
   <!-- Column Templates -->
@@ -63,7 +68,8 @@
 </ngx-datatable>
 
 
-<button class="button" (click)="open(content)">Create Session</button>
+
+</div>
 
 
 <ul>

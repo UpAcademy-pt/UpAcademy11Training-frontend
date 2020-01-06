@@ -34,7 +34,7 @@
 
           <div class="rating text-center">
             <form>
-              <p class="title">How would you rate the session's productivity?</p>
+              <p class="quest">How would you rate the session's productivity?</p>
               <label for="one">Low</label>
               <input type="radio" id="one1" [(ngModel)]="productivity" name="productivity" value="1">
               <input type="radio" id="two1" [(ngModel)]="productivity" name="productivity" value="2">
@@ -44,7 +44,7 @@
               <label for="five1">High</label>
             </form>
             <form>
-              <p class="title">Do you think the subject is appropriate?</p>
+              <p class="quest">Do you think the subject is appropriate?</p>
               <label for="one">No</label>
               <input type="radio" id="one2" [(ngModel)]="maturity" name="maturity" value="1">
               <input type="radio" id="two2" [(ngModel)]="maturity" name="maturity" value="2">
@@ -54,7 +54,7 @@
               <label for="five2">Yes</label>
             </form>
             <form>
-              <p>In general how would you rate the instructor's performance?</p>
+              <p class="quest">In general how would you rate the instructor's performance?</p>
               <label for="one">Bad</label>
               <input type="radio" id="on3e" [(ngModel)]="friendliness" name="friendliness" value="1">
               <input type="radio" id="two3" [(ngModel)]="friendliness" name="friendliness" value="2">
@@ -64,7 +64,7 @@
               <label for="five3">Good</label>
             </form>
             <form>
-              <p>Was the mail goal achieved?</p>
+              <p class="quest">Was the mail goal achieved?</p>
               <label for="one">No</label>
               <input type="radio" id="one4" [(ngModel)]="intelligence" name="intelligence" value="1">
               <input type="radio" id="two4" [(ngModel)]="intelligence" name="intelligence" value="2">
@@ -153,7 +153,7 @@
       </mat-action-row>
     </mat-expansion-panel>
   </mat-accordion>
-  <div *ngIf="emptyHist">You have no sessions on track record.</div>
-  <div *ngIf="emptyQues">You have no pendent feedback to send us.</div>
+  <div class="mes" *ngIf="emptyHist">You have no sessions on track record.</div>
+  <div class="mes" *ngIf="emptyQues">You have no pendent feedback to send us.</div>
 
 </div>
