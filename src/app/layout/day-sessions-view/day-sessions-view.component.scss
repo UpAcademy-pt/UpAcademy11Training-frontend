@@ -6,17 +6,27 @@
   top: 50px;
 }
 
+.mat-card-avatar {
+ width: 100%!important;
+}
+
 .user {
-  text-align: left;
+  text-align: center;
+}
+
+.image-container {
+  text-align: center;
+  height: 200px;
+ 
 }
 
 .image {
-  background-position: center;
   width: 200px;
   height: 200px;
-  background-image: url("http://www.tuktukdesign.com/wp-content/uploads/2017/12/person-icon.jpg");
-  background-size: cover;
+  
+  
   border-radius: 125px;
+  
 }
 
 .progress-bar {

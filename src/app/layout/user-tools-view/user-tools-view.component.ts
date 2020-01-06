@@ -41,8 +41,14 @@ export class UserToolsViewComponent implements OnInit {
   editUser() {
     this.modalService.dismissAll();
     if (this.userService.login(this.userService.getCurrentUser().email,this.password)) {
-      this.userService.editUser(this.name, this.email, this.password);
-      //this.userService.onUpload(this.selectedFile, this.selectedFile.name);
+      this.userService.editUser(this.name, this.email, this.password).subscribe((data: User) => {
+
+        let currentUser = this.userService.getCurrentUser();
+        currentUser.name = data.name;
+        currentUser.password = data.password;
+        this.userService.setCurrentUser(JSON.stringify(currentUser));
+        this.userService.onUpload(this.selectedFile, this.selectedFile.name);
+      });
     }
     
     /* this.userService.editUser(this.name, this.email); */

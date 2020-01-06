@@ -5,9 +5,9 @@
 
     <mat-card class="mat-card">
 
-      <div mat-card-avatar class="image">
-
-        <img *ngIf="showImage" height="200" [src]="imgUrl">
+      <div mat-card-avatar class="image-container">
+        <img class="image" *ngIf="!showImage" height="200" src="http://www.tuktukdesign.com/wp-content/uploads/2017/12/person-icon.jpg">
+        <img class="image" *ngIf="showImage" height="200" [src]="imgUrl">
       </div>
 
       <mat-card-header>
