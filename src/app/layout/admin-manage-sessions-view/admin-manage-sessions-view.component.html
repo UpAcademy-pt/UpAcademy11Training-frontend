@@ -28,7 +28,7 @@
   </ngx-datatable-column>
   <ngx-datatable-column name="sessionDate">
     <ng-template let-value="value" ngx-datatable-cell-template>
-      {{ value }}
+      {{ value.substr(0, 20) | date }}
     </ng-template>
   </ngx-datatable-column>
   <!-- Row Detail Template -->
