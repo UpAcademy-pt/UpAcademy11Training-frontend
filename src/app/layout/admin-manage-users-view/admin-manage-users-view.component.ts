@@ -46,11 +46,9 @@ export class AdminManageUsersViewComponent implements OnInit {
 
   removeUser() {
 
-   
+    this.modalService.dismissAll();
     this.userService.removeUser(this.users[this.currentIndex].id).subscribe((data) => {
       this.users.splice(this.currentIndex, 1);
-      this.currentIndex = -1;
-      this.modalService.dismissAll();
     })
   }
 

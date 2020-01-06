@@ -1,5 +1,5 @@
 <p></p>
-<h1 class="text-center">Gerir Utilizadores</h1>
+<h1 class="text-center">Manage Users</h1>
 <p></p>
 <div class="container col-md-6">
 <div class="table">
@@ -14,7 +14,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr class="text" *ngFor="let user of users; index as i">
+    <tr class="text" *ngFor="let user of users; let i = index;">
       <td>{{ user.id }}</td>
       <td> {{ user.name }} </td>
       <td> {{ user.email }} </td>

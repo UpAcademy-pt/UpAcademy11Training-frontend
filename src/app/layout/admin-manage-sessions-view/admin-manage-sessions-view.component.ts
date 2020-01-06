@@ -57,6 +57,10 @@ export class AdminManageSessionsViewComponent implements OnInit {
 
 
   ngOnInit() {
+    this.initTable();
+  }
+
+  initTable(){
     this.sessionService.getAllSessions().subscribe((data: Session[]) => {
       this.rows = data;
       console.log(this.rows); 
@@ -70,6 +74,7 @@ export class AdminManageSessionsViewComponent implements OnInit {
         })
       });
     })
+    
     
 
     this.userService.getAllUsers().subscribe((data: User[]) => {
@@ -127,6 +132,8 @@ console.log(temp);
     this.duration = 0;
     this.instructor = 0;
     this.description = '';
+    this.initTable();
+    this.modalService.dismissAll();
   });}
 
 }

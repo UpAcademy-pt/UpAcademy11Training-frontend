@@ -63,27 +63,27 @@
 </ngx-datatable>
 
 
-<button class="button" (click)="open(content)">Criar Sessão</button>
+<button class="button" (click)="open(content)">Create Session</button>
 
 
 <ul>
   <ng-template #content let-modal let-c="close" let-d="dismiss">
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Criar Sessão</h4>
+      <h4 class="modal-title" id="modal-basic-title">Create Session</h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
       <div>
-        <label>Titulo: </label>
+        <label>Title: </label>
         <input type="text" [(ngModel)]="title" class="form-control">
       </div>
       <div class="pt-3">
-        <label for="formador">Formador: </label>
+        <label for="formador">Instructor: </label>
 
-        <select [ngModel]="instructor" (ngModelChange)="onChangeObj($event)" class="form-control">
-          <option *ngFor="let user of users">{{user.name}}</option>
+        <select [(ngModel)]="instructor" (ngModelChange)="onChangeObj($event)" class="form-control">
+          <option  [value]="user.id" *ngFor="let user of users">{{user.name}}</option>
         </select>
       </div>
       <div class="pt-3">
@@ -91,23 +91,23 @@
         <input type="text" [(ngModel)]="location" class="form-control">
       </div>
       <div class="pt-3">
-        <label>Data: </label>
+        <label>Date: </label>
         <input type="datetime-local" [(ngModel)]="sessionDate" class="form-control">
       </div>
       <div class="pt-3">
-        <label>Duração: </label>
-        <input type="time" [(ngModel)]="duration" class="form-control">
+        <label>Duration: </label>
+        <input type="number" [(ngModel)]="duration" class="form-control">
       </div>
       <div class="pt-3">
-        <label for="capacity">Capacidade: </label>
-        <select id="capacity" type="number" min="0" max="50" [(ngModel)]="capacity" class="form-control"></select>
+        <label for="capacity">Capacity: </label>
+        <input id="capacity" type="number" min="0" max="50" [(ngModel)]="capacity" class="form-control">
       </div>
       <div class="pt-3">
-        <label>Requesitos: </label>
+        <label>Requirements: </label>
         <input type="text" [(ngModel)]="requirements" class="form-control">
       </div>
       <div class="pt-3">
-        <label>Descrição </label>
+        <label>Description </label>
         <input type="text" [(ngModel)]="description" class="form-control">
       </div>
 
@@ -115,7 +115,7 @@
 
     </div>
     <div class="modal-footer">
-      <button type="button" (click)='create()' class="button-2">Criar Sessão</button>
+      <button type="button" (click)='create()' class="button-2">Create Session</button>
     </div>
   </ng-template>
 </ul>
