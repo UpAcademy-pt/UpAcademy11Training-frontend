@@ -31,14 +31,14 @@ export class DropDownComponent implements OnInit {
     private userService: UserServiceService,
     private modalService: NgbModal,
     private router: Router,
-    private sanitizer:DomSanitizer
+    private sanitizer: DomSanitizer
   ) {
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
       this.activeRoute = event.urlAfterRedirects;
-      if (this.activeRoute != '/login') {
-        if (this.userService.getCurrentUser().role == 'admin') {
+      if (this.activeRoute !== '/login') {
+        if (this.userService.getCurrentUser().role === 'admin') {
           this.isAdmin = true;
           console.log("É ADMIN");
 
@@ -49,7 +49,7 @@ export class DropDownComponent implements OnInit {
         this.progressBar = true;
         this.dropDownButton = true;
         console.log(this.dropDownButton);
-        
+
         this.userFace = true;
         this.registerButton = false;
       } else {
@@ -70,7 +70,7 @@ export class DropDownComponent implements OnInit {
   }
 
   register() {
-    if (this.userpw == this.userpwc) {
+    if (this.userpw === this.userpwc) {
       this.userService.registerUser(this.name, this.email, this.userpw).subscribe(data => {
         // console.log(data);
         this.modalService.dismissAll();
@@ -98,14 +98,14 @@ export class DropDownComponent implements OnInit {
       const base64data = reader.result;
       this.showImage = true;
       this.imgUrl = this.sanitizer.bypassSecurityTrustUrl(base64data.toString());
-    }
+    };
   }
 
   onUpload() {
     this.userService.onUpload(this.selectedFile, this.selectedFile.name);
   }
 
-  
+
 
 
 
