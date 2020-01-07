@@ -1,14 +1,16 @@
-<div class="container col-md-6">
-  <div>
-<input class="filter" type="text" style="padding:8px;margin:15px auto;width:30%;" placeholder="Type to filter the name column..."
-  (keyup)="updateFilter($event)" /> </div>
-  <span class="example-fill-remaining-space"></span>
-  <button class="button" (click)="open(content)">Criar Sessão</button>
+<div class="container col-md-9">
+
+<input class="filter" type="text" placeholder="Filter..."
+  (keyup)="updateFilter($event)" /> 
+  
+  <button class="button" (click)="open(content)">Criar Sessão</button> 
   <p></p>
+  
+  
 <ngx-datatable #table class="material expandable" [columns]="columns" [columnMode]="ColumnMode.force"
   [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="5" [rows]="rows">
   <!-- Column Templates -->
-  <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false"
+  <ngx-datatable-column id="lo" [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false"
     [canAutoResize]="false">
     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
       <a href="javascript:void(0)" [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded"
@@ -21,12 +23,12 @@
       <strong>{{ value }}</strong>
     </ng-template>
   </ngx-datatable-column>
-  <ngx-datatable-column name="title">
+  <ngx-datatable-column class="column" name="title">
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
       {{ value }}
     </ng-template>
   </ngx-datatable-column>
-  <ngx-datatable-column name="sessionDate">
+  <ngx-datatable-column class="column" name="sessionDate">
     <ng-template let-value="value" ngx-datatable-cell-template>
       {{ value.substr(0, 20) | date }}
     </ng-template>
