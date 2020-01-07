@@ -1,9 +1,9 @@
 <div class="container">
   <mat-accordion class="headers-align">
     <mat-expansion-panel [ngStyle]="{'background-color':sessions[i].isInstructor ?  'white' : '#b2f6f8' }"
-     [expanded]="step === i" (opened)="setStep(i)" hideToggle *ngFor="let session of sessions; let i = index;">
+      [expanded]="step === i" (opened)="setStep(i)" hideToggle *ngFor="let session of sessions; let i = index;">
       <mat-expansion-panel-header [collapsedHeight]="'90px'" [expandedHeight]="'90px'">
-<!--           <img class="image">{{session.instructor.image}}</img> -->
+        <!--           <img class="image">{{session.instructor.image}}</img> -->
         <div>
           <mat-panel-title>
             <h5 class="title"><b>{{session.title}}</b></h5>
@@ -12,6 +12,18 @@
             <b>Instructor:</b>{{session.instructorName}}
           </mat-panel-description>
         </div>
+
+        <span class="example-fill-remaining-space"></span>
+
+        <div *ngIf="marcarFaltas && !sessions[i].isInstructor">
+          <p></p>
+          <span class="avisofalta"
+            [ngStyle]="{'color' : (attendanceList[i] != 'attended' && attendanceList[i] != 'missed') ?  'black' : attendanceList[i] == 'missed' ? 'red' : 'green'}">
+            <p><b>{{attendanceList[i]}}</b></p>
+          </span>
+
+        </div>
+
         <span class="example-fill-remaining-space"></span>
         <div class="date-cap">
           <mat-panel-description class="session-date">
@@ -120,7 +132,8 @@
               [ngStyle]="{'background-color':session.subs[y+1].attended == 'Pending' ?  'white' : (session.subs[y+1].attended == 'attended' ? 'green': 'rgb(226, 44, 44)')}"
               class="attendeesInSession btn mx-1"
               *ngIf="y + 1 < session.users.length">{{ session.users[y + 1].name }}</span>
-              <span><!-- <ng-toggle 
+            <span>
+              <!-- <ng-toggle 
                 tri-toggle 
                 ng-change="myFunction()" 
                 ng-model="value" 
@@ -143,18 +156,6 @@
           </div>
         </div>
         <span class="example-fill-remaining-space"></span>
-
-        <!-- <div *ngIf="marcarFaltas">
-          <span class="avisomau">
-            <b>Skipped</b>
-          </span>
-          <span class="aviso">
-            <b>Pending</b>
-          </span>
-          <span class="avisobom"> 
-            <b>Attended</b>
-          </span> 
-        </div> -->
 
         <span class="example-fill-remaining-space"></span>
         <button mat-button class="previous" *ngIf="step != 0" (click)="prevStep()">Previous</button>
