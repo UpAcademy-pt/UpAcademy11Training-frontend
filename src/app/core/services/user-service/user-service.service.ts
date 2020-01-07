@@ -12,6 +12,7 @@ import { SubscriptionServiceService } from './subscription-service.service';
   providedIn: 'root'
 })
 export class UserServiceService {
+  
 
   private apiUrl = 'http://localhost:8080/Projeto-CTW/api/user/';
   private currentUser: User = new User();
@@ -77,7 +78,7 @@ export class UserServiceService {
     this.router.navigate(['/login']);
   }
 
-  public editUser(name, email, password) {
+  public editUser(name, email, password) { 
     let user = this.currentUser;
     user.name = name;
     user.email = email;
@@ -85,12 +86,7 @@ export class UserServiceService {
       user.password = password
     }
 
-    return this.http.put(this.apiUrl+this.currentUser.id, user).subscribe((data: User) => {
-
-      this.currentUser.name = data.name;
-      //this.currentUser.email = data.email;
-      this.currentUser.password = password;
-    });
+    return this.http.put(this.apiUrl+this.currentUser.id, user);
   }
 
   public removeUser(id) {
@@ -103,14 +99,18 @@ export class UserServiceService {
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
     let options = { headers: headers };
-    this.http.post(this.apiUrl + 'image-upload', uploadData, options)
+    this.http.put(this.apiUrl +this.currentUser.id+ '/image-upload', uploadData, options)
       .subscribe(data => {
         console.log(data);
       });
   }
 
   getImage() {
-    return this.http.get(this.apiUrl + 'image', { responseType: 'blob' });
+    return this.http.get(this.apiUrl+this.currentUser.id + '/image', { responseType: 'blob' });
+  }
+
+  getProgress() {
+    return this.http.get(this.apiUrl+this.currentUser.id + '/progress');
   }
 
 }

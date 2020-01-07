@@ -13,6 +13,8 @@ export class DaySessionsViewComponent implements OnInit {
   public user: User;
   showImage: boolean;
   imgUrl: any;
+  progressValue: number = 0;
+  progressValueText: number = 0;
 
   constructor(
     private userService: UserServiceService,
@@ -24,6 +26,15 @@ export class DaySessionsViewComponent implements OnInit {
   }
 
   ngOnInit() {
+  this.userService.getProgress().subscribe((data: number) =>{
+    if (data > 0) {
+      this.progressValueText = Math.floor(((data*10)/60)/10);
+      this.progressValue = (data*100)/2400;
+    }
+    
+    console.log(this.progressValue);
+    
+  });
     this.userService.getImage().subscribe( data => {
       const reader = new FileReader();
       reader.readAsDataURL(data);

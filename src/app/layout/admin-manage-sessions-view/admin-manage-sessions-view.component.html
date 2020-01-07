@@ -6,7 +6,7 @@
   <button class="button" (click)="open(content)">Criar Sessão</button>
   <p></p>
 <ngx-datatable #table class="material expandable" [columns]="columns" [columnMode]="ColumnMode.force"
-  [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="10" [rows]="rows">
+  [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="5" [rows]="rows">
   <!-- Column Templates -->
   <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false"
     [canAutoResize]="false">
@@ -32,9 +32,9 @@
     </ng-template>
   </ngx-datatable-column>
   <!-- Row Detail Template -->
-  <ngx-datatable-row-detail name="users" rowHeight="100" #myDetailRow (toggle)="onDetailToggle($event)">
+  <ngx-datatable-row-detail name="users" rowHeight="auto" #myDetailRow (toggle)="onDetailToggle($event)">
     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
-      <table >
+      <table class="table">
         <thead>
           <th >
             User:
