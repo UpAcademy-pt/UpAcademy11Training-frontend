@@ -1,15 +1,13 @@
 .mat-toolbar {
-    
   color: #19bebe;
   background-color: #0b0255;
   background-image: url("https://www.criticaltechworks.com/img/_6AaJMV5c-logo_banner.svg");
   background-repeat: no-repeat;
   background-size: 170px;
   background-position: left;
-    
-  }
+}
 
-.title{
+.title {
   position: absolute;
   font-size: 30px;
   margin-inline-start: 43%;
@@ -17,87 +15,82 @@
 }
 
 .mat-sidenav {
-    background-color:#19bebe;
-    
-  
-  }
-  
-   .example-fill-remaining-space {
-    /* This fills the remaining space, by using flexbox.
+  background-color: #19bebe;
+}
+
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
        Every toolbar row uses a flexbox row layout. */
-     flex: 1 1  auto;
-     text-align: center;
-  } 
-  
-   .mat-progress-bar {
-  
-    position: relative;
-    left: 200px;
-    width: 100px;
-  
-  }
-  
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.mat-progress-bar {
+  position: relative;
+  left: 200px;
+  width: 100px;
+}
+
 .icon {
-  
-    position: relative;
-    left: 175px;
-    width: 40px;
-    font-size: 36px;
-  
-  } 
+  position: relative;
+  left: 175px;
+  width: 40px;
+  font-size: 36px;
+}
 
 .error {
-   
-    color: #f50000;
-  }
+  color: #f50000;
+}
+
+.done {
+  background-color: #19bebe;
+  padding: 10px 20px;
+  border: none;
+  color: white;
+  border-radius: 20px;
+}
 
 .modal-title {
+  color: #0b0255;
+  font-size: 25px;
+  font-weight: bold;
+}
 
 
-    color:#0b0255;
-    font-size: 25px;
-    font-weight: bold; 
-  }
 
 .modal-body {
-
-    
-    color: #0b0255; 
-    font-size: 13px;
-    font-weight: bold;
-    
-  }
+  color: #0b0255;
+  font-size: 13px;
+  font-weight: bold;
+}
 
 .buttonRegister {
+  background-color: #19bebe;
+  padding: 10px 20px;
+  border: none;
+  color: white;
+  border-radius: 20px;
+}
 
-    background-color: #19bebe;
-    padding: 10px 20px;
-    border: none;
-    color: white;
-    border-radius: 20px;
-
-  }
-
-  .mat-icon-button{
-    margin-left: auto;
-  }
+.mat-icon-button {
+  margin-left: auto;
+}
 
 .buttonModal {
+  background-color: #19bebe;
+  margin-left: auto;
+  padding: 5px 20px;
+  font-size: 15px;
+  border: none;
+  color: white;
+  border-radius: 20px;
+}
 
-    background-color: #19bebe;
-    margin-left: auto;
-    padding: 5px 20px;
-    font-size: 15px;
-    border: none;
-    color: white;
-    border-radius: 20px;
-  }
-  
 .mat-sidenav-container {
-
-  background-image: url("https://media.licdn.com/dms/image/C561BAQGs0LvEXvIKAg/company-background_10000/0?e=2159024400&v=beta&t=TriLulSYPjnNbATJ9F8M4B9Pib0Km1Wr3CH8JOmHnfo");     
+  background-image: url("https://media.licdn.com/dms/image/C561BAQGs0LvEXvIKAg/company-background_10000/0?e=2159024400&v=beta&t=TriLulSYPjnNbATJ9F8M4B9Pib0Km1Wr3CH8JOmHnfo");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 93.1vh;   
-}  
-  
+  height: 93.1vh;
+}
+
+

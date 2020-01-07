@@ -31,7 +31,7 @@ export class DropDownComponent implements OnInit {
     private userService: UserServiceService,
     private modalService: NgbModal,
     private router: Router,
-    private sanitizer:DomSanitizer
+    private sanitizer: DomSanitizer
   ) {
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd)
@@ -49,7 +49,6 @@ export class DropDownComponent implements OnInit {
         this.progressBar = true;
         this.dropDownButton = true;
         console.log(this.dropDownButton);
-        
         this.userFace = true;
         this.registerButton = false;
       } else {
@@ -61,23 +60,24 @@ export class DropDownComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    
   }
 
   open(content) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+    this.modalService.open(content);
+    this.name = '';
+        this.email = '';
+        this.userpw = '';
+        this.userpwc = '';
     this.errorMsg = false;
   }
 
-  register() {
+  register(userCreated) {
     if (this.userpw == this.userpwc) {
       this.userService.registerUser(this.name, this.email, this.userpw).subscribe(data => {
         // console.log(data);
         this.modalService.dismissAll();
-        this.name = '';
-        this.email = '';
-        this.userpw = '';
-        this.userpwc = '';
+        this.modalService.open(userCreated);
       });
       this.onUpload();
     } else {
@@ -91,7 +91,7 @@ export class DropDownComponent implements OnInit {
   }
 
   onFileChanged(event) {
-    this.selectedFile = event.target.files[0];const reader = new FileReader();
+    this.selectedFile = event.target.files[0]; const reader = new FileReader();
     //to preview image before upload
     reader.readAsDataURL(this.selectedFile);
     reader.onloadend = () => {
@@ -104,9 +104,5 @@ export class DropDownComponent implements OnInit {
   onUpload() {
     this.userService.onUpload(this.selectedFile, this.selectedFile.name);
   }
-
-  
-
-
 
 }

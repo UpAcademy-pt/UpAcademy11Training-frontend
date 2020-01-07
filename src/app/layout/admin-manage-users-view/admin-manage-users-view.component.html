@@ -18,7 +18,7 @@
       <td>{{ user.id }}</td>
       <td> {{ user.name }} </td>
       <td> {{ user.email }} </td>
-      <td><button class="button" (click)="open(content, i)">view sessions</button></td>
+      <td><button [disabled]="user.sessions.length == 0" class="button" (click)="open(content, i)">view sessions</button></td>
       <td><button [disabled]="user.role == 'admin'" type="button" class="button2" (click)="openConfirm(contentConfirmation,i)"> x </button></td>
     </tr>
   </tbody>

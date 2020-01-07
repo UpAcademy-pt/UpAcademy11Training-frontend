@@ -14,6 +14,7 @@ import { SessionServiceService } from 'src/app/core/services/user-service/sessio
 })
 export class AdminManageUsersViewComponent implements OnInit {
   currentIndex: any;
+  private viewSessions: boolean[];
 
   constructor(private userService: UserServiceService,
     private sessionService: SessionServiceService,
@@ -25,9 +26,13 @@ export class AdminManageUsersViewComponent implements OnInit {
   currentUser = this.userService.getCurrentUser().id;
 
   ngOnInit() {
-
     this.userService.getAllUsers().subscribe((data: User[]) => {
       this.users = data;
+      this.users.forEach(user => {
+        this.sessionService.getSessionInUser(user.id).subscribe((data: Session[]) => {
+          user.sessions = data;
+        });
+      });
     });
   }
 

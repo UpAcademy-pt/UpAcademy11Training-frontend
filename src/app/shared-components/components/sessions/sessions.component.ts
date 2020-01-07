@@ -158,6 +158,7 @@ export class SessionsComponent implements OnInit {
 
     /* let i = 0; */
     this.sessions = data;
+    this.sessionService.setSessions(data);
     for (let index = 0; index < this.sessions.length; index++) {
       /* this.subId[index] = 0; */
       this.sessions[index].sessionDate = this.sessions[index].sessionDate.slice(0, 16).replace("T", " ")
