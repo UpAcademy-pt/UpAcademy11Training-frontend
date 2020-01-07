@@ -1,21 +1,27 @@
 .filter {
+
   position: relative;
   top: 15px;
   padding: 12px 20px;
+  margin:15px auto;
+  width:30%;
 }
 
 .button {
 
     position: relative;
     top: 15px;
+    float: right;
     background-color: #0b0255;
     border: none;
     color: white;
+    margin:15px auto;
     padding: 12px 20px;
     font-size: 18px;
     border-radius: 12px;
     
     }
+
 
     .example-fill-remaining-space {
       flex: 1 1 auto;
