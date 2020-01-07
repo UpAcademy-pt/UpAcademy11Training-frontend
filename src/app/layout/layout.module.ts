@@ -11,6 +11,9 @@ import { SharedModule } from '../shared-components/shared.module';
 import { AdminManageUsersViewComponent } from './admin-manage-users-view/admin-manage-users-view.component';
 import { AllSessionsViewComponent } from './all-sessions-view/all-sessions-view.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material';
+
 
 
 @NgModule({
@@ -25,6 +28,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     AllSessionsViewComponent
   ],
   imports: [
+    MatDatepickerModule,
+    MatNativeDateModule,
     CommonModule,
     SharedModule,
     LayoutRoutingModule,

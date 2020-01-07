@@ -1,9 +1,9 @@
 <div class="container">
   <mat-accordion class="headers-align">
     <mat-expansion-panel [ngStyle]="{'background-color':sessions[i].isInstructor ?  'white' : '#b2f6f8' }"
-     [expanded]="step === i" (opened)="setStep(i)" hideToggle *ngFor="let session of sessions; let i = index;">
+      [expanded]="step === i" (opened)="setStep(i)" hideToggle *ngFor="let session of sessions; let i = index;">
       <mat-expansion-panel-header [collapsedHeight]="'90px'" [expandedHeight]="'90px'">
-<!--           <img class="image">{{session.instructor.image}}</img> -->
+        <!--           <img class="image">{{session.instructor.image}}</img> -->
         <div>
           <mat-panel-title>
             <h5 class="title"><b>{{session.title}}</b></h5>
@@ -115,22 +115,29 @@
       </mat-action-row>
       <mat-action-row class="container-fluid" *ngIf="sessions[i].isInstructor && sessions[i].subscribedCount > 0">
         <div class="row w-100">
-          <div class="col-2" *ngFor="let user of session.users; let y = index">
-            <span (click)="setAttendance(session.subs[y+1]['id'], i, y+1)"
-              [ngStyle]="{'background-color':session.subs[y+1].attended == 'Pending' ?  'white' : (session.subs[y+1].attended == 'attended' ? 'green': 'rgb(226, 44, 44)')}"
-              class="attendeesInSession btn mx-1"
-              *ngIf="y + 1 < session.users.length">{{ session.users[y + 1].name }}</span>
-              <span><!-- <ng-toggle 
-                tri-toggle 
-                ng-change="myFunction()" 
-                ng-model="value" 
-                ng-true-val="'myString'" 
-                ng-false-val="0" 
-                ng-no-val="-1">
-              </ng-toggle> --> </span>
+          <b class="col-12 mr-1 mb-3">Enrolled:</b>
+
+          <div class="row w-100">
+            <ng-container *ngFor="let user of session.users; let y = index">
+              <ng-container *ngIf="activeRoute != '/layout/history-view'">
+                <span *ngIf="y!=0" class="col-2 ml-1">
+                  <u> {{ session.users[y].name }} </u>
+                </span>
+              </ng-container>
+              <ng-container  *ngIf="activeRoute == '/layout/history-view'">
+                <div *ngIf="y!=0" class="col-4 ">
+                  <p>
+                    {{ session.users[y].name }}
+                    <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style" [value]="session.subs[y].attended">
+                      <mat-button-toggle [ngStyle]="{'background-color' : session.subs[y].attended != 'attended' ?  'white' : 'green'}" (click)="setAttendance(session.subs[y]['id'], i, y, 'attended')" value="attended">Attended</mat-button-toggle>
+                      <mat-button-toggle [ngStyle]="{'background-color' : session.subs[y].attended != 'missed' ?  'white' : 'red'}" (click)="setAttendance(session.subs[y]['id'], i, y, 'missed')" value="missed">Missed</mat-button-toggle>
+                    </mat-button-toggle-group>
+                  </p>
+                </div>
+              </ng-container>
+            </ng-container>
           </div>
         </div>
-
       </mat-action-row>
       <mat-action-row *ngIf="uselessRows">
         <div *ngIf="!sessions[i].isInstructor && subButtons">

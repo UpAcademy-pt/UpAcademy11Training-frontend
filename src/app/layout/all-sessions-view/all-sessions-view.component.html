@@ -1,5 +1,10 @@
 <p></p>
 <h1 class="text-center">Sessions</h1>
+<div class="positionCalendar">
+  
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+</div>
 <div class="myClass">
   <div class="menu-item">
     <div *ngFor="let day of displayWeek; let i = index;" [ngClass]="{'active': i === activeDay}" (click)="changeDay(i)">
@@ -19,6 +24,7 @@
   <mat-icon class="pointer right-pointer" (click)="goRight()">
     <i>arrow_forward_ios</i>
   </mat-icon>
+
 </div>
 
 <app-sessions [interval]="displayWeek[activeDay]"></app-sessions>

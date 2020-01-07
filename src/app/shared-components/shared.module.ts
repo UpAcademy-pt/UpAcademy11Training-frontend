@@ -4,6 +4,7 @@ import { SessionsComponent } from './components/sessions/sessions.component';
 import { MatButtonModule, MatIconModule, MatListModule, MatProgressBarModule, MatSidenavModule, MatToolbarModule, MatCardModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormsModule } from '@angular/forms';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { FormsModule } from '@angular/forms';
      SessionsComponent
     ],
     imports: [
+      MatButtonToggleModule,
       CommonModule,
       FormsModule,
       MatProgressBarModule,

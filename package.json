@@ -32,7 +32,9 @@
     "dateformat": "^3.0.3",
     "jquery": "^3.4.1",
     "ng-toggle": "^1.2.0",
+    "ngx-toggle": "^2.0.1",
     "node-modules": "^1.0.1",
+    "nz-toggle": "^2.1.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

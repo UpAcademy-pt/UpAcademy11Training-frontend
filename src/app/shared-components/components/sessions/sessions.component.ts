@@ -194,15 +194,15 @@ export class SessionsComponent implements OnInit {
 
       this.sessionService.getIfSubscribed(session.id, this.userService.getCurrentUser().id).subscribe((data2: boolean) => {
         session.subscribed = data2;
-       // console.log(session.subscribed);
+        // console.log(session.subscribed);
 
       });
       this.subscriptionService.getSubscription(session.id, this.userService.getCurrentUser().id).subscribe((data3: Subscription) => {
         this.subId.push(data3.id);
-        
+
         //console.log("TAS INSCRITO COM OS SEGUINTES IDS: ", this.subId);
       }, (error: any) => {
-       // console.log(error);
+        // console.log(error);
         this.subId.push(0);
       });
 
@@ -210,23 +210,13 @@ export class SessionsComponent implements OnInit {
 
   }
 
-  setAttendance(id: number, i: number, y: number) {
-    if (this.activeRoute == "/layout/history-view") {
+  setAttendance(id: number, i: number, y: number, status: string) {
+    if (this.activeRoute == "/layout/history-view" && this.sessions[i].subs[y]['attended'] != status) {
       this.subscriptionService.getSubscriptionById(id).subscribe((data: Subscription) => {
-      //  console.log("LOG DO SUBSCRPTION BY ID", data);
+        //  console.log("LOG DO SUBSCRPTION BY ID", data);
         this.subscriptionToEdit = data;
-        if (data.attended != "attended") {
-         // console.log("attended");
-          this.subscriptionToEdit.attended = "attended";
-          this.sessions[i].subs[y]['attended'] = "attended";
-         // console.log(this.sessions[i].subs[y]['attended']);
-          //this.sessions[i].subs[y] = this.subscriptionToEdit;
-        } else {
-          console.log("missed");
-
-          this.subscriptionToEdit.attended = "missed";
-          this.sessions[i].subs[y]['attended'] = "missed";
-        }
+        this.subscriptionToEdit.attended = status;
+        this.sessions[i].subs[y]['attended'] = status;
         this.subscriptionService.setAttendance(id, this.subscriptionToEdit).subscribe(response => {
           //console.log(response);
         });
@@ -246,13 +236,17 @@ export class SessionsComponent implements OnInit {
       data.questions = questions;
       data.answered = true;
       this.subscriptionService.setAnswers(this.subId[i], data).subscribe((data: any) => {
-      // console.log(data);
-       this.sessionService.getUnansweredSessionInUser(this.userService.getCurrentUser().id).subscribe((data1: Session[]) => {
-        this.initPanels(data1);
-        this.modalService.dismissAll();
+        // console.log(data);
+        this.sessionService.getUnansweredSessionInUser(this.userService.getCurrentUser().id).subscribe((data1: Session[]) => {
+          this.initPanels(data1);
+          this.modalService.dismissAll();
+        });
       });
-       });
-      });
+    });
+  }
+
+  toggleChange() {
+
   }
 
 }
