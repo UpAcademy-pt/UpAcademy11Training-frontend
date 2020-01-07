@@ -10,11 +10,12 @@ import * as $ from 'jquery';
 export class AllSessionsViewComponent implements OnInit {
 
   days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   todayDate = new Date();
   i = this.todayDate.getDay();
   dayName = this.days[this.i];
   nextWeekArr = this.nextweek(this.todayDate);
-  displayWeek = [this.todayDate, ...this.nextWeekArr, ...this.nextweek(this.nextWeekArr[5]) ];
+  displayWeek = [this.todayDate, ...this.nextWeekArr, ...this.nextweek(this.nextWeekArr[5])];
 
   weekDays = [];
   activeDay = 0;
@@ -46,8 +47,8 @@ export class AllSessionsViewComponent implements OnInit {
     });
   }
 
-  nextweek(initialDay:Date) {
-    let nextWeek=[];
+  nextweek(initialDay: Date) {
+    let nextWeek = [];
     for (let index = 1; index < 7; index++) {
       /* let today = new Date(); */
       nextWeek.push(new Date(initialDay.getFullYear(), initialDay.getMonth(), initialDay.getDate() + index));
@@ -62,6 +63,10 @@ export class AllSessionsViewComponent implements OnInit {
 
   returnDayName(date) {
     return this.days[date.getDay()];
+  }
+
+  returnMonth(date) {
+    return this.months[date.getMonth()];
   }
 
   changeDay(day) {
@@ -79,7 +84,7 @@ export class AllSessionsViewComponent implements OnInit {
 
   goRight() {
     if (this.getNext) {
-      this.displayWeek.push(...this.nextweek(this.displayWeek[this.displayWeek.length-1]));
+      this.displayWeek.push(...this.nextweek(this.displayWeek[this.displayWeek.length - 1]));
     }
     this.sc = $(".menu-item").width() - 60;
     this.pos = $(".menu-item").scrollLeft() + this.sc;
