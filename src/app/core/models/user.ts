@@ -1,3 +1,5 @@
+import { Session } from './session';
+
 export class User {
     'id'?: number;
     'name': string;
@@ -5,7 +7,7 @@ export class User {
     'email': string;
     'password': string;
     'imgUrl': string;
-  sessions: import("c:/Users/pmmap/Documents/Projeto-Angular/src/app/core/models/session").Session[];
+  'sessions': Session[];
     constructor(data?: any) {
         Object.assign(this, data);
     }

@@ -3,7 +3,7 @@
     <mat-expansion-panel [ngStyle]="{'background-color':sessions[i].isInstructor ?  'white' : '#b2f6f8' }"
      [expanded]="step === i" (opened)="setStep(i)" hideToggle *ngFor="let session of sessions; let i = index;">
       <mat-expansion-panel-header [collapsedHeight]="'90px'" [expandedHeight]="'90px'">
-          <img class="image">{{session.instructor.image}}</img>
+<!--           <img class="image">{{session.instructor.image}}</img> -->
         <div>
           <mat-panel-title>
             <h5 class="title"><b>{{session.title}}</b></h5>
