@@ -31,6 +31,7 @@
     "date-format": "^3.0.0",
     "dateformat": "^3.0.3",
     "jquery": "^3.4.1",
+    "ng-toggle": "^1.2.0",
     "node-modules": "^1.0.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",

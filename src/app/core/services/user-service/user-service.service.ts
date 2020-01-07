@@ -12,6 +12,7 @@ import { SubscriptionServiceService } from './subscription-service.service';
   providedIn: 'root'
 })
 export class UserServiceService {
+  
 
   private apiUrl = 'http://localhost:8080/Projeto-CTW/api/user/';
   private currentUser: User = new User();
@@ -106,6 +107,10 @@ export class UserServiceService {
 
   getImage() {
     return this.http.get(this.apiUrl+this.currentUser.id + '/image', { responseType: 'blob' });
+  }
+
+  getProgress() {
+    return this.http.get(this.apiUrl+this.currentUser.id + '/progress');
   }
 
 }

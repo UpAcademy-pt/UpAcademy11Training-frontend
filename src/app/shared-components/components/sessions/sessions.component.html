@@ -119,6 +119,14 @@
               [ngStyle]="{'background-color':session.subs[y+1].attended == 'Pending' ?  'white' : (session.subs[y+1].attended == 'attended' ? 'green': 'rgb(226, 44, 44)')}"
               class="attendeesInSession btn mx-1"
               *ngIf="y + 1 < session.users.length">{{ session.users[y + 1].name }}</span>
+              <span><!-- <ng-toggle 
+                tri-toggle 
+                ng-change="myFunction()" 
+                ng-model="value" 
+                ng-true-val="'myString'" 
+                ng-false-val="0" 
+                ng-no-val="-1">
+              </ng-toggle> --> </span>
           </div>
         </div>
 
