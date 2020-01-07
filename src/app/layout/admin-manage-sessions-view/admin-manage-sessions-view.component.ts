@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, TemplateRef} from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SessionServiceService } from 'src/app/core/services/user-service/session-service.service';
 import { UserServiceService } from 'src/app/core/services/user-service/user-service.service';
@@ -34,7 +34,7 @@ export class AdminManageSessionsViewComponent implements OnInit {
 
 
   columns = [
-    {  },
+    {},
     { prop: 'id' },
     { prop: 'title' },
     { name: 'sessionDate' },
@@ -49,7 +49,7 @@ export class AdminManageSessionsViewComponent implements OnInit {
     private sessionService: SessionServiceService,
     private userService: UserServiceService) {
     // customize default values of modals used by this component tree
-    
+
     config.backdrop = 'static';
     config.keyboard = false;
   }
@@ -60,22 +60,23 @@ export class AdminManageSessionsViewComponent implements OnInit {
     this.initTable();
   }
 
-  initTable(){
+  initTable() {
+
     this.sessionService.getAllSessions().subscribe((data: Session[]) => {
       this.rows = data;
-      console.log(this.rows); 
+      console.log(this.rows);
       data.forEach((row: Session) => {
-        this.sessionService.getAllUsersBySession(row['id']).subscribe((data: User[]) =>{ 
+        this.sessionService.getAllUsersBySession(row['id']).subscribe((data: User[]) => {
           row['users'] = data;
-          this.subService.getAllSubsBySession(row['id']).subscribe((data:Subscription[]) =>{
+          this.subService.getAllSubsBySession(row['id']).subscribe((data: Subscription[]) => {
             row['subs'] = data;
             this.temp = [...this.rows];
-          })
-        })
+          });
+        });
       });
-    })
-    
-    
+    });
+
+
 
     this.userService.getAllUsers().subscribe((data: User[]) => {
       this.users = data;
@@ -99,12 +100,12 @@ export class AdminManageSessionsViewComponent implements OnInit {
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
     console.log(this.temp);
-    
+
     // filter our data
-    const temp = this.temp.filter(function(d) {
+    const temp = this.temp.filter(function (d) {
       return d.title.toLowerCase().indexOf(val) !== -1 || !val;
     });
-console.log(temp);
+    console.log(temp);
 
     // update the rows
     this.rows = temp;
@@ -112,18 +113,17 @@ console.log(temp);
     this.table.offset = 0;
   }
 
-  
+
 
   open(content) {
+    console.log(this.title);
     this.modalService.open(content, { scrollable: true });
+    console.log(this.title);
+    this.initTable();
   }
 
-  create() {
-    let date = this.sessionDate.replace("T", " ");
-    console.log(this.sessionDate);
-    
-    this.sessionService.createSession(this.title, this.location, date, this.capacity, 
-    this.requirements, this.duration, this.instructor, this.description).subscribe(data => {
+  closeModal() {
+    this.modalService.dismissAll();
     this.title = '';
     this.location = '';
     this.sessionDate = '';
@@ -132,12 +132,31 @@ console.log(temp);
     this.duration = 0;
     this.instructor = 0;
     this.description = '';
-    this.initTable();
-    this.modalService.dismissAll();
-  });}
 
+  }
+
+  create(confirmCreate, createError) {
+    let date = this.sessionDate.replace("T", " ");
+    console.log(this.sessionDate);
+    this.sessionService.createSession(this.title, this.location, date, this.capacity,
+      this.requirements, this.duration, this.instructor, this.description).subscribe(data => {
+        /* this.title = '';
+        this.location = '';
+        this.sessionDate = '';
+        this.capacity = 0;
+        this.requirements = '';
+        this.duration = 0;
+        this.instructor = 0;
+        this.description = '';
+        this.initTable(); */
+        this.modalService.dismissAll();
+        this.open(confirmCreate);
+      },
+        error => {
+          console.log(createError);
+
+          this.modalService.dismissAll();
+          this.open(createError);
+        });
+  }
 }
-
-
-
-

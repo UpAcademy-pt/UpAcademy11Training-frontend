@@ -37,8 +37,8 @@ export class DropDownComponent implements OnInit {
       filter((event) => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
       this.activeRoute = event.urlAfterRedirects;
-      if (this.activeRoute != '/login') {
-        if (this.userService.getCurrentUser().role == 'admin') {
+      if (this.activeRoute !== '/login') {
+        if (this.userService.getCurrentUser().role === 'admin') {
           this.isAdmin = true;
           console.log("É ADMIN");
 
@@ -98,7 +98,7 @@ export class DropDownComponent implements OnInit {
       const base64data = reader.result;
       this.showImage = true;
       this.imgUrl = this.sanitizer.bypassSecurityTrustUrl(base64data.toString());
-    }
+    };
   }
 
   onUpload() {
