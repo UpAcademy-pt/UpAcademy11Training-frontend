@@ -23,17 +23,17 @@
 <mat-sidenav-container>
   <mat-sidenav position="end" #sidenav>
     <mat-nav-list>
-      <a mat-list-item [routerLink]="'layout/day-sessions-view'" (click)='sidenav.toggle()'> Daily Sessions </a>
-      <a mat-list-item [routerLink]="'layout/all-sessions-view'" (click)='sidenav.toggle()'> All Sessions </a>
+      <a mat-list-item [routerLink]="'layout/day-sessions-view'" (click)='sidenav.toggle()' routerLinkActive="active-list-item"> Daily Sessions </a>
+      <a mat-list-item [routerLink]="'layout/all-sessions-view'" (click)='sidenav.toggle()' routerLinkActive="active-list-item"> All Sessions </a>
       <!-- <a mat-list-item [routerLink]="'layout/'"> Sessoes Marcadas </a> -->
-      <a mat-list-item [routerLink]="'layout/history-view'" (click)='sidenav.toggle()'> Track Record </a>
-      <a mat-list-item [routerLink]="'layout/questions-view'" (click)='sidenav.toggle()'> Survey </a>
-      <a mat-list-item [routerLink]="'layout/user-tools-view'" (click)='sidenav.toggle()'> Edit User </a>
+      <a mat-list-item [routerLink]="'layout/history-view'" (click)='sidenav.toggle()' routerLinkActive="active-list-item"> Track Record </a>
+      <a mat-list-item [routerLink]="'layout/questions-view'" (click)='sidenav.toggle()' routerLinkActive="active-list-item"> Survey </a>
+      <a mat-list-item [routerLink]="'layout/user-tools-view'" (click)='sidenav.toggle()' routerLinkActive="active-list-item"> Edit User </a>
       <a *ngIf='isAdmin' mat-list-item [routerLink]="'layout/admin-manage-sessions-view'"
-        (click)='sidenav.toggle()'>Manage Sessions</a>
-      <a *ngIf='isAdmin' mat-list-item [routerLink]="'layout/admin-manage-users-view'" (click)='sidenav.toggle()'>Manage
+        (click)='sidenav.toggle()' routerLinkActive="active-list-item">Manage Sessions</a>
+      <a *ngIf='isAdmin' mat-list-item [routerLink]="'layout/admin-manage-users-view'" (click)='sidenav.toggle()' routerLinkActive="active-list-item">Manage
         Users</a>
-      <a mat-list-item (click)='sidenav.toggle();logOut(sidenav)'> Log Out </a>
+      <a mat-list-item (click)='sidenav.toggle();logOut(sidenav)' routerLinkActive="active-list-item"> Log Out </a>
     </mat-nav-list>
 
 

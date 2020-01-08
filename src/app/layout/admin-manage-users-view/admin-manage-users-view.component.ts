@@ -5,6 +5,8 @@ import { UserServiceService } from 'src/app/core/services/user-service/user-serv
 import { ViewEncapsulation } from '@angular/core';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { SessionServiceService } from 'src/app/core/services/user-service/session-service.service';
+import { SubscriptionServiceService } from 'src/app/core/services/user-service/subscription-service.service';
+import { Subscription } from 'src/app/core/models/subscription';
 
 @Component({
   selector: 'app-admin-manage-users-view',
@@ -18,11 +20,13 @@ export class AdminManageUsersViewComponent implements OnInit {
 
   constructor(private userService: UserServiceService,
     private sessionService: SessionServiceService,
+    private subscriptionService: SubscriptionServiceService,
     config: NgbModalConfig,
     private modalService: NgbModal) { }
 
   users: User[] = [];
   sessionsInUser: Session[] = [];
+  attendanceList: string[] = [];
   currentUser = this.userService.getCurrentUser().id;
 
   ngOnInit() {
@@ -37,24 +41,29 @@ export class AdminManageUsersViewComponent implements OnInit {
   }
 
   open(content, index) {
-
     this.sessionService.getSessionInUser(this.users[index].id).subscribe((data: Session[]) => {
       this.sessionsInUser = data;
-      this.modalService.open(content);
-    });
-  }
+      for (let i = 0; i < this.sessionsInUser.length; i++) {
+        const session = this.sessionsInUser[i];
+        this.subscriptionService.getSubscription(session.id, this.users[index].id).subscribe((data1: Subscription) => {
+          this.attendanceList.push(data1.attended);
+        });
+      }
+    this.modalService.open(content);
+  });
+}
 
-  openConfirm(contentConfirmation, i: number) {
-    this.modalService.open(contentConfirmation);
-    this.currentIndex = i;
-  }
+openConfirm(contentConfirmation, i: number) {
+  this.modalService.open(contentConfirmation);
+  this.currentIndex = i;
+}
 
-  removeUser() {
+removeUser() {
 
-    this.modalService.dismissAll();
-    this.userService.removeUser(this.users[this.currentIndex].id).subscribe((data) => {
-      this.users.splice(this.currentIndex, 1);
-    })
-  }
+  this.modalService.dismissAll();
+  this.userService.removeUser(this.users[this.currentIndex].id).subscribe((data) => {
+    this.users.splice(this.currentIndex, 1);
+  })
+}
 
 }

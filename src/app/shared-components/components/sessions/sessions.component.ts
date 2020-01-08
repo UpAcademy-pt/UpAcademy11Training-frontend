@@ -39,6 +39,9 @@ export class SessionsComponent implements OnInit {
   maturity: string;
   productivity: string;
   faltas: string[];
+  sessionsInUser: Session[] = [];
+  attendanceList: string[] = [];
+
 
   constructor(
     private sessionService: SessionServiceService,
@@ -51,7 +54,7 @@ export class SessionsComponent implements OnInit {
       filter((event) => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
       this.activeRoute = event.urlAfterRedirects;
-    })
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -60,6 +63,7 @@ export class SessionsComponent implements OnInit {
       this.initPanels(data);
       this.subButtons = true;
     });
+
   }
 
   ngOnInit() {
@@ -91,6 +95,12 @@ export class SessionsComponent implements OnInit {
 
       case '/layout/history-view':
         this.sessionService.getPastSessions(this.userService.getCurrentUser().id).subscribe((data: Session[]) => {
+          for (let i = 0; i < data.length; i++) {
+            const session = data[i];
+            this.subscriptionService.getSubscription(session.id, this.userService.getCurrentUser().id).subscribe((data1: Subscription) => {
+              this.attendanceList.push(data1.attended);
+            });
+          }
           this.initPanels(data);
           this.subButtons = false;
           this.questionButton = false;

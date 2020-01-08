@@ -2,59 +2,75 @@
 <h1 class="text-center">Manage Users</h1>
 <p></p>
 <div class="container col-md-6">
-<div class="table adminUserTable">
-<table>
-  <thead class="table-top">
-    <tr>
-      <th></th>
-      <th>User</th>
-      <th>Email</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="text" *ngFor="let user of users; let i = index;">
-      <td>{{ user.id }}</td>
-      <td> {{ user.name }} </td>
-      <td> {{ user.email }} </td>
-      <td><button [disabled]="user.sessions.length == 0" class="button" (click)="open(content, i)">view sessions</button></td>
-      <td><button [disabled]="user.role == 'admin'" type="button" class="button2" (click)="openConfirm(contentConfirmation,i)"> x </button></td>
-    </tr>
-  </tbody>
-</table>
+  <div class="table adminUserTable">
+    <table>
+      <thead class="table-top">
+        <tr>
+          <th></th>
+          <th>User</th>
+          <th>Email</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text" *ngFor="let user of users; let i = index;">
+          <td>{{ user.id }}</td>
+          <td> {{ user.name }} </td>
+          <td> {{ user.email }} </td>
+          <td><button [disabled]="user.sessions.length == 0" class="button" (click)="open(content, i)">view
+              sessions</button></td>
+          <td><button [disabled]="user.role == 'admin'" type="button" class="button2"
+              (click)="openConfirm(contentConfirmation,i)"> x </button></td>
+        </tr>
+      </tbody>
+    </table>
+   
+    <ng-template #contentConfirmation let-modal let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Wait!</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Would you really like to delete this user's account?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="removeUser()">Yes</button>
+      </div>
+    </ng-template>
 
-<ng-template #contentConfirmation let-modal let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Wait!</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <p>Would you really like to delete this user's account?</p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="removeUser()">Yes</button>
-  </div>
-</ng-template>
 
-
-<!--   Modal to display sessions each user has/had   -->
-<ng-template #content let-modal let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">User Sessions</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
+    <!--   Modal to display sessions each user has/had   -->
+    <ng-template #content let-modal let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">User Sessions</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- <tr *ngFor="let s of sessionsInUser; index as i">
+          <td> {{ s.title }}</td>
+        </tr> -->
+        <table class="text-center table table-striped">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Date</th>
+              <th>Presence</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let s of sessionsInUser; let i = index">
+              <td> {{ s.title }} </td>
+              <td> {{ s.sessionDate }} </td>
+              <td> {{ attendanceList[i] }} </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ng-template>
   </div>
-  <div class="modal-body">
-    <tr *ngFor="let s of sessionsInUser; index as i">
-      <td> {{ s.title }}</td>
-    </tr>
-  </div>
-</ng-template>
 </div>
-</div>
-
-
