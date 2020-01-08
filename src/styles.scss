@@ -1,19 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@swimlane/ngx-datatable/index.css";
-@import "~@swimlane/ngx-datatable/themes/material.scss";
-@import "~@swimlane/ngx-datatable/assets/icons.css";
-html,
-body {
-  height: 100%;
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+html, body { height: 100%; }
+body { margin: 0; font-family:'Montserrat', sans-serif!important; }
+.mat-toolbar h1 { 
+  font: 500 30px/40px 'Montserrat', sans-serif!important;
 }
-body {
-  margin: 0;
-  font-family: "Raleway", sans-serif;
-}
-
-.datatable-header-inner {
-  background-color: #0b0255 !important;
-  color: white !important;
+.datatable-header-inner{
+  background-color: #0b0255!important;
+  color: white!important;
 }
 .mat-card-header-text {
   width: 100%;
