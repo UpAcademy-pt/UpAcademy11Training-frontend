@@ -1,4 +1,9 @@
 <div class="container">
+    <mat-button-toggle-group *ngIf="activeRoute == '/layout/history-view'" appearance="legacy" name="fontStyle" aria-label="Font Style" value='Attended'>
+        <mat-button-toggle (click)="toggleView('Past')" class="button-view" value="Attended"><strong>Attended</strong></mat-button-toggle>
+        <mat-button-toggle (click)="toggleView('Next')" class="button-view" value="Enrolled"><strong>Next</strong></mat-button-toggle>
+      </mat-button-toggle-group>
+      <p></p>
   <mat-accordion class="headers-align">
     <mat-expansion-panel [ngStyle]="{'background-color':sessions[i].isInstructor ?  'white' : '#b2f6f8' }"
       [expanded]="step === i" (opened)="setStep(i)" hideToggle *ngFor="let session of sessions; let i = index;">
@@ -132,7 +137,7 @@
           <div class="row w-100">
             <ng-container *ngFor="let user of session.users; let y = index">
               <ng-container *ngIf="activeRoute != '/layout/history-view'">
-                <span *ngIf="y!=0" class="col-2 ml-1">
+                <span *ngIf="y!=0" class="grid-container ml-1">
                   <u> {{ session.users[y].name }} </u>
                 </span>
               </ng-container>

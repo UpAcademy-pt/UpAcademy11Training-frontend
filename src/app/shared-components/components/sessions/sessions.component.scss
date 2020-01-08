@@ -283,3 +283,17 @@ border-radius: 20px;
   -webkit-transition:all .2s ease;
   transition:all .2s ease;
 }
+
+.mat-button-toggle{
+  padding: 0px 5px !important;
+}
+
+.grid-container{
+display: grid;
+grid-template-columns: auto auto;
+grid-gap: 10px;
+}
+
+.button-view {
+
+}
