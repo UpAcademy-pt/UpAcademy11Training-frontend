@@ -284,13 +284,27 @@ border-radius: 20px;
 }
 
 .image{
+background-image: url("http://www.tuktukdesign.com/wp-content/uploads/2017/12/person-icon.jpg");
+background-position: center;
+background-size: cover;
 border-radius: 50%;
 padding-left: 0;
 grid-row: 1/ span 2;
 margin-top: 50;
 border: 1px solid black;
+width: 75px;
+height:75px;
 }
 
 .cardtext{
   padding-left: 25px;
+.mat-button-toggle{
+  padding: 0px 5px !important;
+}
+}
+
+.grid-container{
+display: grid;
+grid-template-columns: auto auto;
+grid-gap: 10px;
 }

@@ -35,7 +35,7 @@ export class DaySessionsViewComponent implements OnInit {
     console.log(this.progressValue);
     
   });
-    this.userService.getImage().subscribe( data => {
+    this.userService.getImage(this.userService.getCurrentUser().id).subscribe( data => {
       const reader = new FileReader();
       reader.readAsDataURL(data);
       reader.onloadend = () => {

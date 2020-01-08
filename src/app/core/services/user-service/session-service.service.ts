@@ -10,6 +10,7 @@ import {  Observable} from 'rxjs';
 })
 
 export class SessionServiceService {
+  
 
 
     private apiUrl = 'http://localhost:8080/Projeto-CTW/api/trainingsession';
@@ -99,6 +100,11 @@ export class SessionServiceService {
         return this.http.get('http://localhost:8080/Projeto-CTW/api/user/session/' + sessionId);
 
     }
+
+    getNextSessionsEnrolled(userId) {
+        return this.http.get(this.apiUrl+"/user/" + userId +"/next");
+      }
+
 }
 
 

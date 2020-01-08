@@ -105,8 +105,8 @@ export class UserServiceService {
       });
   }
 
-  getImage() {
-    return this.http.get(this.apiUrl+this.currentUser.id + '/image', { responseType: 'blob' });
+  getImage(id) {
+    return this.http.get(this.apiUrl+id + '/image', { responseType: 'blob' });
   }
 
   getProgress() {

@@ -44,6 +44,7 @@ export class SessionsComponent implements OnInit {
   attendanceList: string[] = [];
   imgUrl: any;
   showImage: boolean;
+  toggleString: string;
 
 
   constructor(
@@ -198,13 +199,14 @@ export class SessionsComponent implements OnInit {
       });
       this.sessionService.getInstructor(session.id).subscribe((instructor: User) => {
         session.instructorName = instructor.name;
-        this.userService.getImage().subscribe( instImg => {
+        this.userService.getImage(instructor.id).subscribe( instImg => {
           const reader = new FileReader();
           reader.readAsDataURL(instImg);
           reader.onloadend = () => {
-            const base64data = reader.result;
             this.showImage = true;
+            const base64data = reader.result;
             session.instructorPic = this.sanitizer.bypassSecurityTrustUrl(base64data.toString());
+            console.log(session.instructorPic);
           };
         });
         
@@ -269,8 +271,39 @@ export class SessionsComponent implements OnInit {
     });
   }
 
-  toggleChange() {
-
+  toggleView(toggleView) {
+    this.sessions=[];
+    this.toggleString = toggleView;
+    if (toggleView == "Next") {
+      console.log('HELLO NEXT');
+      this.sessionService.getNextSessionsEnrolled(this.userService.getCurrentUser().id).subscribe((data: Session[]) => {
+        this.initPanels(data);
+        this.subButtons = false;
+        this.questionButton = false;
+        this.emptyHist = false;
+        this.emptyQues = false;
+        this.marcarFaltas = false;
+      });
+    } else {
+      console.log('HELLO PAST');
+      this.sessionService.getPastSessions(this.userService.getCurrentUser().id).subscribe((data: Session[]) => {
+        for (let i = 0; i < data.length; i++) {
+          const session = data[i];
+          this.subscriptionService.getSubscription(session.id, this.userService.getCurrentUser().id).subscribe((data1: Subscription) => {
+            this.attendanceList.push(data1.attended);
+          });
+        }
+        this.initPanels(data);
+        this.subButtons = false;
+        this.questionButton = false;
+        this.emptyHist = false;
+        this.emptyQues = false;
+        this.marcarFaltas = true;
+        if (data.length == 0) {
+          this.emptyHist = true;
+        }
+      });
+    };
   }
 
 
