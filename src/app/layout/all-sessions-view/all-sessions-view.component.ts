@@ -9,6 +9,10 @@ import * as $ from 'jquery';
 
 export class AllSessionsViewComponent implements OnInit {
 
+/*   toggleDateTitle:string ='Date';
+  filterTitle:string;
+  temp = []; */
+
   days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   todayDate = new Date();
@@ -91,4 +95,23 @@ export class AllSessionsViewComponent implements OnInit {
     $(".menu-item").animate({ 'scrollLeft': this.pos }, 'slow');
     this.getNext = true;
   }
+
+/*   toggleView(toggleString){
+    this.toggleDateTitle = toggleString;
+    }
+
+    updateFilter(event) {
+      const val = event.target.value.toLowerCase();
+      console.log(this.temp);
+  
+      // filter our data
+      const temp = this.temp.filter(function (d) {
+        return d.title.toLowerCase().indexOf(val) !== -1 || !val;
+      });
+      console.log(temp);
+
+      this.rows = temp;
+
+    } */
+
 }

@@ -1,11 +1,17 @@
 <p></p>
 <h1 class="text-center">Sessions</h1>
-<div class="positionCalendar">
-  
+<!-- <p></p>
+<mat-button-toggle-group *ngIf="activeRoute == '/layout/day-sessions-view'" appearance="legacy" name="fontStyle" aria-label="Font Style" value='Attended'>
+  <mat-button-toggle (click)="toggleView('Date')" class="button-view" value="Date"><strong>Date</strong></mat-button-toggle>
+  <mat-button-toggle (click)="toggleView('Title')" class="button-view" value="Title"><strong>Title</strong></mat-button-toggle>
+</mat-button-toggle-group> -->
+<p></p>
+<!-- <input *ngIf="toggleDateTitle == 'Title'"  class="filter" type="text" placeholder="Filter..." (keyup)="updateFilter($event)" />  -->
+<div  class="positionCalendar">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
 </div>
-<div class="myClass">
+<div  class="myClass">
   <div class="menu-item">
     <div *ngFor="let day of displayWeek; let i = index;" [ngClass]="{'active': i === activeDay}" (click)="changeDay(i)">
       <span>{{returnMonth(day)}}</span>
@@ -27,4 +33,5 @@
 
 </div>
 
-<app-sessions [interval]="displayWeek[activeDay]"></app-sessions>
+<app-sessions  [interval]="displayWeek[activeDay]"></app-sessions>
+<!-- [filterTitle]="filterTitle" [toggleDateTitle]="toggleDateTitle" -->

@@ -32,6 +32,8 @@ export class SessionsComponent implements OnInit {
   currentUser: User;
   private activeRoute;
   @Input() interval;
+  @Input() toggleDateTitle ='Date';
+  @Input() filterTitle;
   currentRate = 8;
   subscriptionToEdit: Subscription;
   intelligence: string;
@@ -45,6 +47,7 @@ export class SessionsComponent implements OnInit {
   imgUrl: any;
   showImage: boolean;
   toggleString: string;
+  mostrarAlunos: boolean;
 
 
   constructor(
@@ -63,11 +66,15 @@ export class SessionsComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if(this.toggleDateTitle== 'Date'){
     this.sessionService.initGetIntervalSessions(changes.interval.currentValue).subscribe((data: Session[]) => {
       this.sessionService.setSessions(data);
       this.initPanels(data);
       this.subButtons = true;
     });
+  } else {
+
+  }
 
   }
 
@@ -83,6 +90,7 @@ export class SessionsComponent implements OnInit {
           this.emptyQues = false;
           this.emptyHist = false;
           this.marcarFaltas = false;
+          this.mostrarAlunos = true;
         });
         break;
 
@@ -95,6 +103,7 @@ export class SessionsComponent implements OnInit {
           this.emptyQues = false;
           this.emptyHist = false;
           this.marcarFaltas = false;
+          this.mostrarAlunos = true;
         });
         break;
 
@@ -112,6 +121,7 @@ export class SessionsComponent implements OnInit {
           this.emptyHist = false;
           this.emptyQues = false;
           this.marcarFaltas = true;
+          this.mostrarAlunos = false;
           if (data.length == 0) {
             this.emptyHist = true;
           }
@@ -127,6 +137,7 @@ export class SessionsComponent implements OnInit {
           this.emptyQues = false;
           this.emptyHist = false;
           this.marcarFaltas = false;
+          this.mostrarAlunos = true;
           if (data.length == 0) {
             this.emptyQues = true;
           }
@@ -274,6 +285,8 @@ export class SessionsComponent implements OnInit {
   toggleView(toggleView) {
     this.sessions=[];
     this.toggleString = toggleView;
+    console.log(toggleView);
+    
     if (toggleView == "Next") {
       console.log('HELLO NEXT');
       this.sessionService.getNextSessionsEnrolled(this.userService.getCurrentUser().id).subscribe((data: Session[]) => {
@@ -283,6 +296,7 @@ export class SessionsComponent implements OnInit {
         this.emptyHist = false;
         this.emptyQues = false;
         this.marcarFaltas = false;
+        this.mostrarAlunos = true;
       });
     } else {
       console.log('HELLO PAST');
@@ -299,6 +313,7 @@ export class SessionsComponent implements OnInit {
         this.emptyHist = false;
         this.emptyQues = false;
         this.marcarFaltas = true;
+        this.mostrarAlunos = false;
         if (data.length == 0) {
           this.emptyHist = true;
         }
