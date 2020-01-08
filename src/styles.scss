@@ -1,33 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@swimlane/ngx-datatable/index.css';
-@import '~@swimlane/ngx-datatable/themes/material.scss';
-@import '~@swimlane/ngx-datatable/assets/icons.css';
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Raleway', sans-serif; }
+@import "~@swimlane/ngx-datatable/index.css";
+@import "~@swimlane/ngx-datatable/themes/material.scss";
+@import "~@swimlane/ngx-datatable/assets/icons.css";
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+}
 
-.datatable-header-inner{
-  background-color: #0b0255!important;
-  color: white!important;
+.datatable-header-inner {
+  background-color: #0b0255 !important;
+  color: white !important;
 }
 .mat-card-header-text {
-    width: 100%;
-  }
+  width: 100%;
+}
 
-  .ngx-datatable.material {
-    .datatable-header {
-      .datatable-header-cell {
-        background-color: #0b0255!important;
-        color: white;
-      }
+.ngx-datatable.material {
+  .datatable-header {
+    .datatable-header-cell {
+      background-color: #0b0255 !important;
+      color: white;
     }
   }
+}
 
-  .ngx-datatable-row-detail .table thead th {
+.ngx-datatable-row-detail .table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #0b0255;
+}
 
-    vertical-align: bottom;
-    border-bottom: 2px solid #0b0255;
-  }
-
-
-  
 
