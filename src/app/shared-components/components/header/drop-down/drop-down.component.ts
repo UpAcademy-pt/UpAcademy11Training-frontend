@@ -60,15 +60,15 @@ export class DropDownComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 
   open(content) {
     this.modalService.open(content);
     this.name = '';
-        this.email = '';
-        this.userpw = '';
-        this.userpwc = '';
+    this.email = '';
+    this.userpw = '';
+    this.userpwc = '';
     this.errorMsg = false;
   }
 
