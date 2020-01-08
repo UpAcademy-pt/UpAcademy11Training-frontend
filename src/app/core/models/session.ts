@@ -17,6 +17,7 @@ export class Session {
     'isInstructor': boolean;
     'users': User[];
     'subs': Subscription[];
+    'instructorPic': any;
 
     constructor(data?: any) {
         Object.assign(this, data);

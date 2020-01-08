@@ -8,6 +8,7 @@ import { User } from 'src/app/core/models/user';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-sessions',
@@ -41,6 +42,8 @@ export class SessionsComponent implements OnInit {
   faltas: string[];
   sessionsInUser: Session[] = [];
   attendanceList: string[] = [];
+  imgUrl: any;
+  showImage: boolean;
 
 
   constructor(
@@ -48,7 +51,8 @@ export class SessionsComponent implements OnInit {
     private subscriptionService: SubscriptionServiceService,
     private userService: UserServiceService,
     private modalService: NgbModal,
-    private router: Router
+    private router: Router,
+    private sanitizer: DomSanitizer
   ) {
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd)
@@ -194,6 +198,16 @@ export class SessionsComponent implements OnInit {
       });
       this.sessionService.getInstructor(session.id).subscribe((instructor: User) => {
         session.instructorName = instructor.name;
+        this.userService.getImage().subscribe( instImg => {
+          const reader = new FileReader();
+          reader.readAsDataURL(instImg);
+          reader.onloadend = () => {
+            const base64data = reader.result;
+            this.showImage = true;
+            session.instructorPic = this.sanitizer.bypassSecurityTrustUrl(base64data.toString());
+          };
+        });
+        
         if (instructor.id == this.userService.getCurrentUser().id) {
           session.isInstructor = true;
         } else {
@@ -258,5 +272,9 @@ export class SessionsComponent implements OnInit {
   toggleChange() {
 
   }
+
+
+
+
 
 }

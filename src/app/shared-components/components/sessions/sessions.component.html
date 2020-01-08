@@ -3,14 +3,21 @@
     <mat-expansion-panel [ngStyle]="{'background-color':sessions[i].isInstructor ?  'white' : '#b2f6f8' }"
       [expanded]="step === i" (opened)="setStep(i)" hideToggle *ngFor="let session of sessions; let i = index;">
       <mat-expansion-panel-header [collapsedHeight]="'90px'" [expandedHeight]="'90px'">
-        <!--           <img class="image">{{session.instructor.image}}</img> -->
+
+        <!-- <div mat-card-avatar class="image-container" class="instImg">
+          <p>dasgdoas</p>
+          <img class="image" *ngIf="!showImage" height="200" src="http://www.tuktukdesign.com/wp-content/uploads/2017/12/person-icon.jpg">
+          <img class="image" *ngIf="showImage" height="200" [src]="imgUrl">
+        </div>
+  -->
         <div>
-          <mat-panel-title>
-            <h5 class="title"><b>{{session.title}}</b></h5>
-          </mat-panel-title>
-          <mat-panel-description class="instructor">
-            <b>Instructor:</b>{{session.instructorName}}
-          </mat-panel-description>
+            <mat-panel-title class="grid-container">
+              <img class="image" *ngIf="!showImage" height="75"
+                src="http://www.tuktukdesign.com/wp-content/uploads/2017/12/person-icon.jpg">
+              <img class="image" *ngIf="showImage" height="75" [src]="session.instructorPic">
+              <h5 class="cardtext"><b>{{session.title}}</b></h5>
+              <b class="cardtext">Instructor:</b>{{session.instructorName}}
+            </mat-panel-title>
         </div>
 
         <span class="example-fill-remaining-space"></span>
@@ -136,13 +143,20 @@
                   <u> {{ session.users[y].name }} </u>
                 </span>
               </ng-container>
-              <ng-container  *ngIf="activeRoute == '/layout/history-view'">
+              <ng-container *ngIf="activeRoute == '/layout/history-view'">
                 <div *ngIf="y!=0" class="col-4 ">
                   <p>
                     {{ session.users[y].name }}
-                    <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style" [value]="session.subs[y].attended">
-                      <mat-button-toggle [ngStyle]="{'background-color' : session.subs[y].attended != 'attended' ?  'white' : 'green'}" (click)="setAttendance(session.subs[y]['id'], i, y, 'attended')" value="attended">Attended</mat-button-toggle>
-                      <mat-button-toggle [ngStyle]="{'background-color' : session.subs[y].attended != 'missed' ?  'white' : 'red'}" (click)="setAttendance(session.subs[y]['id'], i, y, 'missed')" value="missed">Missed</mat-button-toggle>
+                    <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style"
+                      [value]="session.subs[y].attended">
+                      <mat-button-toggle
+                        [ngStyle]="{'background-color' : session.subs[y].attended != 'attended' ?  'white' : 'green'}"
+                        (click)="setAttendance(session.subs[y]['id'], i, y, 'attended')" value="attended">Attended
+                      </mat-button-toggle>
+                      <mat-button-toggle
+                        [ngStyle]="{'background-color' : session.subs[y].attended != 'missed' ?  'white' : 'red'}"
+                        (click)="setAttendance(session.subs[y]['id'], i, y, 'missed')" value="missed">Missed
+                      </mat-button-toggle>
                     </mat-button-toggle-group>
                   </p>
                 </div>
