@@ -10,7 +10,7 @@
 
     
     padding: 8px 20px;
-    width: 80%;
+    width: 70%;
     margin: auto;
     border-color: none;
     background-color: white;
@@ -54,3 +54,10 @@ border-radius: 20px;
 
     color: #0b0255;
 }
+
+input[type="file"]{
+    @media only screen and (max-width: 990px) {
+        font-size: 1.3vw;
+    }
+}
+

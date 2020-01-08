@@ -16,12 +16,12 @@
       <label>New password: </label>
       <input type="password" [(ngModel)]="password" required class="form-control">
     </div>
-    <div class="pt-2">
-      <label>Profile Picture: </label>
-      <div mat-card-avatar class="image"></div>
+    <div class="pt-3">
+      <div>
+      <label>Profile Picture:</label>
+     <!-- <div mat-card-avatar class="image"></div> -->
       <img *ngIf="showImage" height="200" [src]="imgUrl">
-      <input type="file" (change)="onFileChanged($event)" #fileInput>
-    </div>
+      <input type="file" class="file" (change)="onFileChanged($event)">
     <div class="error">
 
     </div>
