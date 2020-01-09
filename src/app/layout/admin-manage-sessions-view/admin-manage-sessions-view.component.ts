@@ -75,9 +75,6 @@ export class AdminManageSessionsViewComponent implements OnInit {
         });
       });
     });
-
-
-
     this.userService.getAllUsers().subscribe((data: User[]) => {
       this.users = data;
     });
@@ -140,15 +137,7 @@ export class AdminManageSessionsViewComponent implements OnInit {
     console.log(this.sessionDate);
     this.sessionService.createSession(this.title, this.location, date, this.capacity,
       this.requirements, this.duration, this.instructor, this.description).subscribe(data => {
-        /* this.title = '';
-        this.location = '';
-        this.sessionDate = '';
-        this.capacity = 0;
-        this.requirements = '';
-        this.duration = 0;
-        this.instructor = 0;
-        this.description = '';
-        this.initTable(); */
+        
         this.modalService.dismissAll();
         this.open(confirmCreate);
       },
