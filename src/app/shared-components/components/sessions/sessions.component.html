@@ -30,7 +30,7 @@
           <p></p>
           <span class="avisofalta"
             [ngStyle]="{'color' : (attendanceList[i] != 'attended' && attendanceList[i] != 'missed') ?  'black' : attendanceList[i] == 'missed' ? 'red' : 'green'}">
-            <p><b>{{attendanceList[i]}}</b></p>
+            <p><b>{{attendanceList[i].toUpperCase()}}</b></p>
           </span>
 
         </div>
@@ -69,13 +69,13 @@
             </form>
             <form>
               <p class="quest">Do you think the subject is appropriate?</p>
-              <label for="one">No</label>
+              <label for="one">No so much</label>
               <input type="radio" id="one2" [(ngModel)]="maturity" name="maturity" value="1">
               <input type="radio" id="two2" [(ngModel)]="maturity" name="maturity" value="2">
               <input type="radio" id="three2" [(ngModel)]="maturity" name="maturity" value="3">
               <input type="radio" id="four2" [(ngModel)]="maturity" name="maturity" value="4">
               <input type="radio" id="five2" [(ngModel)]="maturity" name="maturity" value="5">
-              <label for="five2">Yes</label>
+              <label for="five2">Very appropriate</label>
             </form>
             <form>
               <p class="quest">In general how would you rate the instructor's performance?</p>
@@ -88,14 +88,14 @@
               <label for="five3">Good</label>
             </form>
             <form>
-              <p class="quest">Was the mail goal achieved?</p>
-              <label for="one">No</label>
+              <p class="quest">Was the main goal achieved?</p>
+              <label for="one">Not really</label>
               <input type="radio" id="one4" [(ngModel)]="intelligence" name="intelligence" value="1">
               <input type="radio" id="two4" [(ngModel)]="intelligence" name="intelligence" value="2">
               <input type="radio" id="three4" [(ngModel)]="intelligence" name="intelligence" value="3">
               <input type="radio" id="four4" [(ngModel)]="intelligence" name="intelligence" value="4">
               <input type="radio" id="five4" [(ngModel)]="intelligence" name="intelligence" value="5">
-              <label for="five4">Yes</label>
+              <label for="five4">Totally!</label>
             </form>
           </div>
           <!-- OCCUPATION QUESTION -->
@@ -154,11 +154,11 @@
                     <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style"
                       [value]="session.subs[y].attended">
                       <mat-button-toggle
-                        [ngStyle]="{'background-color' : session.subs[y].attended != 'attended' ?  'white' : 'green'}"
+                        [ngStyle]="{'background-color' : session.subs[y].attended != 'attended' ?  'white' : 'green','color' : session.subs[y].attended == 'attended' ?  'white' : 'black'}"
                         (click)="setAttendance(session.subs[y]['id'], i, y, 'attended')" value="attended">Attended
                       </mat-button-toggle>
                       <mat-button-toggle
-                        [ngStyle]="{'background-color' : session.subs[y].attended != 'missed' ?  'white' : 'red'}"
+                        [ngStyle]="{'background-color' : session.subs[y].attended != 'missed' ?  'white' : 'red', 'color' : session.subs[y].attended == 'missed' ?  'white' : 'black'}"
                         (click)="setAttendance(session.subs[y]['id'], i, y, 'missed')" value="missed">Missed
                       </mat-button-toggle>
                     </mat-button-toggle-group>

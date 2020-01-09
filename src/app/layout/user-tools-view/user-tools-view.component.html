@@ -14,7 +14,12 @@
     </div> -->
     <div class="pt-3">
       <label>New password: </label>
-      <input type="password" [(ngModel)]="password" required class="form-control">
+      <input type="password" #passWord="ngModel" pattern="^(?=.{5,20}$)[a-zA-Z0-9._]+$" [(ngModel)]="password" required class="form-control">
+      <div class="text-danger" [hidden]="passWord.valid || passWord.untouched">
+        <div *ngIf="passWord.errors && passWord.errors.pattern">
+          Password must have at least 5 alphanumeric characters.
+        </div>
+      </div>
     </div>
     <div class="pt-3">
       <div>
