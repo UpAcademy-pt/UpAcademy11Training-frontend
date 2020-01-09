@@ -20,13 +20,38 @@ body { margin: 0; font-family:'Montserrat', sans-serif!important; }
     .datatable-header-cell {
       background-color: #0b0255 !important;
       color: white;
+      font-size: 15px;
+      font-weight: 300;
     }
   }
 }
 
-.ngx-datatable-row-detail .table thead th {
-  vertical-align: bottom;
-  border-bottom: 2px solid #0b0255;
+.table th, .table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-bottom: 1px solid #0b0255;
+  border: inset;
+  border-color: 1px solid #0b0255;
+ 
 }
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: #0b0255;
+  text-align: center;
+  background-color: #19bebe;
+  color: white;
+  font-weight: 300;
+}
+
+.table td {
+  background-color: #0b0255;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+
 
 

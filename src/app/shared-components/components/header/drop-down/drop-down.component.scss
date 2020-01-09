@@ -1,4 +1,6 @@
-.mat-toolbar {
+
+.mat-toolbar-row {
+  position: relative;
   color: #19bebe;
   background-color: #0b0255;
   background-image: url("https://www.criticaltechworks.com/img/_6AaJMV5c-logo_banner.svg");
@@ -7,25 +9,29 @@
   background-position: left;
 }
 
-.title {
-  position: absolute;
-  font-size: 30px;
-  margin-inline-start: 43%;
-  text-align: center;
+.title-login {
+  margin: auto;
+  top: 5px;
+ 
+ 
+  
+  
+  
 }
 
 .mat-sidenav {
   background-color: #19bebe;
 }
 
-.example-fill-remaining-space {
+/* .example-fill-remaining-space {
   /* This fills the remaining space, by using flexbox.
        Every toolbar row uses a flexbox row layout. */
-  flex: 1 1 auto;
-  text-align: center;
-}
+  
+  
+  
 
-.mat-progress-bar {
+
+/* .mat-progress-bar {
   position: relative;
   left: 200px;
   width: 100px;
@@ -36,7 +42,7 @@
   left: 175px;
   width: 40px;
   font-size: 36px;
-}
+} */
 
 .error {
   color: #f50000;
@@ -70,15 +76,16 @@
   border: none;
   color: white;
   border-radius: 20px;
+ 
 }
 
 .mat-icon-button {
-  margin-left: auto;
+  margin-left: -3%;
 }
 
 .buttonModal {
   background-color: #19bebe;
-  margin-left: auto;
+  margin-left: -7%;
   padding: 5px 20px;
   font-size: 15px;
   border: none;

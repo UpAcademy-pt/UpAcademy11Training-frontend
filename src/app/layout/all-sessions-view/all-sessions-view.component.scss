@@ -1,8 +1,14 @@
 .text-center {
 
-  color: #0b0255;
+  margin-top: 15px;
+  color:#0b0255;
   font-weight: bold;
+  font-size: 40px;
+  text-align: center;
 }
+
+ 
+
 
 .positionCalendar{
   position: absolute;
@@ -11,7 +17,7 @@
 }
 
 .myClass {
-  max-width: 800px;
+  max-width: 70%;
   height: 100px;
   padding: 0 30px;
   margin: 20px auto;

@@ -8,9 +8,9 @@
 <div class="myClass">
   <div class="menu-item">
     <div *ngFor="let day of displayWeek; let i = index;" [ngClass]="{'active': i === activeDay}" (click)="changeDay(i)">
+      <span>{{returnDayNumber(day)}}&nbsp; </span> 
       <span>{{returnMonth(day)}}</span>
-      <br>
-      <span>{{returnDayNumber(day)}}</span>
+      
       <br>
       <span>{{returnDayName(day)}}</span>
       <br>

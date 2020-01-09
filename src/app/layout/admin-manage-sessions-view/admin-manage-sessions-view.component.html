@@ -1,3 +1,4 @@
+<h1 class="title">Manage Sessions</h1>
 <div class="container col-md-9">
 
 <input class="filter" type="text" placeholder="Filter..."
@@ -18,17 +19,17 @@
       </a>
     </ng-template>
   </ngx-datatable-column>
-  <ngx-datatable-column name="id">
+  <ngx-datatable-column name="Id">
     <ng-template let-value="value" ngx-datatable-cell-template>
       <strong>{{ value }}</strong>
     </ng-template>
   </ngx-datatable-column>
-  <ngx-datatable-column class="column" name="title">
+  <ngx-datatable-column class="column" name="Title">
     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
       {{ value }}
     </ng-template>
   </ngx-datatable-column>
-  <ngx-datatable-column class="column" name="sessionDate">
+  <ngx-datatable-column class="column" name="Session Date">
     <ng-template let-value="value" ngx-datatable-cell-template>
       {{ value.substr(0, 20) | date }}
     </ng-template>
