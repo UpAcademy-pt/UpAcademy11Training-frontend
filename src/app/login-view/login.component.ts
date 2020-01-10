@@ -11,8 +11,13 @@ import { Content } from '@angular/compiler/src/render3/r3_ast';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+<<<<<<< HEAD
   public email = 'admin@criticaltechworks.com';
   public userpw = 'critical';
+=======
+  public email = '';
+  public userpw = '';
+>>>>>>> origin/dev
 
   constructor(
     private router: Router,

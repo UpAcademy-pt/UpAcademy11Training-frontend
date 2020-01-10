@@ -100,22 +100,38 @@ margin-top: 15px;
 .rating {
 
   position: relative;
-  text-align: justify;
-  padding: 10px;
+  text-align: left;
+  padding: 15px;
   color: black;
+  font-size: 15px;
+  font-weight: 300;
   
 }
 
 .quest {
 
+  
   text-align: left;
-  padding: 15px;
-
+  color: black;
+  font-size: 15px;
+  font-weight: 300;
+  padding-left: 15px;
+  
 }
 
+.textarea {
+
+width: 95%;
+}
+
+.modal-content {
+
+  width: min-content;
+}
 .modal-header {
 
   background-color: #0b0255;
+ 
 }
 
 .modal-title {
@@ -147,7 +163,6 @@ border-radius: 20px;
 
 .button-sub {
   position: relative;
-  left: 320px;
   background-color: #19bebe;
   border: none;
   color: white;

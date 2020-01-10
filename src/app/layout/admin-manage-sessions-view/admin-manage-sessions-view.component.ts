@@ -136,11 +136,11 @@ export class AdminManageSessionsViewComponent implements OnInit {
   }
 
   create(confirmCreate, createError) {
-    let date = this.sessionDate.replace("T", " ");
+    let date = this.sessionDate.replace('T', " ");
     console.log(this.sessionDate);
     this.sessionService.createSession(this.title, this.location, date, this.capacity,
       this.requirements, this.duration, this.instructor, this.description).subscribe(data => {
-        
+
         this.modalService.dismissAll();
         this.open(confirmCreate);
       },

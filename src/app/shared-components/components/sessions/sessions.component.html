@@ -48,7 +48,7 @@
             <b>Capacity:</b>{{session.subscribedCount}}/{{session.capacity}}
           </mat-panel-description>
         </div>
-        <ng-template #content let-modal let-c="close" let-d="dismiss">
+        <ng-template class="modal-content" #content let-modal let-c="close" let-d="dismiss">
           <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">Survey</h4>
             <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -97,14 +97,15 @@
               <input type="radio" id="five4" [(ngModel)]="intelligence" name="intelligence" value="5">
               <label for="five4">Totally!</label>
             </form>
-          </div>
+          
           <!-- OCCUPATION QUESTION -->
-          <div class="quest">
-            <p>In your opinion what could be an improvement for future sessions?</p>
-            <textarea [(ngModel)]="improvements" cols="50" rows="5"></textarea>
+          <form>
+            <p class="quest">In your opinion what could be an improvement for future sessions?</p>
+            <textarea class="textarea" [(ngModel)]="improvements" cols="40" rows="5"></textarea>
             <br>
             <button class="button-sub" type="button" (click)="answerQuestionnaire(i)">Submit </button>
-          </div>
+          </form>
+        </div>
         </ng-template>
         <div *ngIf="questionButton">
           <button type="button" class="button-answer" (click)="open(content)">Answer</button>
