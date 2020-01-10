@@ -46,7 +46,7 @@ export class SessionsComponent implements OnInit {
   attendanceList: string[] = [];
   imgUrl: any;
   showImage: boolean;
-  toggleString: string;
+  toggleString: string = 'Past';
   mostrarAlunos: boolean;
 
 

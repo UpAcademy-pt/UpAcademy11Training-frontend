@@ -86,7 +86,8 @@
     <div class="modal-body">
       <div>
         <label>Title: </label>
-        <input type="text" [(ngModel)]="title" class="form-control">
+        <input type="text" [(ngModel)]="title" required class="form-control">
+        
       </div>
       <div class="pt-3">
         <label for="formador">Instructor: </label>
@@ -97,11 +98,13 @@
       </div>
       <div class="pt-3">
         <label>Local: </label>
-        <input type="text" [(ngModel)]="location" class="form-control">
+        <input type="text" [(ngModel)]="location" required class="form-control">
+        
       </div>
       <div class="pt-3">
         <label>Date: </label>
-        <input type="datetime-local" [(ngModel)]="sessionDate" class="form-control">
+        <input type="datetime-local" [(ngModel)]="sessionDate" required class="form-control">
+        
       </div>
       <div class="pt-3">
         <label>Duration (In minutes): </label>
@@ -151,7 +154,7 @@
   <ng-template #createError let-modal let-c="close" let-d="dismiss">
     <div class="modal-header">
       <p class="modal-title" id="modal-basic-title">Error!</p>
-      <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+      <button type="button" class="close" aria-label="Close" (click)="closeModal();">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>

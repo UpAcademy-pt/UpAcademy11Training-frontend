@@ -1,9 +1,9 @@
 <div class="container">
-  <mat-button-toggle-group *ngIf="activeRoute == '/layout/history-view'" appearance="legacy" name="fontStyle"
+  <mat-button-toggle-group class="futurePast" *ngIf="activeRoute == '/layout/history-view'" appearance="legacy" name="fontStyle"
     aria-label="Font Style" value='Attended'>
-    <mat-button-toggle (click)="toggleView('Past')" class="button-view" value="Attended"><strong>Attended</strong>
+    <mat-button-toggle [ngStyle]="{'color':toggleString == 'Past' ?  'black' : 'white'  }" (click)="toggleView('Past')" class="button-view attendedButton" value="Attended"><strong>Attended</strong>
     </mat-button-toggle>
-    <mat-button-toggle (click)="toggleView('Next')" class="button-view" value="Enrolled"><strong>Next</strong>
+    <mat-button-toggle [ngStyle]="{'color':toggleString == 'Next' ?  'black' : 'white' }" (click)="toggleView('Next')" class="button-view" value="Enrolled"><strong>Next</strong>
     </mat-button-toggle>
   </mat-button-toggle-group>
   <p></p>

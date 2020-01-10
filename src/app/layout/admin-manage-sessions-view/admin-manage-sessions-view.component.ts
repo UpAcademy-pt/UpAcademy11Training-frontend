@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
-import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalConfig, NgbModal, NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { SessionServiceService } from 'src/app/core/services/user-service/session-service.service';
 import { UserServiceService } from 'src/app/core/services/user-service/user-service.service';
 
@@ -42,8 +42,11 @@ export class AdminManageSessionsViewComponent implements OnInit {
   temp = [];
   ColumnMode = ColumnMode;
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
+  modalRef: NgbModalRef;
 
-  constructor(config: NgbModalConfig,
+  constructor( 
+    //public activeModal: NgbActiveModal,
+    config: NgbModalConfig,
     private subService: SubscriptionServiceService,
     private modalService: NgbModal,
     private sessionService: SessionServiceService,
@@ -113,14 +116,14 @@ export class AdminManageSessionsViewComponent implements OnInit {
 
 
   open(content) {
-    console.log(this.title);
-    this.modalService.open(content, { scrollable: true });
-    console.log(this.title);
     this.initTable();
+    return this.modalService.open(content, { scrollable: true });
+    
   }
 
   closeModal() {
-    this.modalService.dismissAll();
+    //this.activeModal.dismiss();
+    this.modalRef.close();
     this.title = '';
     this.location = '';
     this.sessionDate = '';
@@ -143,9 +146,10 @@ export class AdminManageSessionsViewComponent implements OnInit {
       },
         error => {
           console.log(createError);
-
-          this.modalService.dismissAll();
-          this.open(createError);
+          //this.modalService.dismissAll();
+          this.modalRef = this.open(createError);
+          console.log(this.modalRef);
+          
         });
   }
 }

@@ -13,6 +13,7 @@ import { AllSessionsViewComponent } from './all-sessions-view/all-sessions-view.
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -28,6 +29,7 @@ import { MatNativeDateModule } from '@angular/material';
     AllSessionsViewComponent
   ],
   imports: [
+    NgbModule,
     MatDatepickerModule,
     MatNativeDateModule,
     CommonModule,
