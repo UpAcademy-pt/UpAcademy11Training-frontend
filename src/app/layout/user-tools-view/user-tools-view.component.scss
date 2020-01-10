@@ -56,9 +56,26 @@ border-radius: 20px;
     color: #0b0255;
 }
 
+.header {
+    padding: 15px;
+    background-color: #0b0255;
+    color: #19bebe;
+}
+
 input[type="file"]{
     @media only screen and (max-width: 990px) {
         font-size: 1.3vw;
     }
 }
 
+.close {
+    color: white !important;
+    pointer-events: auto;
+}
+
+.close:hover{
+    color:white !important;
+}
+.class{
+    background-color: #0b0255; ;
+}

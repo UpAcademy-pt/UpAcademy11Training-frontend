@@ -1,74 +1,73 @@
 <h1 class="title">Manage Sessions</h1>
 <div class="container col-md-9">
 
-<input class="filter" type="text" placeholder="Filter..."
-  (keyup)="updateFilter($event)" /> 
-  
-  <button class="button" (click)="open(content)">Create Session</button> 
+  <input class="filter" type="text" placeholder="Filter..." (keyup)="updateFilter($event)" />
+
+  <button class="button" (click)="open(content)">Create Session</button>
   <p></p>
-  
-  
-<ngx-datatable #table class="material expandable" [columns]="columns" [columnMode]="ColumnMode.force"
-  [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="5" [rows]="rows">
-  <!-- Column Templates -->
-  <ngx-datatable-column id="lo" [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false"
-    [canAutoResize]="false">
-    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-      <a href="javascript:void(0)" [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded"
-        title="Expand/Collapse Row" (click)="toggleExpandRow(row)">
-      </a>
-    </ng-template>
-  </ngx-datatable-column>
-  <ngx-datatable-column name="Id">
-    <ng-template let-value="value" ngx-datatable-cell-template>
-      <strong>{{ value }}</strong>
-    </ng-template>
-  </ngx-datatable-column>
-  <ngx-datatable-column class="column" name="Title">
-    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-      {{ value }}
-    </ng-template>
-  </ngx-datatable-column>
-  <ngx-datatable-column class="column" name="Session Date">
-    <ng-template let-value="value" ngx-datatable-cell-template>
-      {{ value.substr(0, 20) | date }}
-    </ng-template>
-  </ngx-datatable-column>
-  <!-- Row Detail Template -->
-  <ngx-datatable-row-detail name="users" rowHeight="auto" #myDetailRow (toggle)="onDetailToggle($event)">
-    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
-      <table class="table">
-        <thead>
-          <th>
-            User:
-          </th>
-          <th>
-            How would you rate the session's productivity?
-          </th>
-          <th>
-            Do you think the subject is appropriate?
-          </th >
-          <th>
-            In general how would you rate the instructor's performance?
-          </th>
-          <th>
-            Was the mail goal achieved?
-          </th>
-          <th>
-            In your opinion what could be an improvement for future sessions?
-          </th>
-        </thead>
-        <tbody>
-          <tr  *ngFor="let sub of row.subs">
-            <td >{{sub.user.name}}</td>
-            <td *ngFor="let answer of sub.answers">{{answer}}</td>
-            <!--<td *ngFor = "let answer of sub.answers">{{answer}}</td>-->
-          </tr>
-        </tbody>
-      </table>
-    </ng-template>
-  </ngx-datatable-row-detail>
-</ngx-datatable>
+
+
+  <ngx-datatable #table class="material expandable" [columns]="columns" [columnMode]="ColumnMode.force"
+    [headerHeight]="50" [footerHeight]="50" rowHeight="auto" [limit]="5" [rows]="rows">
+    <!-- Column Templates -->
+    <ngx-datatable-column id="lo" [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false"
+      [canAutoResize]="false">
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+        <a href="javascript:void(0)" [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded"
+          title="Expand/Collapse Row" (click)="toggleExpandRow(row)">
+        </a>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Id">
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        <strong>{{ value }}</strong>
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column class="column" name="Title">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{ value }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column class="column" name="Session Date">
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{ value.substr(0, 20) | date }}
+      </ng-template>
+    </ngx-datatable-column>
+    <!-- Row Detail Template -->
+    <ngx-datatable-row-detail name="users" rowHeight="auto" #myDetailRow (toggle)="onDetailToggle($event)">
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+        <table class="table">
+          <thead>
+            <th>
+              User:
+            </th>
+            <th>
+              How would you rate the session's productivity?
+            </th>
+            <th>
+              Do you think the subject is appropriate?
+            </th>
+            <th>
+              In general how would you rate the instructor's performance?
+            </th>
+            <th>
+              Was the mail goal achieved?
+            </th>
+            <th>
+              In your opinion what could be an improvement for future sessions?
+            </th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sub of row.subs">
+              <td>{{sub.user.name}}</td>
+              <td *ngFor="let answer of sub.answers">{{answer}}</td>
+              <!--<td *ngFor = "let answer of sub.answers">{{answer}}</td>-->
+            </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </ngx-datatable-row-detail>
+  </ngx-datatable>
 
 
 
@@ -92,7 +91,7 @@
         <label for="formador">Instructor: </label>
 
         <select [(ngModel)]="instructor" (ngModelChange)="onChangeObj($event)" class="form-control">
-          <option  [value]="user.id" *ngFor="let user of users">{{user.name}}</option>
+          <option [value]="user.id" *ngFor="let user of users">{{user.name}}</option>
         </select>
       </div>
       <div class="pt-3">
@@ -117,14 +116,15 @@
       </div>
       <div class="pt-3">
         <label>Description </label>
-        <input type="text" [(ngModel)]="description" class="form-control">
+        <input [(ngModel)]="description" class="form-control">
+        <!-- TODO adicionar funcao keyup shift+enter para adicionar linha-->
       </div>
 
         
 
     </div>
     <div class="modal-footer">
-      <button type="button" (click)='create(confirmCreate, createError)' class="button-2">Create Session</button>
+      <button type="button" (click)='create(confirmCreate, createError)' class="button-2" >Create Session</button>
     </div>
   </ng-template>
 </ul>
@@ -164,4 +164,3 @@
     </div>
   </ng-template>
 </ul>
-
