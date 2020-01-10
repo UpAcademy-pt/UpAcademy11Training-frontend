@@ -1,10 +1,9 @@
 <h1 class="title">Manage Sessions</h1>
 <div class="container col-md-9">
 
-<input class="filter" type="text" placeholder="Filter..."
-  (keyup)="updateFilter($event)" /> 
-  
-  <button class="button" (click)="open(content)">Create Session</button> 
+  <input class="filter" type="text" placeholder="Filter..." (keyup)="updateFilter($event)" />
+
+  <button class="button" (click)="open(content)">Create Session</button>
   <p></p>
   
   
@@ -92,7 +91,7 @@
         <label for="formador">Instructor: </label>
 
         <select [(ngModel)]="instructor" (ngModelChange)="onChangeObj($event)" class="form-control">
-          <option  [value]="user.id" *ngFor="let user of users">{{user.name}}</option>
+          <option [value]="user.id" *ngFor="let user of users">{{user.name}}</option>
         </select>
       </div>
       <div class="pt-3">
@@ -117,14 +116,15 @@
       </div>
       <div class="pt-3">
         <label>Description </label>
-        <input type="text" [(ngModel)]="description" class="form-control">
+        <input [(ngModel)]="description" class="form-control">
+        <!-- TODO adicionar funcao keyup shift+enter para adicionar linha-->
       </div>
 
         
 
     </div>
     <div class="modal-footer">
-      <button type="button" (click)='create(confirmCreate, createError)' class="button-2">Create Session</button>
+      <button type="button" (click)='create(confirmCreate, createError)' class="button-2" >Create Session</button>
     </div>
   </ng-template>
 </ul>
@@ -164,4 +164,3 @@
     </div>
   </ng-template>
 </ul>
-
