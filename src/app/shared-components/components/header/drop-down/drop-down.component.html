@@ -73,7 +73,7 @@
     <div class="modal-body">
       <div>
         <label>Name: </label>
-        <input type="text" #userName="ngModel" pattern="^(?=.{5,20}$)[a-zA-Z0-9._]+$" [(ngModel)]='name' required class="form-control">
+        <input type="text" #userName="ngModel" pattern="^(?=.{5,20}$)[\w -]+$" [(ngModel)]='name' required class="form-control">
         <div class="text-danger" [hidden]="userName.valid || userName.untouched">
           <div *ngIf="userName.errors && userName.errors.required">
             Username is required

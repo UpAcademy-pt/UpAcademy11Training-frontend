@@ -6,6 +6,13 @@
     <mat-button-toggle [ngStyle]="{'color':toggleString == 'Next' ?  'black' : 'white' }" (click)="toggleView('Next')" class="button-view" value="Enrolled"><strong>Next</strong>
     </mat-button-toggle>
   </mat-button-toggle-group>
+<!--   <mat-button-toggle-group class="dateFilter" *ngIf="activeRoute == '/layout/all-sessions-view'" appearance="legacy" name="fontStyle"
+    aria-label="Font Style" value='date'>
+    <mat-button-toggle [ngStyle]="{'color':toggleString == 'date' ?  'black' : 'white'  }" (click)="toggleView('date')" class="button-view attendedButton" value="date"><strong>Date</strong>
+    </mat-button-toggle>
+    <mat-button-toggle [ngStyle]="{'color':toggleString == 'filter' ?  'black' : 'white' }" (click)="toggleView('filter')" class="button-view" value="filter"><strong>Title</strong>
+    </mat-button-toggle>
+  </mat-button-toggle-group> -->
   <p></p>
   <mat-accordion class="headers-align">
     <mat-expansion-panel [ngStyle]="{'background-color':sessions[i].isInstructor ?  'white' : '#b2f6f8' }"
@@ -15,7 +22,7 @@
         <div>
           <mat-panel-title class="grid-container">
             <span mat-card-avatar class="image-container" class="instImg">
-              <img class="image" *ngIf="showImage" height="75" [src]="session.instructorPic" alt="">
+              <img class="image" height="75" [src]="session.instructorPic || 'http://www.tuktukdesign.com/wp-content/uploads/2017/12/person-icon.jpg'" alt="">
             </span>
             <span>
             <h5 class="cardtext"><b>{{session.title}}</b></h5>

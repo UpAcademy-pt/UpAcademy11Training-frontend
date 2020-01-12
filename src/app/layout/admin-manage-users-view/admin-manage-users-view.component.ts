@@ -17,6 +17,7 @@ import { Subscription } from 'src/app/core/models/subscription';
 export class AdminManageUsersViewComponent implements OnInit {
   currentIndex: any;
   private viewSessions: boolean[];
+  temp = [];
 
   constructor(private userService: UserServiceService,
     private sessionService: SessionServiceService,
@@ -35,6 +36,7 @@ export class AdminManageUsersViewComponent implements OnInit {
       this.users.forEach(user => {
         this.sessionService.getSessionInUser(user.id).subscribe((data: Session[]) => {
           user.sessions = data;
+          this.temp = [...this.users];
         });
       });
     });
@@ -64,6 +66,20 @@ removeUser() {
   this.userService.removeUser(this.users[this.currentIndex].id).subscribe((data) => {
     this.users.splice(this.currentIndex, 1);
   })
+}
+
+updateFilter(event) {
+  const val = event.target.value.toLowerCase();
+  console.log(this.temp);
+
+  // filter our data
+  const temp = this.temp.filter(function (d) {
+    return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+  });
+  console.log(temp);
+
+  // update the rows
+  this.users = temp;
 }
 
 

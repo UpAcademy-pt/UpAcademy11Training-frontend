@@ -47,6 +47,7 @@ export class SessionsComponent implements OnInit {
   imgUrl: any;
   showImage: boolean;
   toggleString: string = 'Past';
+  toggleDateString: string = 'date';
   mostrarAlunos: boolean;
 
 
@@ -217,7 +218,7 @@ export class SessionsComponent implements OnInit {
             this.showImage = true;
             const base64data = reader.result;
             session.instructorPic = this.sanitizer.bypassSecurityTrustUrl(base64data.toString());
-            console.log(session.instructorPic);
+            console.log("SESSION.INSTRUCTORPIC"+session.instructorPic);
           };
         });
         

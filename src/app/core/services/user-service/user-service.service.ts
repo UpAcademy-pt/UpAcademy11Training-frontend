@@ -106,7 +106,7 @@ export class UserServiceService {
     let options = { headers: headers };
     this.http.put(this.apiUrl +this.currentUser.id+ '/image-upload', uploadData, options)
       .subscribe(data => {
-        console.log(data);
+        console.log(data+"PIC DO USER JA TAAA");
       });
   }
 
@@ -119,7 +119,8 @@ export class UserServiceService {
   }
 
   sendEmail( title: string, date:string, instructorEmail:string, instructorName: string) {
-    let conteudo:string = "Bom dia "+ instructorName+ ". Foi create uma sessão com o titulo "+ title+" na seguinte data: "+date;
+    //let conteudo:string = "Bom dia "+ instructorName+ ". Foi create uma sessão com o titulo "+ title+" na seguinte data: "+date;
+    let conteudo = { 'title': title,  'instructorName': instructorName };
     return this.http.post(this.apiUrl +'sendGrid/'+instructorEmail, conteudo)
   }
 

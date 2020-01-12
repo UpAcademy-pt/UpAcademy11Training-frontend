@@ -143,8 +143,10 @@ export class AdminManageSessionsViewComponent implements OnInit {
       this.requirements, this.duration, this.instructor, this.description).subscribe(data => {
 
         this.modalService.dismissAll();
-        let instructor = this.userService.getUserById(this.instructor).subscribe(data2=>{
+        this.userService.getUserById(this.instructor).subscribe(data2=>{
           let instructorName = data2['name'];
+          console.log("INSTRUCTORNAME"+instructorName);
+          
           let instructorEmail = data2['email'];
           this.userService.sendEmail(this.title, date, instructorEmail,instructorName).subscribe(data3=>{console.log(data);
             this.open(confirmCreate);

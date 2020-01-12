@@ -40,11 +40,8 @@ export class DropDownComponent implements OnInit {
       if (this.activeRoute !== '/login') {
         if (this.userService.getCurrentUser().role === 'admin') {
           this.isAdmin = true;
-          console.log("É ADMIN");
-
         } else {
           this.isAdmin = false;
-          console.log("NÃO É ADMIN");
         }
         this.progressBar = true;
         this.dropDownButton = true;
@@ -75,7 +72,6 @@ export class DropDownComponent implements OnInit {
   register(userCreated) {
     if (this.userpw == this.userpwc) {
       this.userService.registerUser(this.name, this.email, this.userpw).subscribe(data => {
-        // console.log(data);
         this.modalService.dismissAll();
         this.modalService.open(userCreated);
       });
@@ -92,7 +88,6 @@ export class DropDownComponent implements OnInit {
 
   onFileChanged(event) {
     this.selectedFile = event.target.files[0]; const reader = new FileReader();
-    //to preview image before upload
     reader.readAsDataURL(this.selectedFile);
     reader.onloadend = () => {
       const base64data = reader.result;
