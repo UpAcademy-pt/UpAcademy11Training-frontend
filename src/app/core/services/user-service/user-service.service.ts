@@ -13,6 +13,7 @@ import { SubscriptionServiceService } from './subscription-service.service';
 })
 export class UserServiceService {
   
+  
 
   private apiUrl = 'http://localhost:8080/Projeto-CTW/api/user/';
   private currentUser: User = new User();
@@ -32,6 +33,10 @@ export class UserServiceService {
     } else {
       return false;
     }
+  }
+
+  public getUserById(userId):any{
+    return this.http.get(this.apiUrl+userId);
   }
 
   public setCurrentUser(user) {
@@ -111,6 +116,11 @@ export class UserServiceService {
 
   getProgress() {
     return this.http.get(this.apiUrl+this.currentUser.id + '/progress');
+  }
+
+  sendEmail( title: string, date:string, instructorEmail:string, instructorName: string) {
+    let conteudo:string = "Bom dia "+ instructorName+ ". Foi create uma sessão com o titulo "+ title+" na seguinte data: "+date;
+    return this.http.post(this.apiUrl +'sendGrid/'+instructorEmail, conteudo)
   }
 
 }

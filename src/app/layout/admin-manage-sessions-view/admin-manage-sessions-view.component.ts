@@ -12,6 +12,7 @@ import { Session } from 'protractor';
 import { User } from 'src/app/core/models/user';
 import { SubscriptionServiceService } from 'src/app/core/services/user-service/subscription-service.service';
 import { Subscription } from 'src/app/core/models/subscription';
+import { stringify } from 'querystring';
 
 
 
@@ -130,7 +131,7 @@ export class AdminManageSessionsViewComponent implements OnInit {
     this.capacity = 0;
     this.requirements = '';
     this.duration = 0;
-    this.instructor = 0;
+    this.instructor = 1;
     this.description = '';
 
   }
@@ -142,7 +143,13 @@ export class AdminManageSessionsViewComponent implements OnInit {
       this.requirements, this.duration, this.instructor, this.description).subscribe(data => {
 
         this.modalService.dismissAll();
-        this.open(confirmCreate);
+        let instructor = this.userService.getUserById(this.instructor).subscribe(data2=>{
+          let instructorName = data2['name'];
+          let instructorEmail = data2['email'];
+          this.userService.sendEmail(this.title, date, instructorEmail,instructorName).subscribe(data3=>{console.log(data);
+            this.open(confirmCreate);
+          });
+        });      
       },
         error => {
           console.log(createError);
